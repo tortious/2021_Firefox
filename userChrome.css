@@ -10,27 +10,18 @@ hbox#fullscr-toggler {
 
 
 /**********************************************************************************************************/
-
-
 /* Autohide navbar & other preliminary features */
-
-
 /**********************************************************************************************************/
 
-#nav-bar {
-    -moz-box-ordinal-group: 3 !important;
-}
+#nav-bar {-moz-box-ordinal-group: 3 !important;}
 
 
 /* #titlebar {-moz-box-ordinal-group: 0 !important;} */
 
-#PersonalToolbar {
-    -moz-box-ordinal-group: 4 !important;
-}
+#PersonalToolbar {-moz-box-ordinal-group: 4 !important;}
 
 
 /* #PlacesToolbar } */
-
 #PlacesToolbarItems .toolbarbutton-text {
     display: none !important;
 }
@@ -39,9 +30,7 @@ hbox#fullscr-toggler {
     transform: scale(1.2);
 }
 
-
 /* Autohide navbar and urlbar */
-
 #nav-bar:not([customizing]) {
     margin-top: -33px !important;
     opacity: 0;
@@ -54,18 +43,14 @@ hbox#fullscr-toggler {
     z-index: 3
 }
 
-
 /* Show when toolbox is focused, like when urlbar has received focus */
-
 #navigator-toolbox:focus-within>.browser-toolbar {
     transform: translateY(0);
     opacity: 1;
     margin-top: 0px !important;
 }
 
-
 /* Removes the White Flash */
-
 #tabbrowser-tabpanels,
 #webextpanels-window,
 #webext-panels-stack,
@@ -75,24 +60,14 @@ hbox#fullscr-toggler {
 
 
 /**********************************************************************************************************/
-
-
 /* Tab Customizations */
-
-
 /**********************************************************************************************************/
 
-.tab-icon-image {
-    transform: scale(1.1, 1.1)
-}
+.tab-icon-image {transform: scale(1.1, 1.1)}
 
-.tab-background[selected="true"] {
-    opacity: 0 !important;
-}
+.tab-background[selected="true"] {opacity: 0 !important;}
 
-.tab-background:hover {
-    opacity: 0 !important;
-}
+.tab-background:hover {opacity: 0 !important;}
 
 .tab-background:not([selected="true"]) {
     background: transparent !important;
@@ -103,27 +78,20 @@ hbox#fullscr-toggler {
     padding-left: 5px;
 }
 
-
 /* Fabicon icon when mouse over to pinned inactive tab grayscale(15%) */
-
 .tabbrowser-tab:hover .tab-icon-image[pinned] {
     filter: grayscale(15%) !important;
 }
 
-
 /* Fabicon icon on pinned inactive tab grayscale(35%) */
-
 .tabbrowser-tab .tab-icon-image[pinned] {
     filter: grayscale(35%) !important;
 }
 
-
 /* Favicon icon when mouse over over inactive tab grayscale(15%) */
-
 .tabbrowser-tab:hover .tab-icon-image:not([selected=true]):not([pinned]) {
     filter: grayscale(15%) !important;
 }
-
 
 /* Gray out the favicon icon on the inactive tab */
 
@@ -134,7 +102,6 @@ hbox#fullscr-toggler {
 #tabbrowser-tabs {
     --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin, 0px)) !important;
 }
-
 
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/icon_only_tabs.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
@@ -165,19 +132,12 @@ See the above repository for updates as well as full license text. */
 
 
 /**********************************************************************************************************/
-
-
 /**********************************************************************************************************/
 
 
 /**********************************************************************************************************/
-
-
 /* Menubar Adjustments */
-
-
 /**********************************************************************************************************/
-
 
 /* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/menubar_in_tabs_toolbar.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. */
@@ -187,34 +147,21 @@ See the above repository for updates as well as full license text. */
     display: none;
 }
 
-#toolbar-menubar {
-    -moz-box-align: center
-}
+#toolbar-menubar {-moz-box-align: center}
 
 :root:not([customizing]) #toolbar-menubar[autohide][inactive] {
     max-width: 0
 }
 
-
 /**********************************************************************************************************/
-
-
 /* Oneliner & TabsToolbar Adjustments */
-
-
 /**********************************************************************************************************/
-
 
 /* Make tabs and navbar appear side-by-side tabs on right */
-
-
 /* Use page_action_buttons_on_hover.css to hide page-action-buttons to save more space for the address */
-
-
 /*
 urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of new urlbar popup
 */
-
 :root {
     --tab-block-margin: var(--proton-tab-block-margin)
 }
@@ -224,9 +171,7 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     --proton-tab-block-margin: 2px !important;
 }
 
-
 /* Modify these to change relative widths or default height */
-
 #navigator-toolbox {
     --uc-navigationbar-width: 40vw;
     --uc-toolbar-height: 40px;
@@ -241,9 +186,7 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     }
 }
 
-
 /* Override for other densities */
-
 :root[uidensity="compact"] #navigator-toolbox {
     --uc-toolbar-height: 34px;
 }
@@ -252,9 +195,7 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     --uc-toolbar-height: 44px;
 }
 
-
 /* Dependent on how many items are in navigation toolbar ADJUST AS NEEDED */
-
 
 /* @media screen and (max-width: 1500px) {
     #urlbar-container {
@@ -263,25 +204,17 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
 }
  */
 
-
 /* #TabsToolbar {
     margin-left: var(--uc-navigationbar-width);
     --tabs-navbar-shadow-size: 0px;
 }
  */
 
-
 /**********************************************************************************************************/
-
-
 /* Urlbar Customizations */
-
-
 /**********************************************************************************************************/
-
 
 /*Removing BS Urlbar icons*/
-
 #tracking-protection-icon-container {
     display: none !important;
 }
@@ -326,9 +259,7 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     width: 100% !important;
 }
 
-
 /* Make urlbar popup appear full size like it did before urlbar re-design */
-
 .urlbarView-row-inner {
     /* This sets how far the dropdown-items are from window edge */
     padding-inline-start: 6px !important;
@@ -362,15 +293,9 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     display: none !important;
 }
 
-
 /**********************************************************************************************************/
-
-
 /* Custom Toolbar Buttons */
-
-
 /**********************************************************************************************************/
-
 #addonbar_v {
     background: transparent !important;
     height: 30px !important;
@@ -395,17 +320,13 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     min-width: 420px;
 }
 
-
 /* overflow button */
-
 #movable-overflow-button {
     list-style-image: url("Symbol (8).png") !important;
     transform: scale(2)
 }
 
-
 /* Main Menu Button */
-
 #movable-PanelUI-button {
     list-style-image: url("iron_cross_vector_by_arminius1871_dbb2oq4-fullview.png") !important;
     transform: scale(1.8);
@@ -414,99 +335,74 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     margin-top: 3px !important;
 }
 
-
 /* Onetab */
-
 #extension_one-tab_com-browser-action {
     list-style-image: url("pink.png") !important;
     transform: scale(2);
     margin-bottom: -3px !important;
 }
 
-
 /* Dark BG Lite Text */
-
 #jid1-qofqdk4qzufgwq_jetpack-browser-action {
     list-style-image: url("Grass.png") !important;
     transform: scale(2)
 }
 
-
 /* Bitwarden */
-
 #_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action {
     list-style-image: url("sex-offender.png") !important;
     transform: scale(2)
 }
 
-
 /* Reload */
-
 #restart-button2a {
     list-style-image: url("Go.png") !important;
     transform: scale(2);
 }
 
-
 /* Browser Toolbox */
-
 #browser-toolbox-button {
     list-style-image: url("Monopoly1.png") !important;
     transform: scale(2)
 }
 
-
 /* Total Suspender */
-
 #_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action {
     list-style-image: url("cal128.png") !important;
     transform: scale(1.5)
 }
 
-
 /* Youtube Downloader */
-
 #_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action {
     list-style-image: url("IE.png") !important;
     transform: scale(1.5)
 }
 
-
 /* TabStash */
-
 #tab-stash_condordes_net-browser-action {
     list-style-image: url("no-smoking.png") !important;
     transform: scale(2)
 }
 
+#about-button-gen{
+    list-style-image: url("Coda HDR.png") !important;
+    transform: scale(2)
+}
 
 /**********************************************************************************************************/
-
-
 /* Removing Useless items & toolbar buttons */
-
-
 /**********************************************************************************************************/
-
 #tabs-newtab-button,
-#new-tab-button {
-    display: none;
-}
+#new-tab-button {display: none;}
 
-#alltabs-button {
-    display: none;
-}
+#alltabs-button {display: none;}
 
 #back-button,
 #forward-button,
-#reload-button {
-    display: none
-}
+#reload-button {display: none}
 
 .titlebar-buttonbox-container,
-.titlebar-spacer {
-    display: none
-}
+.titlebar-spacer {display: none}
 
 #file-menu,
 #edit-menu,
@@ -515,22 +411,12 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
 #tools-menu,
 #history-menu,
 #helpMenu,
-#wrapper-menubar-items {
-    visibility: collapse
-}
-
-
+#wrapper-menubar-items {visibility: collapse}
 /**********************************************************************************************************/
-
-
 /* Miscellaneous */
-
-
 /**********************************************************************************************************/
-
 
 /* This isn't useful when tabs start in the middle of the window */
-
 .titlebar-spacer[type="pre-tabs"] {
     display: none
 }
@@ -540,16 +426,12 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
     margin-top: calc(0px - var(--uc-toolbar-height));
 }
 
-
 /* Window drag space  */
-
 :root[tabsintitlebar="true"] #nav-bar {
     padding-left: 24px !important
 }
 
-
 /* Rules specific to window controls on right layout */
-
 
 /* @supports -moz-bool-pref("layout.css.osx-font-smoothing.enabled") {
     .titlebar-buttonbox-container {
@@ -567,33 +449,21 @@ urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of 
 
 
 /* Make opened urlbar overlay the toolbar */
-
 #urlbar[open]:focus-within {
     min-width: var(--uc-urlbar-min-width, none) !important;
 }
 
-
 /* Hide dropdown placeholder */
-
 #urlbar-container:not(:hover) .urlbar-history-dropmarker {
     margin-inline-start: -28px;
 }
 
-
 /* Fix customization view */
-
 #customization-panelWrapper>.panel-arrowbox>.panel-arrow {
     margin-inline-end: initial !important;
 }
 
-
 /*******************************************************************************/
-
-
 /*******************************************************************************/
-
-
 /*******************************************************************************/
-
-
 /*******************************************************************************/
