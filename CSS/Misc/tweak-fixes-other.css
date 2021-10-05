@@ -1,0 +1,77 @@
+/* Window dragging enabled for empty space around urlbar */
+toolbox, #urlbar-container{ -moz-window-dragging: drag !important; }
+
+
+/* Minimum window size */
+html { min-width: 800px !important; min-height: 80px !important;}
+
+
+/* Hide shadow above urlbar */
+#nav-bar{ box-shadow: none !important }
+
+
+/* Bookmarks menu same style as arrowpanel menus */
+menupopup[placespopup] {
+  -moz-appearance: none !important;
+  background-color: var(--arrowpanel-background) !important;
+  border: 1px solid var(--arrowpanel-border-color) !important;}
+
+
+/* Color fix on customize view and blank pages, helps with the infamous white/black flash */
+:root #tabbrowser-tabpanels, #customization-container{ background-color: var(--tabpanel-background-color, gray) !important;}
+
+
+/* Oneliner fix for colors */
+#nav-bar { background: none !important; }
+/*#PersonalToolbar { background: none !important; }*/ /*only enable if you dont use autohiding */
+
+
+/* Fix for containers tab line */
+.tab-context-line{ margin-top: 0px !important; }
+
+
+/* Compact mode tweak for sound mute button */
+:root[uidensity="compact"] .tab-icon-image:not([pinned]) { opacity: 1 !important; }
+:root[uidensity="compact"] .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]){
+	top: -5.5px !important;
+	inset-inline-end: -6px !important;
+  border-radius: 10px !important;
+  stroke: black !important;}
+
+
+/* Tooltip adjustments */
+tooltip{
+  padding: 0px !important;
+  border-radius: var(--uc-roundness) !important;
+  background-color: var(--arrowpanel-background) !important;
+  border: 1px solid var(--arrowpanel-border-color) !important;}
+  
+  
+ /* Personal toolbar widget buttons color */
+#PersonalToolbar .toolbarbutton-1 {color: var(--lwt-text-color) !important;}
+
+
+/* Page action buttons which arent disabled show on urlbar hover */
+#page-action-buttons{  display: -moz-box !important; -moz-window-dragging: no-drag !important;
+width: 0px; min-width: 0px; opacity: 0;} #urlbar-container:hover #page-action-buttons{ opacity: 1;  width: 100%; }
+
+
+/* Urlbar highlighted background color */
+#urlbar-input::-moz-selection { background-color: transparent !important;}
+/* Urlbar highlighted text color */
+#urlbar-input::-moz-selection {color: var(--focus-outline-color, highlight) !important; }
+
+
+/* Urlbar focused background color same as unfocused */
+[focused]#urlbar:not([breakout][breakout-extend]) > #urlbar-background { background-color: var(--toolbar-field-background-color, currentColor) !important; }
+/* Urlbar focused text color same as unfocused */
+[focused]#urlbar{color: var(--toolbar-field-color) !important;}
+
+
+/* Urlbar focus outline same as unfocused outline */
+#urlbar{ --toolbar-field-focus-border-color: var(--toolbar-field-border-color) !important;}
+
+
+/* Customize view overflow panel Y fix */
+:root #customization-panel-container{ margin-top: calc(0px + var(--uc-toolbar-height) + var(--uc-toolbarborder-height)) !important; }
+
