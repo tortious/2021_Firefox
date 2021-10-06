@@ -1,0 +1,14 @@
+/* url bar */
+#widget-overflow-mainView,
+#urlbar[open="true"] > #urlbar-background {
+	background: var(--bct-e-urlbar-bg) !important;
+	backdrop-filter: contrast(100%) blur(var(--bct-blur)) saturate(25%) !important;
+	border: none !important;
+}
+
+/* overfow menu in customize menu */
+vbox#customization-panelWrapper box.panel-arrowcontent {
+	background: #0000 !important;
+	backdrop-filter: contrast(100%) blur(6px) !important;
+	border: none !important;
+}
