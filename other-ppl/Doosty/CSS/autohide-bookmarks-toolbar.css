@@ -1,0 +1,36 @@
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_bookmarks_toolbar.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Personal toolbar - hiding setup */
+  [sizemode="normal"] #PersonalToolbar {--uc-bg-y: calc(0px - var(--uc-toolbar-height) - var(--uc-toolbarborder-height));}
+  [sizemode="maximized"] #PersonalToolbar {--uc-bg-y: calc(-9px - var(--uc-toolbar-height) - var(--uc-toolbarborder-height));}
+#PersonalToolbar{ position: relative; }
+#PersonalToolbar:not([customizing]){
+  background-color: transparent !important;
+  background-repeat: no-repeat,no-repeat,var(--lwt-background-tiling);
+  background-position: top left,top left,var(--lwt-background-alignment,top left);
+  background-position-y:top,top,var(--uc-bg-y),var(--uc-bg-y),var(--uc-bg-y);
+  background-image: var(--toolbar-bgimage), linear-gradient(var(--toolbar-bgcolor),var(--toolbar-bgcolor)),var(--lwt-header-image,var(--lwt-additional-images)) !important;
+/*  box-shadow: 0 0px 0px rgba(0,0,0,0);  width: 100%;  transform: translateY(0%);  transition: transform 0s !important;  */
+  }
+/* Personal toolbar - hide */
+#PersonalToolbar:not([customizing]){  transform: rotateX(90deg);
+  transform-origin: top;
+  transition: transform 135ms linear 0ms !important;
+  z-index: 1;}
+/* Personal toolbar - repair margins */
+:root #PersonalToolbar{ --uc-bm-height: 28px;} 
+:root[uidensity="compact"] #PersonalToolbar{--uc-bm-height: 22px; } 
+:root[uidensity="touch"] #PersonalToolbar{ --uc-bm-height: 34px; }
+#PersonalToolbar{ margin-bottom: calc(0px - var(--uc-bm-height) - 2 * var(--uc-toolbarborder-height)); }
+
+
+
+
+
+
+
+/* Personal toolbar - high dpi screens "fix" */
+@media only screen and (min-resolution: 150dpi){
+  #PersonalToolbar{ margin-bottom: calc(0.66667px - var(--uc-bm-height) - 2 * var(--uc-toolbarborder-height)) ;}}
+
