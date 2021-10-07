@@ -1,0 +1,27 @@
+/* many of these have show-on-hover option in userChrome.css */
+#tracking-protection-icon-container,	/* Shield icon on the left of urlbar	*/
+#identity-box,							/* Site information button 				*/
+#urlbar-label-box,						/* Url label box on some sites			*/
+#urlbar-search-mode-indicator,			/* "Search with" icon inside urlbar 	*/
+#urlbar-go-button,						/* Action button - Go arrow  */
+.titlebar-spacer,						/* Empty space topright					*/
+.private-browsing-indicator,			/* Private browsing icon				*/
+.tab-close-button,
+#minMaxClose-button,
+#uc-controlbutton-container,
+.titlebar-buttonbox-container,
+#window-controls
+{ display: none }
+
+
+
+/* Disable images that come with themes */
+/*
+:root {--lwt-header-image: none !important;--lwt-additional-images: none !important;}
+*/
+
+
+/* Tab shadow disable - gets rid of tab outlines in themes */
+/*
+.tab-background { box-shadow: none !important; }
+*/
