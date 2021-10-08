@@ -1,0 +1,5 @@
+
+/* flexible space - makes it smaller */ 
+toolbarspring {
+    min-width: 2px !important;
+    max-width: 2px !important;}
