@@ -1,0 +1,34 @@
+/* #context-undo, /\* undo *\/ */
+/* #context-redo, /\* redo *\/ */
+/* #context-cut, /\* cut *\/ */
+/* #context-copy, /\* copy *\/ */
+/* #context-paste, /\* paste *\/ */
+/* #context-delete, /\* delete *\/ */
+/* #context-selectall, /\* select all *\/ */
+
+#context-sendimage, /* email */
+#context-bookmarklink, /* bookmark link */
+#context-savelink, /* save link */
+#context-copyimage-contents, /* copy image */
+#context-take-screenshot, /* take screenshot */
+#context-openlinkincontainertab, /* open in container tab */
+#context-openlinkintab, /* open link in tab */
+#context-openlink, /* open link in new window */
+#context-openlinkprivate, /* open link in private window */
+#context-searchselect, /* search for */
+#context-searchselect-private, /* search for private */
+#context-inspect-a11y, /* accessability */
+#context-savepage, /* save page */
+#context-selectall, /* select all */
+#context-viewsource, /* view source */
+#context-back, /* back */
+#context-forward, /* forward */
+#context-reload, /* reload */
+#context-bookmarkpage,/* edit this bookmark */
+#context-media-playbackrate, /* speed in video menu */
+#context-media-loop, /* loop video */ 
+#context-sendvideo, /* email video */
+#context-sendaudio, /* email audio */
+#context-sendimage, /* email image */
+#context-keywordfield /* add a keyword for this search */
+{display: none !important;}
