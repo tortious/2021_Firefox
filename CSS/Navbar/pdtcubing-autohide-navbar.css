@@ -1,0 +1,172 @@
+
+
+:root {
+  /* Appmenu: Reduce item padding */
+  --arrowpanel-menuitem-padding-block: 4px 8px !important;
+  /* Tabbar: reduce tab margin */
+  --tab-block-margin: 4px 3px !important;
+}
+
+  
+  /* show close button on hover */
+#tabbrowser-tabs[closebuttons="activetab"]
+
+
+.tabbrowser-tab:not([selected]):not([pinned]):hover .tab-close-button {
+	display: -moz-inline-box !important;
+}
+
+
+.tabbrowser-tab:not([pinned]):not(:hover) .tab-close-button {
+	visibility: collapse !important;
+}
+
+.tabbrowser-tab:not([pinned]):hover .tab-close-button {
+	visibility: visible !important;
+	display: block !important;
+}
+
+
+
+/* make the close button more clearly visible on hover */
+.tab-close-button:hover {
+	background-color: rgba(100,100,100,0.4) !important;
+	fill: rgb(255,95,87) !important;
+	border-radius: 4px;
+}
+
+.tab-close-button:hover{
+	margin-top: 7px !important;
+	margin-bottom: 7px !important;
+	padding-block: 3px 3px !important;
+}
+
+/* Tab: Reduce height */
+.tabbrowser-tab {
+	min-height: 24px !important;
+	margin-block-start: 2px !important;
+}
+  
+
+
+/* Tab: Ensure tab height doesn't augment when arrowscrollbox is visible  */ 
+#tabbrowser-arrowscrollbox {
+	--tab-min-height: 31px !important;
+	max-height: var(--tab-min-height);
+}
+
+#tabs-newtab-button {
+	min-width: 10px !important;
+	min-height: 10px !important;
+}
+
+#tabs-newtab-button:hover {
+	background-color: rgba(100,100,100,0.) !important;
+	fill: rgb(40,200,64) !important;
+}
+
+#tabs-newtab-button .toolbarbutton-icon {
+	border-radius: 4px !important;
+	margin-top: 5.5px !important;
+	margin-bottom: 0px !important;
+	min-height: 20px !important;
+	min-width: 20px !important;
+	padding-block: 4px 5px !important;
+	
+
+
+}
+
+
+/* Tab: Attention icon */
+.tabbrowser-tab:is([image], [pinned]) > .tab-stack > .tab-content[attention]:not([selected="true"]), .tabbrowser-tab > .tab-stack > .tab-content[pinned][titlechanged]:not([selected="true"]) {
+  background-position-x: left 2px !important;
+  background-position-y: bottom 12.5px !important;
+}
+  
+/* URLBar: Fix vertical alignment */
+#urlbar[breakout=true]:not([open="true"]) {
+  --urlbar-height: 20px !important;
+  --urlbar-toolbar-height: 24px !important;
+margin-block-start: -2px !important;	  
+}
+  
+/* URLBar: Fix URL address vertical aligment when megabar is open */
+#urlbar[breakout=true][open="true"] {
+  --urlbar-toolbar-height: 30px !important;
+}
+
+ 
+  
+/* Searchbar: Ensure toolbar height doesn't augment when searchbar is visible */
+#urlbar-container, 
+#search-container {
+  padding-block: 0 !important;
+}
+  
+/* Searchbar: Make sure the min-height of the input is the same as the popup */
+#search-container {
+  min-width: 192px !important;
+}
+  
+/* Toolbar: Reduce spacing */
+#urlbar-container {
+  --urlbar-container-height: 30px !important;
+  margin-top: 0 !important;
+}
+  
+/* Reload Button: Fix vertical alignment */
+#reload-button {
+  margin-block-start: -2px !important;
+}
+
+#pageActionSeparator,
+#pageActionButton,
+#toolbar-menubar,
+#tracking-protection-icon-container,
+#identity-icon-box,
+#star-button-box {
+	display: none !important;
+}
+
+
+/* AUTOHIDE NAVBAR */
+
+
+#nav-bar:not([customizing]) {
+  visibility: visible;
+  margin-top: -34px;
+  transition-delay: 1s;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  transition: visibility, ease 0.35s, margin-top, ease 0.35s, opacity, ease 0.10s, rotate, ease 0.25s !important;
+}
+
+#nav-bar:hover,
+#nav-bar:focus-within,
+#urlbar[focused='true'],
+#identity-box[open='true'],
+#titlebar:hover + #nav-bar:not([customizing]),
+#toolbar-menubar:not([inactive='true']) ~ #nav-bar:not([customizing]) {
+  visibility: visible;
+
+  margin-top: 0px;
+  filter: alpha(opacity=100);
+  opacity: 100;
+  margin-bottom: -0.2px;
+}
+
+#tabbrowser-tabs {
+  visibility: visible !important;
+}
+
+/*
+#PersonalToolbar {
+  margin-top: 0px;
+}
+*/
+
+#nav-bar .toolbarbutton-1[open='true'] {
+  visibility: visible;
+  opacity: 100;
+}
