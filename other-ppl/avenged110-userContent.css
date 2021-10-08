@@ -1,0 +1,1473 @@
+/* Note: Tested against 78esr on OS X 10.9, non-HiDPI */
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Theme Google Search results ***/
+@-moz-document domain(google.com) {
+  /* Turn URL breadcumbs green again */
+  .eipWBe, .TbwUpd, cite {color: #009959 !important;}
+
+  /* Hide useless, ephemeral UI buttons that appear in results */
+  #botstuff, .LnbJhc {display: none !important;}
+}/*** END: Theme Google Search results ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Attempt to disable non-native 'focusring' across all pages ***/
+@-moz-document url-prefix(about:addons), url(about:addons),
+url-prefix(chrome://mozapps/content/extensions/extensions.xul),
+url-prefix(chrome://mozapps/content/extensions/aboutaddons.html),
+url(about:preferences), url-prefix(about:preferences),
+url(chrome://browser/content/preferences/dialogs/fonts.xhtml),
+url(chrome://browser/content/preferences/dialogs/colors.xhtml),
+url(chrome://browser/content/preferences/dialogs/browserLanguages.xhtml),
+url(chrome://browser/content/preferences/dialogs/languages.xhtml),
+url(chrome://mozapps/content/update/history.xhtml),
+url(chrome://browser/content/preferences/dialogs/connection.xhtml),
+url(chrome://browser/content/preferences/dialogs/permissions.xhtml),
+url(chrome://browser/content/preferences/dialogs/siteDataSettings.xhtml),
+url(chrome://browser/content/preferences/dialogs/clearSiteData.xhtml),
+url(chrome://formautofill/content/manageAddresses.xhtml),
+url(chrome://browser/content/sanitize.xhtml),
+url(chrome://browser/content/preferences/dialogs/sanitize.xhtml),
+url(chrome://browser/content/preferences/dialogs/sitePermissions.xhtml),
+url(chrome://pippki/content/certManager.xhtml),
+url(chrome://pippki/content/device_manager.xhtml), url(about:support), url-prefix(about:support),
+url(about:config), url-prefix(about:config), url(about:proiles), url-prefix(about:profiles),
+url(about:protections), url-prefix(about:protections), url(about:polcies),
+url-prefix(about:policies), url(about:privatebrowsing), url-prefix(about:privatebrowsing),
+url(about:crashes), url-prefix(about:crashes), url(about:compat), url-prefix(about:compat),
+url(about:profiling), url-prefix(about:profiling), url(about:url-classifier),
+url-prefix(about:url-classifier) {
+  :root {
+    --in-content-border-focus: none !important;
+    --in-content-border-highlight: none !important;
+    --in-content-item-selected: none !important;}
+
+  :-moz-focusring, :focus, ::-moz-focus-inner, ::-moz-focus-outer {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;}
+
+  /* Hide non-native 'focusring' on checkboxes and radio buttons */
+  radio[focused] > .radio-check, checkbox:-moz-focusring > .checkbox-check {
+    outline: none !important;}
+}/*** END: Attempt to disable non-native 'focusring' across all pages ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Modify about:blank ***/
+/*@-moz-document url("about:blank") {
+  body {background-color: #5A5A5A !important;}
+}/*** END: Modify about:blank ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Error page(s) ***/
+@-moz-document url-prefix("about:neterror"), url-prefix("about:neterror?e=connectionFailure"),
+url-prefix("about:neterror?e=netInterrupt"), url-prefix("about:neterror?e=netTimeout"),
+url-prefix("about:neterror?e=netReset"), url-prefix("about:neterror?e=netOffline"),
+url("about:restartrequired"), url("chrome://browser/content/aboutRestartRequired.xhtml"),
+url-prefix("about:neterror?e=dnsNotFound"), url-prefix("about:neterror?e=malformedURI"),
+url-prefix("about:neterror?e=clockSkewError"), url-prefix("about:neterror?e=nssFailure"),
+url("about:sessionrestore"), url("chrome://browser/content/aboutSessionRestore.xhtml"),
+url-prefix("about:neterror?e=fileNotFound"), url-prefix("about:tabcrashed"), url("about:tabcrashed") {
+  /* Hide dumb 'illustrations' */
+  .title {background-image: none !important;}
+  #errorPageContainer {background-image: none !important;}
+
+  /* Center error page text */
+  #text-container {padding-inline-start: 0px !important;}
+
+  /* Theme buttons to match native style */
+  button {
+    -moz-appearance: button !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%,
+    #F8F8F8 38%, #F5F5F5 44%, #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%,
+    #EFEFEF 95%, #F2F2F2 100%) !important;
+    min-width: 160px !important;
+    max-width: 160px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    color: black !important;}
+
+  button:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%,
+    #8E94A5 20%, #8A92A3 25%, #838B9F 30%, #81899E 36%, #7B859A 42%,
+    #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%, #6F7A94 70%,
+    #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%,
+    #B3BCC5 100%) !important;}
+
+  button#restoreAll, #openInNewWindowButton {
+    min-width: 220px !important;
+    max-width: 220px !important;}
+}/*** END: Error page(s) ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Extensions ***/
+@-moz-document url-prefix(about:addons), url(about:addons),
+url-prefix(chrome://mozapps/content/extensions/extensions.xul),
+url-prefix(chrome://mozapps/content/extensions/aboutaddons.html) {
+  /* Override font-sizes */
+  .header-name {font-size: 18px !important;}
+  .list-section-heading {font-size: 14px !important;}
+  .addon-name {font-size: 12px !important;}
+  .card.addon {font-size: 12px !important;}
+
+  /* Adjust hard-coded page widths */
+  :root {
+    --sidebar-width: 280px !important;
+    --in-content-sidebar-width: 280px !important;
+    --section-width: 500px !important;
+    --main-margin-start: 16px !important;}
+  #content {
+    min-width: 532px !important;
+    max-width: 532px !important;
+    margin-left: -100px !important;}
+
+  /* Hide 'search' header, side footer, "recommended" badges, theme images,
+     extension menu items, 'view updates' button, ratings, and 'contribute' messages */
+  .sidebar-footer-list, .main-search, .addon-badge-recommended, .card-heading-image,
+  .addon-badge-private-browsing-allowed, panel-item[action="report"],
+  panel-item[action="debug-addons"], panel-item[action="expand"],
+  panel-item[action="reset-update-states"], panel-item-separator,
+  panel-item[action="view-recent-updates"], .addon-description, .addon-detail-row-rating,
+  .addon-detail-contribute, .addon-detail-help-row, message-bar-stack[class="pending-uninstall"],
+  a[data-l10n-name="link"][support-page="cant-remove-addon"], .arrow {
+    display: none !important;}
+
+  /* Increase padding at page top and in specific extension settings */
+  #page-header[current-view="list"] .sticky-container,
+  #page-header[current-view="shortcuts"] .sticky-container,
+  #page-header[current-view="updates"] .sticky-container,
+  #page-header[current-view="detail"] .sticky-container {
+    padding-top: 20px !important;
+    padding-bottom: 0px !important;
+    border-bottom: 1px solid #D7D7DB !important;}
+
+  .addon-detail-row-private-browsing {padding-bottom: var(--card-padding) !important;}
+
+  /* Fix extension title alignment after hiding description */
+  .card-contents {align-self: center !important;}
+
+  /* Remove 'highlight-on-hover' and add border for extension listing(s) */
+  .addon.card, .shortcut.card {
+    border: 1px solid #BCBCBC !important;
+    border-radius: 8px !important;}
+
+  .addon.card, .addon.card:hover, .shortcut.card {
+    box-shadow: 0 1px 12px rgba(12,12,13,0.2) !important;}
+
+  /* Force consistent height among un-expanded cards */
+  addon-card:not([expanded]) .addon.card {
+    min-height: 20px !important;
+    max-height: 20px !important;}
+
+  /* Reduce padding around expanded addon cards' list items and increase top margin */
+  .addon-detail-row {
+    min-height: 30px !important;
+    max-height: 30px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;}
+
+  .card {
+    padding: 16px !important;
+    margin-top: 18px !important;}
+
+  addon-card[expanded] .addon.card {
+    padding-bottom: 4px !important;
+    margin-bottom: 10px !important;}
+
+  /* Reduce size of addon icon */
+  :root {--addon-icon-size: 22px !important;}
+  .card-heading-icon {
+    margin-top: -1px !important;}
+  .addon-card-collapsed {margin-inline-start: -3px !important;}
+  .addon-name-container {margin-top: -1px !important;}
+  .toggle-button.extension-enable-button {margin-top: -8px !important;}
+
+  /* Fix missing icon for extensions' settings button */
+  panel-item[action="preferences"] {
+    --icon: url("chrome://global/skin/icons/settings.svg") !important;}
+
+  /* Hide always-disabled option in plugin preferences menu */
+  panel-item[data-l10n-id="ask-to-activate-button"] {display: none !important;}
+
+  /* Theme sidebar navigation */
+  #sidebar {
+    width: 180px !important;
+    background: #CED4DD !important;}
+
+  /* Align sidebar 'tabs' with those of about:preferences */
+  categories-box[id="categories"] {
+    margin-left: -1px !important;
+    margin-top: 69px !important;}
+
+  /* Theme settings sidebar 'tabs' */
+  .category {
+    -moz-appearance: none !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-color: none !important;
+    background-image: linear-gradient(#FFFFFF 0%,#FCFCFC 25%,#FAFAFA 32%,#F8F8F8 38%,#F5F5F5 44%,
+    #F3F3F3 50%,#ECECEC 70%,#EDEDED 90%,#EFEFEF 95%,#F2F2F2 100%) !important;
+    background-repeat: unset !important;
+    background-position-x: unset !important;
+    background-position-y: unset !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    margin-inline-start: 10px !important;
+    margin-inline-end: 0px !important;
+    margin-top: 10px !important;
+    min-width: 160px !important;
+    max-width: 160px !important;}
+
+  .category:active {
+    background-image: linear-gradient(#D9D9D9 25%,#D5D5D5 30%,#D4D4D4 36%,#D0D0D0 42%,#CECECE 48%,
+    #CBCBCB 54%,#C4C4C4 74%,#C5C5C5 89%,#C8C8C8 95%,#CBCBCB 100%) !important;}
+
+  .category[selected] {
+    border-top: 1px solid #4C4C4C !important;
+    border-right: 1px solid #5F5F5F !important;
+    border-bottom: 1px solid #7A7A7A !important;
+    border-left: 1px solid #5F5F5F !important;
+    border-radius: 5px !important;
+    background-color: none !important;
+    background-image: linear-gradient(#6D6D6D, #939393) !important;
+    color: white !important;
+    text-shadow: 1px 1px black !important;
+    box-shadow: inset 0 1px 0 1px #5D5D5D !important;}
+
+  /* Adjust 'number of available updates' badge on 'available updates' button */
+  .category[badge-count]::after {
+    padding-top: 2px !important;
+    padding-right: 5px !important;
+    padding-bottom: 2px !important;
+    padding-left: 3px !important;
+    margin-inline-start: 22px !important;
+    font-weight: unset !important;
+    font-size: 12px !important;}
+
+  .category[name="Available Updates"] > .category-name {margin-top: 12px !important;}
+
+  /* Fill void of missing icons to avoid double-stacking text with update count badge. Also,
+     this fixes the sidebar misalignment on window width change. */
+  #categories > .category {padding-inline-start: 0px !important;}
+  .category-name {
+    display: inline-block !important;
+    font-size: 14px !important;
+    padding-inline-start: 0px !important;
+    margin-top: -1px !important;
+    margin-left: 10px !important;}
+
+  /* Unhide hidden sidebar 'tab(s)' */
+  /* Note: Additional options are .category[name="available-updates"],
+     .category[name="dictionary"], and .category[name="locale"] */
+  .category[name="recent-updates"] {display: block !important;}
+
+  /* Theme buttons – shared parameters */
+  button.tab-button, .button-link {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%,#FCFCFC 25%,#FAFAFA 32%,#F8F8F8 38%,#F5F5F5 44%,
+    #F3F3F3 50%,#ECECEC 70%,#EDEDED 90%,#EFEFEF 95%,#F2F2F2 100%) !important;}
+
+  /* Theme addon cards' 'tab' buttons */
+  button.tab-button {
+    font-size: 13px !important;
+    background-color: none !important;
+    padding-top: 0px !important;
+    min-width: 122px !important;
+    max-width: 122px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  button.tab-button:active {
+    background-image: linear-gradient(#D9D9D9 25%,#D5D5D5 30%,#D4D4D4 36%,#D0D0D0 42%,#CECECE 48%,
+    #CBCBCB 54%,#C4C4C4 74%,#C5C5C5 89%,#C8C8C8 95%,#CBCBCB 100%) !important;}
+
+  button.tab-button[selected] {
+    border-top: 1px solid #4C4C4C !important;
+    border-right: 1px solid #5F5F5F !important;
+    border-bottom: 1px solid #7A7A7A !important;
+    border-left: 1px solid #5F5F5F !important;
+    background-image: linear-gradient(#6D6D6D,#939393) !important;
+    color: white !important;
+    text-shadow: 1px 1px black !important;
+    box-shadow: inset 0 1px 0 1px #5D5D5D !important;}
+
+  /* Adjust addon cards' 'tab' buttons' spacing */
+  #details-deck-button-details {
+  margin-left: 56px !important;
+    margin-right: 5px !important;}
+
+  #details-deck-button-preferences, #details-deck-button-permissions,
+  #details-deck-button-release-notes {
+  margin-left: 5px !important;
+    margin-right: 5px !important;}
+
+  /* Hide top and bottom borders around addon cards' 'tab' buttons */
+  .tab-group {
+    padding-top: 8px !important;
+    padding-bottom: 10px !important;
+    border-top: none !important;}
+
+  /* Force-display release notes 'tab' button for consistency (except on 'view image' extension,
+     which has permissions 'tab' button instead) */
+  addon-card:not([addon-id="{287dcf75-bec6-4eec-b4f6-71948a2eea29}"]) 
+  #details-deck-button-release-notes {display: inline-block !important;}
+
+  /* Theme 'check for updates' button inside expanded addon card */
+  .button-link {
+    color: black !important;
+    text-decoration: none !important;
+    min-width: 135px !important;
+    max-width: 135px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    margin-right: 10px !important;}
+
+  .button-link:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%,#9FA6B4 10%,#949BAB 15%,#8E94A5 20%,#8A92A3 25%,
+    #838B9F 30%,#81899E 36%,#7B859A 42%,#778197 48%,#747E95 54%,#64658B 60%,#68738F 65%,
+    #6F7A94 70%,#78849A 75%,#808BA0 80%,#8994A7 85%,#959FAF 90%,#A1ACB8 95%,#B3BCC5 100%) 
+    !important;}
+
+ /** BEGIN: Direct changes for in-line addon menuitem buttons **/
+  addon-card .addon-card-collapsed {
+    display: grid !important;
+    grid-template-areas: "a b" !important;
+    grid-template-columns: 33px 356px !important;}
+
+  addon-card .card-contents {
+    width: initial !important;
+    white-space: initial !important;}
+
+  .card-heading-icon {grid-area: a !important;}
+  .card-contents {grid-area: b !important;}
+
+  addon-options > panel-list {
+    position: static !important;
+    display: flex !important;
+    padding: 0 !important;
+    backdrop-filter: none !important;}
+
+  button[role="menuitem"] {
+    padding-inline-start: 30px !important;
+    background-position-x: 8px !important;}
+
+  .more-options-menu > .more-options-button, .addon-name-container > .more-options-button,
+  panel-item[action="expand"], button[role="menuitem"] > slot, link+button::after,
+  button[role="menuitem"] > label:not([accesskey]), panel-item[action="install-update"] {
+    display: none !important;}
+
+  div.list {
+    display: inherit !important;
+    flex-direction: row !important;} 
+
+  panel-item[action="toggle-disabled"] {
+    --icon: url("chrome://browser/skin/quit.svg") !important;}
+  panel-item[action="preferences"] {
+    --icon: url("chrome://global/skin/icons/settings.svg") !important;
+    margin-left: 12px !important;
+    margin-right: 5px !important;}
+
+  link+button[role="menuitem"] {
+    position: static !important;
+    padding-inline-end: 3px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    border-radius: 5px !important;
+    border: 1px solid #989899 !important;
+    background-color: #E1E1E2 !important;}
+  link+button[role="menuitem"]:active {background-color: #BEBEBE !important;}
+
+  addon-options > panel-list {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    margin-top: -23px !important;
+    margin-left: 388px !important;
+    min-width: 60px !important;
+    max-width: 60px !important;}
+ /** END: Direct changes for in-line addon menuitem buttons **/
+
+  /* Adjustment(s) for 'extension shortcuts' page */
+  .shortcut-label, .shortcut-input {font-size: 12px !important;}
+  .shortcut-input {
+    padding-top: 3px !important;
+    padding-bottom: 3px !important;
+    margin: 0px !important;}
+  .shortcut-input:hover {border-color: #BCBCBC !important;}
+  .card-heading {margin-bottom: 10px !important;}
+  .shortcut-row {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;}
+
+  /* Fix extension shortcuts' entry-box's border disappearing on focus */
+  .shortcut-input:focus {border: 1px solid #B6B6B6 !important;}
+
+  /* Special-case adjustments for theme cards */
+  .theme-enable-button {
+    background-color: #E1E1E2 !important;
+    border-radius: 5px !important;
+    border: 1px solid #989899 !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    min-width: 70px !important;
+    max-width: 70px !important;
+    margin-top: -1px !important;
+    margin-right: -84px !important;}
+  .theme-enable-button:active {background-color: #BEBEBE !important;}
+
+  addon-card[expanded][addon-id="firefox-compact-dark@mozilla.org"] .addon-card-collapsed,
+  addon-card[expanded][addon-id="default-theme@mozilla.org"] .addon-card-collapsed,
+  addon-card[expanded][addon-id="firefox-compact-light@mozilla.org"] .addon-card-collapsed {
+    padding-bottom: 21px !important;}
+
+  /* Special-case adjustments for plugin cards */
+  addon-card[addon-id="gmp-widevinecdm"] .addon-name,
+  addon-card[addon-id="gmp-gmpopenh264"] .addon-name {
+    min-width: 600px !important;
+    max-width: 600px !important;}
+
+  addon-card[addon-id="gmp-widevinecdm"] .card-heading-icon,
+  addon-card[addon-id="gmp-gmpopenh264"] .card-heading-icon {margin-top: -2px !important;}
+
+  addon-card[addon-id="gmp-widevinecdm"] .addon-name,
+  addon-card[addon-id="gmp-gmpopenh264"] .addon-name {margin-bottom: 0px !important;}
+
+  /* Adjustments to 'page options menu,' 'remove shortcut,' and back buttons */
+  button:enabled:hover, .shortcut-remove-button {background-color: #E1E1E2 !important;}
+
+  .more-options-button[action="page-options"], .back-button, .shortcut-remove-button {
+    border-radius: 5px !important;
+    border: 1px solid #989899 !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;}
+
+  .back-button {
+    background-size: 15px auto !important;
+    background-position-x: 11px !important;}
+
+  .shortcut-remove-button {background-position-x: 10px !important;}
+
+  .more-options-button[action="page-options"] {background-size: 15px auto !important;}
+  .more-options-button[action="page-options"]:active,
+  .more-options-button[action="page-options"][aria-expanded="true"],
+  .shortcut-remove-button:active {background-color: #BEBEBE !important;}
+
+  /* Use native checkbox and adjust positioning */
+  input[type="checkbox"] {-moz-appearance: checkbox !important;}
+
+  .toggle-button {
+    height: 18px !important;
+    margin-right: 10px !important;
+    margin-bottom: -7px !important;}
+
+  /* Hide 'update dot' on extentions' options menu button */
+  .more-options-button-badged::after, button[role="menuitem"]::after {display: none !important;}
+
+  /* Hide description link to license for plugins */
+  .addon-detail-description a[href="chrome://mozapps/content/extensions/OpenH264-license.txt"],
+  .addon-detail-description a[href="https://www.google.com/policies/privacy/"] {
+    display: none !important;}
+
+  /* Adjust warning message for delayed plugin installation */
+  .addon-card-message[type="warning"] {
+    border: 1px solid #BCBCBC !important;
+    border-radius: 5px !important;
+    box-shadow: 0 1px 12px rgba(12,12,13,0.2) !important;
+    margin-top: 32px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;}
+
+  /* (Temporarily?) Hide warning about delayed install for plugin since it never goes away
+     which is probably a bug */
+  .addon-card-message[type="warning"] {display: none !important;}
+
+  /* Hide options button for themes (dropdown menu was empty anyway) */
+  addon-card[addon-id="firefox-compact-dark@mozilla.org"] .more-options-button,
+  addon-card[addon-id="default-theme@mozilla.org"] .more-options-button,
+  addon-card[addon-id="firefox-compact-light@mozilla.org"] .more-options-button {
+    display: none !important;}
+}/*** END: Firefox Extensions ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Settings ***/
+@-moz-document url(about:preferences), url-prefix(about:preferences) {
+  /* Override font-size */
+  .main-content {font-size: 12px !important;}
+
+  /* Hide stuff */
+  .face-smile, .sidebar-footer-button, #contentProcessCountEnabledDescription,
+  #viewShieldStudies, .tip-caption, .sticky-container, #openSearchEnginePreferences,
+  #addEngines, #dataCollectionPrivacyNotice, #openLocationBarPrivacyPreferences,
+  #cfrRecommendations, #cfrRecommendations-features, #playDRMContentLink, #searchbarGroup,
+  .content-blocking-warning, #trackingProtectionShield, #addonRecommendationEnabled,
+  #useMasterPassword, #changeMasterPassword, dropmarker, #showUpdateHistory,
+  .accessory-button[label="Saved Addresses…"], #restoreDefaultHomePageBtn, #releasenotes,
+  #removeEngineButton, #restoreDefaultSearchEngines, #viewSecurityDevicesButton,
+  label[data-l10n-id="update-application-description"] {
+    display: none !important;}
+
+  /* Hide all 'learn more' buttons */
+  #notificationPermissionsLearnMore, #a11yLearnMoreLink, #breachAlertsLearnMoreLink,
+  #siteDataLearnMoreLink, #enableSafeBrowsingLearnMore, #pictureInPictureLearnMore,
+  #performanceSettingsLearnMore, #connectionSettingsLearnMore, #cfrLearnMore,
+  #cfrFeaturesLearnMore, #contentBlockingLearnMore, #addressAutofillLearnMore,
+  #addonRecommendationLearnMore, #crashReporterLearnMore, #FHRLearnMore,
+  .text-link[data-l10n-id="do-not-track-learn-more"] {display: none !important;}
+
+  /* Don't remember what this is for */
+  groupbox[data-category] {margin: unset !important;}
+
+  /* Adjust margin at top and between sidebar and content */
+  .main-content {
+    padding-top: 20px !important;
+    padding-inline: 16px !important;}
+
+  /* Reduce spacing in between items */
+  checkbox, radio {height: 0px !important;}
+  .content-blocking-extra-information > .custom-option {margin: 3px 0px 3px 0px !important;}
+  description[data-l10n-id="content-blocking-etp-standard-desc"],
+  label[data-l10n-id="content-blocking-etp-strict-desc"], #contentBlockingCustomDesc {
+    margin: -5px 0px 5px 1px !important;}
+
+  label {line-height: 1.5em !important;}
+
+  /* Fix left-margin spacing for select items */
+  #passwordsGroup, #formAutofillGroupBox, #locationBarGroup {margin-left: -4px !important;}
+  #passwordExceptions, #showPasswords {margin-right: -4px !important;}
+
+  /* Use native standard buttons (but not dropdown menu buttons) and override height */
+  .text-link, .accessory-button, #checkForUpdatesButton3, #restoreDefaultSearchEngines,
+  #removeEngineButton, #downloadAndInstallButton, #updateButton, .arrowhead {
+    -moz-appearance: button !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  .text-link {
+    text-decoration: none !important;
+    color: black !important;}
+
+  /* Set more standardized widths */
+  .arrowhead {
+    min-width: 34px !important;
+    max-width: 34px !important;}
+
+  menulist[preference="browser.newtabpage.activity-stream.topSitesRows"],
+  menulist[preference="browser.newtabpage.activity-stream.section.highlights.rows"],
+  #advancedFonts, #colors, #chooseLanguage, #chooseFolder, #connectionSettings,
+  #removeEngineButton, #clearSiteDataButton, #passwordExceptions, #showPasswords,
+  #clearHistoryButton, #clearDataSettings, #locationSettingsButton, #cameraSettingsButton,
+  #microphoneSettingsButton, #notificationSettingsButton, #autoplaySettingsButton,
+  #xrSettingsButton, #popupPolicyButton, #addonExceptions {
+    min-width: 120px !important;
+    max-width: 120px !important;}
+
+  #manageBrowserLanguagesButton, #checkForUpdatesButton3, #downloadAndInstallButton,
+  #trackingProtectionExceptions, #siteDataSettings, #cookieExceptions, #viewCertificatesButton,
+  #viewSecurityDevicesButton {
+    min-width: 150px !important;
+    max-width: 150px !important;}
+
+  #homeMode, #newTabMode, #trackingProtectionMenu, #defaultEngine {
+    min-width: 220px !important;
+    max-width: 220px !important;}
+
+  #restoreDefaultSearchEngines, #historyMode {
+    min-width: 250px !important;
+    max-width: 250px !important;}
+
+  #blockCookiesMenu {
+    min-width: 358px !important;
+    max-width: 358px !important;}
+
+  /* Special-case spacing-related adjustments */
+  #cookieExceptions > .button-box > .button-text {margin-left: -4px !important;}
+  #trackingProtectionExceptions > .button-box > .button-text {margin-left: -2px !important;}
+  .button-text {margin-top: 0px !important;}
+
+  #defaultFont, #defaultFontSize, #defaultZoom, #advancedFonts > .button-box > .button-text,
+  #colors > .button-box > .button-text, #chooseFolder > .button-box > .button-text,
+  #trackingProtectionExceptions > .button-box > .button-text,
+  menulist[preference="browser.newtabpage.activity-stream.topSitesRows"],
+  menulist[preference="browser.newtabpage.activity-stream.section.highlights.rows"] {
+    padding-top: 1px !important;}
+
+  #updateBox {margin-block-end: 0px !important;}
+
+  /* Use native dropdown menu buttons (but not standard buttons) and override height */
+  #defaultFont, #defaultFontSize, #defaultZoom, #defaultBrowserLanguage,
+  #contentProcessCount, #defaultEngine, #blockCookiesMenu, #trackingProtectionMenu,
+  #historyMode, #homeMode, #newTabMode, .actionsMenu,
+  menulist[preference="browser.newtabpage.activity-stream.topSitesRows"],
+  menulist[preference="browser.newtabpage.activity-stream.section.highlights.rows"] {
+    -moz-appearance: menulist-button !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  /* Use native checkboxes and radio buttons */
+  image.checkbox-check {
+    height: 18px !important;
+    -moz-appearance: checkbox !important;}
+  image.radio-check {
+    height: 18px !important;
+    -moz-appearance: radio !important;}
+
+  /* Use native searchbox */
+  search-textbox {
+    -moz-appearance: searchfield !important;
+    font-size: unset !important;
+    min-height: 24px !important;
+    max-height: 24px !important;}
+
+  search-textbox[focused] {box-shadow: unset !important;}
+  image.textbox-search-sign {display: none !important;}
+
+ /** BEGIN: Use native dropdown menus **/
+  /* Remove 'background' and adjust offsets for the main menu */
+  menupopup {
+    border: none !important;
+    background-color: transparent !important;
+    margin: -1px 0 0 -10px !important;
+    -moz-appearance: none !important;}
+
+  /* Theme the main menu to match the native one as much as possible */
+  .menupopup-arrowscrollbox {
+    margin: 2px 9px 16px 9px !important;
+    border-top: 1px solid rgba(0,0,0,0.0862745098) !important;
+    border-right: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.4117647059) !important;
+    border-left: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-radius: 5px !important;
+    box-shadow: 0 7px 8px 1px rgba(0,0,0,0.2) !important;
+    background-color: rgba(255,255,255,0.9490196078) !important;
+    background-clip: padding-box !important;}
+
+  /* Restore correct padding on dropdown menus */
+  arrowscrollbox {padding: 4px 0 4px 0 !important;}
+ /** END: Use native dropdown menus **/
+
+  /* Fix 'handler' list-box's border disappearing on focus */
+  #handlersView:focus {
+    border-right: 1px solid #B6B6B6 !important;
+    border-bottom: 1px solid #B6B6B6 !important;
+    border-left: 1px solid #B6B6B6 !important;}
+
+  /* Adjust placement of 'handler' list-box's 'actions' menu buttons */
+  .actionsMenu, .actionsMenu:focus {
+    color: black !important;
+    margin-top: 3px !important;
+    margin-left: -4px !important;
+    min-width: 280px !important;
+    max-width: 280px !important;}
+
+  .actionDescription {margin-top: 0px !important;}
+
+  /* Theme sidebar navigation */
+  .navigation {
+    font-size: 13px !important;
+    width: 180px !important;
+    background: #CED4DD !important;}
+
+  .category-name {
+    display: inline-block !important;
+    padding: 0px !important;}
+
+  /* Theme settings sidebar 'tabs' */
+  .category {
+    -moz-appearance: none !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%,#FCFCFC 25%,#FAFAFA 32%,#F8F8F8 38%,#F5F5F5 44%,
+    #F3F3F3 50%,#ECECEC 70%,#EDEDED 90%,#EFEFEF 95%,#F2F2F2 100%) !important;
+    margin-inline-start: 10px !important;
+    margin-inline-end: 10px !important;
+    margin-top: 10px !important;
+    text-shadow: 1px 1px #FFFFFF !important;}
+
+  .category[selected] {
+    border-top: 1px solid #4C4C4C !important;
+    border-right: 1px solid #5F5F5F !important;
+    border-bottom: 1px solid #7A7A7A !important;
+    border-left: 1px solid #5F5F5F !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#6D6D6D,#939393) !important;
+    color: white !important;
+    text-shadow: 1px 1px black !important;
+    box-shadow: inset 0 1px 0 1px #5D5D5D !important;}
+
+  .category-icon {
+    width: 14px !important;
+    height: 14px !important;
+    margin-top: 0px !important;
+    margin-right: 5px !important;
+    margin-left: -2px !important;}
+
+  #category-general.category, #category-home.category,
+  #category-search.category, #category-privacy.category,
+  #category-containers.category, #category-sync.category {
+    min-height: 30px !important;
+    max-height: 30px !important;}
+
+  #categories {padding: 0px !important;}
+
+  /* Reduce 'downloads location' bar height to match buttons */
+  #downloadFolder {
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  /* Stop 'downloads location' bar from highlighting on hover */
+  input[type="text"]:enabled:not(:focus):hover {border-color: #B5B5B5 !important;}
+
+  /* Change highlight color for 'content blocking category' */
+  .content-blocking-category.selected {
+    border: 1px solid var(--in-content-border-color) !important;
+    background-color: #CED4DD !important;}
+
+  /* Override 'highlighted' and 'selected' colors for list items */
+  :root {
+    --in-content-item-hover: #E3E3E3 !important;
+    --in-content-item-selected: #738499 !important;}
+
+  /* Fix search engine list-box's border disappearing on focus */
+  #engineList:focus, #downloadFolder:focus {border: 1px solid #B6B6B6 !important;}
+
+ /** BEGIN: Adjust popup window styling **/
+  /* Shrink outer margins around inner content */
+  .dialogFrame {margin: 10px !important;}
+
+  /* Further round corners and fix outer edges */
+  .dialogBox {
+    box-shadow: 0 7px 8px 1px rgba(0,0,0,0.2) !important;
+    background-color: rgba(238,238,238,0.95) !important;
+    border: none !important;
+    border-radius: 5px !important;}
+
+  /* Theme titlebar to more closely resemble a native OS X popup */
+  .dialogTitleBar {
+    background-image: linear-gradient(#E0E0E0,#ACACAC) !important;
+    background-color: transparent !important;
+    border-top: 1px solid #EDEDED !important;
+    border-bottom: 1px solid #636363 !important;
+    padding: unset !important;
+    margin-top: -2px !important;
+    min-height: 28px !important;
+    max-height: 28px !important;}
+
+  /* Hide 'close' button on popup - just click anywhere outside the popup */
+  .dialogClose {display: none !important;}
+
+  /* Theme popup's close button to match that of tabs */
+  /* NOTE: They're hidden */
+  .close-icon > .button-box > .button-icon {
+    width: 12px !important;
+    height: 13px !important;}
+
+  .close-icon {
+  padding-top: 3px !important;
+  margin-inline-end: 10px !important;}
+
+  .close-icon:not(:hover) {
+    list-style-image: url("data:image/png;base64,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") !important;}
+  .close-icon:hover {
+    list-style-image: url("data:image/png;base64,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") !important;}
+  .close-icon:active {
+    list-style-image: url("data:image/png;base64,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") !important;}
+ /** END: Adjust popup window styling **/
+}/*** END: Firefox Settings ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox settings dialog popup windows ***/
+@-moz-document url(chrome://browser/content/preferences/dialogs/fonts.xhtml),
+url(chrome://browser/content/preferences/dialogs/colors.xhtml),
+url(chrome://browser/content/preferences/dialogs/browserLanguages.xhtml),
+url(chrome://browser/content/preferences/dialogs/languages.xhtml),
+url(chrome://mozapps/content/update/history.xhtml),
+url(chrome://browser/content/preferences/dialogs/connection.xhtml),
+url(chrome://browser/content/preferences/dialogs/permissions.xhtml),
+url(chrome://browser/content/preferences/dialogs/siteDataSettings.xhtml),
+url(chrome://browser/content/preferences/dialogs/clearSiteData.xhtml),
+url(chrome://formautofill/content/manageAddresses.xhtml),
+url(chrome://browser/content/sanitize.xhtml),
+url(chrome://browser/content/preferences/dialogs/sanitize.xhtml),
+url(chrome://browser/content/preferences/dialogs/sitePermissions.xhtml),
+url(chrome://pippki/content/certManager.xhtml),
+url(chrome://pippki/content/device_manager.xhtml) {
+ /** BEGIN: Adjust tab styling for popups **/
+  tab:-moz-focusring > .tab-middle > .tab-text {outline: none !important;}
+  tab {
+    -moz-appearance: tab !important;
+    padding: 4px 6px 4px 6px !important;
+    border: none !important;
+    min-height: 28px !important;
+    max-height: 28px !important;}
+  tab:first-of-type {padding-inline-start: 10px !important;}
+  tab:last-of-type {padding-inline-end: 10px !important;}
+
+  .tab-middle {
+    margin-top: -3px !important;
+    padding: 0px 6px 3px 6px !important;}
+
+  tab[visuallyselected] {
+    color: white !important;
+    text-shadow: 1px 1px #424242 !important;}
+
+  tabs {
+    margin-bottom: 0px !important;
+    border-block: none !important;
+    color: black !important;}
+
+  /* Special-case adjustments for 'Certificate Manager' popup */
+  tabs#certMgrTabbox {margin-bottom: -8px !important;}
+  
+  #user-tree, #rememberedList, #email-tree, #server-tree, #ca-tree {
+    border: 1px solid var(--in-content-box-border-color) !important;}
+
+  #rememberedList {
+    margin-bottom: 0px !important;
+    border-top: none !important;}
+ /** END: Adjust tab styling for popups **/
+
+  /* Adjustment to account for popup window styling adjustments in 'Firefox Settings' (above) */
+  :root {--in-content-page-background: transparent !important;}
+
+  /* Use native dropdown menu buttons and override height */
+  #selectLangs, #defaultFontType, #sizeVar, #serif, #sans-serif,
+  #monospace, #sizeMono, #minSize, #useDocumentColors, #availableLocales,
+  #availableLanguages, #networkDnsOverHttpsResolverChoices, #sanitizeDurationChoice,
+  menulist.website-status, menulist[label="Block Audio and Video"] {
+    -moz-appearance: menulist-button !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  dropmarker, button[dlgtype="help"], image.textbox-search-sign {display: none !important;}
+
+ /** BEGIN: Use native dropdown menus **/
+  /* Remove 'background' and adjust offsets for the main menu */
+  menupopup {
+    border: none !important;
+    background-color: transparent !important;
+    margin: -1px 0 0 -10px !important;
+    -moz-appearance: none !important;}
+
+  /* Theme the main menu to match the native one as much as possible */
+  .menupopup-arrowscrollbox {
+    margin: 2px 9px 16px 9px !important;
+    border-top: 1px solid rgba(0,0,0,0.0862745098) !important;
+    border-right: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.4117647059) !important;
+    border-left: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-radius: 5px !important;
+    box-shadow: 0 7px 8px 1px rgba(0,0,0,0.2) !important;
+    background-color: rgba(255,255,255,0.9490196078) !important;
+    background-clip: padding-box !important;}
+
+  /* Restore correct padding on dropdown menus */
+  arrowscrollbox {padding: 4px 0 4px 0 !important;}
+ /** END: Use native dropdown menus **/
+
+  /* Override 'highlighted' and 'selected' colors for list items */
+  :root {
+    --in-content-item-hover: #E3E3E3 !important;
+    --in-content-item-selected: #738499 !important;}
+
+  /* Use native checkboxes and radio buttons */
+  image.checkbox-check {
+    height: 18px !important;
+    -moz-appearance: checkbox !important;}
+  image.radio-check {
+    height: 18px !important;
+    -moz-appearance: radio !important;}
+
+  /* Reduce spacing between items */
+  window[type="child"] {margin-top: -22px !important;}
+  checkbox, radiogroup {margin: 0px 0px -2px 0px !important;}
+  radio {margin: 0px 0px 0px 0px !important;}
+  input {padding: 2px 4px 2px 4px !important;}
+  input:focus:not([mozactionhint="search"]), input:hover:not([mozactionhint="search"]),
+  textarea:focus, textarea:hover {border: 1px solid #B6B6B6 !important;}
+  #permissionsBox > richlistitem {min-height: 22px !important;}
+
+  description, label {line-height: 1.5em !important;}
+
+  /* Special case fixes for blanket top margin adjustments above */
+  #LanguagesDialog, #BrowserLanguagesDialog {margin-top: 16px !important;}
+  #SanitizeDialog {margin-top: 0px !important;}
+
+  /* Use native standard buttons and override height */
+  button, button[dlgtype="accept"] {
+    -moz-appearance: button !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  /* Use native searchbar and override height */
+  #searchBox, search-textbox {
+    -moz-appearance: searchfield !important;
+    font-size: unset !important;
+    min-height: 26px !important;
+    max-height: 26px !important;}
+
+  #searchBox[focused] {box-shadow: unset !important;}
+
+  /* Set more standardized widths */
+  button[dlgtype="cancel"], button[dlgtype="accept"], button[label="Cancel"],
+  #clearButton {
+    min-width: 108px !important;
+    max-width: 108px !important;}
+
+  #sizeVar, #sizeMono, #minSize {
+    min-width: 100px !important;
+    max-width: 100px !important;}
+
+  #save, #btnApplyChanges {
+    min-width: 128px !important;
+    max-width: 128px !important;}
+
+  button, menulist {
+    padding-left: 0px !important;
+    padding-right: 0px !important;}
+
+  #removeSelected, #removeAll, #removePermission, #removeAllPermissions, #btnBlock,
+  #btnSession, #btnAllow {
+    min-width: 168px !important;
+    max-width: 168px !important;}
+
+  menulist.website-status {
+    min-width: 190px !important;
+    max-width: 190px !important;}
+
+  #useDocumentColors, menulist[label="Block Audio and Video"] {
+    min-width: 250px !important;
+    max-width: 250px !important;}
+
+  /* Fix various richlistbox borders disappearing on focus */
+  #url {border: 1px solid #B6B6B6 !important;}
+  #permissionsBox:focus, #sitesList:focus {
+    border-right: 1px solid #B6B6B6 !important;
+    border-bottom: 1px solid #B6B6B6 !important;
+    border-left: 1px solid #B6B6B6 !important;}
+
+  #selectedLocales:focus, #activeLanguages:focus {border: 1px solid #B6B6B6 !important;}
+}
+
+@-moz-document url(chrome://browser/content/preferences/dialogs/sitePermissions.xhtml) {
+  menulist.website-status {
+    color: black !important;
+    margin: 6px !important;}
+}/*** END: Firefox settings dialog popup windows ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Downloads ***/
+@-moz-document url(about:downloads), url-prefix(about:downloads) {
+  /* Reduce height of list items */
+  :root {--downloads-item-height: 0px !important;}
+
+  /* Add separator in between list items */
+  .downloadMainArea, .downloadButton {border-bottom: 1px solid #E8E8E8 !important;}
+
+  /* Ensure magnifying glass icon stays black on hover/list item selection */
+  .downloadButton > .button-box > .button-icon {fill: none !important;}
+
+  /* Theme 'show-in-Finder' buttons */
+  .downloadButton > .button-box {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+    #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    padding-top: 2px !important;
+    padding-right: 6px !important;
+    padding-bottom: 2px !important;
+    padding-left: 6px !important;}
+
+  .downloadButton:active > .button-box {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  /* Override list items' selection color */
+  richlistitem[selected="true"] {
+    color: black !important;
+    background-color: #E8E8E8 !important;}
+
+  /* Remove focusring from 'downloads box' and round corners */
+  richlistbox:-moz-focusring {
+    border-color: var(--in-content-box-border-color) !important;
+    box-shadow: none !important;}
+
+  richlistbox {border-radius: 5px !important;}
+
+  /* Adjust progress bar size and styling */
+  .downloadProgress {
+    height: 4px !important;
+    margin: 4px 0 -1px 0 !important;
+    border: 1px solid #9E9E9E !important;
+    border-radius: 5px !important;}
+  ::-moz-progress-bar {height: 4px !important;}
+  .downloadProgress::-moz-progress-bar {margin: 0px 0px 0px 0px !important;}
+
+  .downloadProgress:indeterminate::-moz-progress-bar {
+    border-radius: 5px !important;
+    width: calc(100%) !important;}
+
+ /** BEGIN: Fix contextual and dropdown menus **/
+  /* Remove 'background' and adjust offsets for the main menu */
+  menupopup {
+    background-color: transparent !important;
+    margin: -1px 0 0 -10px !important;
+    -moz-appearance: none !important;}
+
+  /* Theme the main menu to match the native one as much as possible */
+  .menupopup-arrowscrollbox {
+    margin: 2px 9px 16px 9px !important;
+    border-top: 1px solid rgba(0,0,0,0.0862745098) !important;
+    border-right: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-bottom: 1px solid rgba(0,0,0,0.4117647059) !important;
+    border-left: 1px solid rgba(0,0,0,0.231372549) !important;
+    border-radius: 5px !important;
+    box-shadow: 0 7px 8px 1px rgba(0,0,0,0.2) !important;
+    background-color: rgba(255,255,255,0.9490196078) !important;
+    background-clip: padding-box !important;}
+
+  /* noRR: Remove white line on top of separator */
+  menuseparator {padding-top: 0px !important;}
+ /** END: Fix contextual and dropdown menus **/
+}/*** END: Firefox Downloads ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Troubleshooting Information ***/
+@-moz-document url(about:support), url-prefix(about:support) {
+  /* Override font sizes for various page elements */
+  h1 {font-size: 20px !important;}
+  #reset-box > h3, #safe-mode-box > h3 {font-size: 14px !important;}
+  .major-section {font-size: 16px !important;}
+  .page-subtitle {font-size: 12px !important;}
+  #reset-box-button, #restart-in-safe-mode-button, #copy-raw-data-to-clipboard, #copy-to-clipboard {
+    font-size: 12px !important;}
+
+  /* Reduce entire page's left and right margins */
+  body {
+    padding-right: 28px !important;
+    padding-left: 28px !important;}
+
+  /* Set static size and adjust top padding of 'reset box' */
+  #action-box {
+    margin-top: 0px !important;
+    width: 220px !important;}
+
+  /* Reduce margin between description and 'copy' buttons */
+  .page-subtitle {margin-bottom: 15px !important;}
+
+  /* Theme buttons */
+  #reset-box-button, #restart-in-safe-mode-button, #copy-raw-data-to-clipboard,
+  #copy-to-clipboard, #update-dir-button, #show-update-history-button, #profile-dir-button,
+  #verify-place-integrity-button {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;}
+
+  #reset-box-button, #copy-raw-data-to-clipboard, #copy-to-clipboard {
+    padding-left: 20px !important;
+    padding-right: 20px !important;}
+
+  #reset-box-button, #restart-in-safe-mode-button {
+    padding-top: 2px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;}
+
+  #reset-box-button:active, #restart-in-safe-mode-button:active, #copy-raw-data-to-clipboard:active,
+  #copy-to-clipboard:active, #update-dir-button:active, #show-update-history-button:active,
+  #profile-dir-button:active, #verify-place-integrity-button:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  #update-dir-button, #show-update-history-button, #profile-dir-button,
+  #verify-place-integrity-button {
+    min-width: 130px !important;
+    max-width: 130px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  #reset-box-button, #restart-in-safe-mode-button {
+    min-width: 220px !important;
+    max-width: 220px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  #copy-raw-data-to-clipboard, #copy-to-clipboard {
+    padding: 0px 10px 1px 10px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+}/*** END: Firefox Troubleshooting Information ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Configuration ***/
+@-moz-document url(about:config), url-prefix(about:config) {
+  /* Use native searchbar */
+  #about-config-search {
+    padding-left: 8px !important;
+    background-image: none !important;
+    -moz-appearance: searchfield !important;
+    font-size: 12px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;}
+
+  /* Add additional padding and convert searchbar appear to 'float' above the table */
+  div#search-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    border-bottom: 1px solid #B5B5B5 !important;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
+    z-index: 101 !important;}
+
+  /* Remove table 'outline' (both border and padding) */
+  table#prefs {
+    width: calc(100% - 1px) !important;
+    border: none !important;
+    margin: 0px !important;
+    z-index: 102 !important;}
+
+  /* Pad right side of table content to match left side */
+  td.cell-reset {padding-right: 30px !important;}
+
+  /* Match height of buttons for consitency */
+  .button-toggle, .button-edit, .button-reset.ghost-button, .primary.button-save,
+  .button-delete.ghost-button, .button-add {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;}
+
+  /* Set custom background colors for buttons for differentiation */
+  .button-toggle {background-color: #F2F2F2 !important;}
+  .button-edit,.button-add {background-color: #CED4DD !important;}
+  .button-reset.ghost-button {background-color: #CDCDCD !important;}
+  .primary.button-save {background-color: #196600 !important;}
+  .button-delete.ghost-button {
+    background-size: 14px !important;
+    color: white !important;
+    background-color: #8B1F0A !important;}
+
+  /* Match height of input field for consistency */
+  input {
+    min-height: 20px !important;
+    max-height: 20px !important;}
+
+  /* Override color of 'highlight-on-hover' */
+  :root {--in-content-item-hover: #E3E3E3 !important;}
+
+  /* Theme 'show-all' button */
+  #show-all.ghost-button {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    padding-top: 1px !important;
+    font-size: 12px !important;}
+
+   #show-all.ghost-button:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  /* Hide image and text */
+  .config-background, .config-help-text {display: none !important;}
+
+  /* Set find size for table entries */
+  body.table-shown {font-size: 10px !important;}
+}/*** END: Firefox Configuration ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Profiles ***/
+@-moz-document url(about:proiles), url-prefix(about:profiles) {
+  /* Override font sizes for various page elements */
+  h1 {font-size: 20px !important;}
+  h2 {font-size: 16px !important;}
+  #action-box > h3, h3[data-l10n-id="profiles-current-profile"] {font-size: 14px !important;}
+  div[data-l10n-id="profiles-subtitle"] {font-size: 12px !important;}
+  #restart-button, #restart-in-safe-mode-button, #create-button, button.opendir, button {
+    font-size: 12px !important;}
+
+  /* Reduce entire page's left and right margins */
+  body {
+    padding-right: 28px !important;
+    padding-left: 28px !important;}
+
+  /* Set static size and adjust top padding of 'reset box' */
+  #action-box {
+    margin-top: 0px !important;
+    width: 220px !important;}
+
+  /* Reduce top margin inside 'reset box' */
+  h3 {margin-top: 0px !important;}
+
+  /* Reduce margin between description and 'create' button */
+  div[data-l10n-id="profiles-subtitle"] {margin-bottom: 15px !important;}
+
+  /* Theme buttons */
+  #restart-button, #restart-in-safe-mode-button, #create-button, button.opendir, button {
+    font-size: 12px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;}
+
+  #create-button, #restart-button, #restart-in-safe-mode-button {
+    padding: 0px 10px 1px 10px !important;}
+
+  #restart-button:active, #restart-in-safe-mode-button:active, #create-button:active,
+  button.opendir:active, button:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  button.opendir {
+    padding-top: 2px !important;
+    float: left !important;
+    min-width: 130px !important;
+    max-width: 130px !important;}
+
+  button {
+    padding-top: 2px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;}
+
+  #restart-button, #restart-in-safe-mode-button {
+    min-width: 220px !important;
+    max-width: 220px !important;}
+
+  #create-button {
+    min-width: 180px !important;
+    max-width: 180px !important;}
+
+  /* Correct the space beween the table and 'rename' button */
+  table {margin-bottom: 8px !important;}
+}/*** END: Firefox Profiles ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Tracking Protection Dashboard ***/
+@-moz-document url(about:protections), url-prefix(about:protections) {
+  /* Hide link to settings, advertisement cards at bottom, and 'learn more' links */
+  #protection-settings, .card[class="card card-no-hover monitor-card no-logins"],
+  .card[class="card card-no-hover lockwise-card no-logins"], #social-link, 
+  #cookie-link, #tracker-link, #fingerprinter-link, #cryptominer-link,
+  #manage-protections {display: none !important;}
+
+  /* Reduce top and bottom page margins */
+  body {margin-block: 20px 20px !important;}
+
+ /* Adjust for hidden 'link-to-settings' button */
+  #report-title {margin-block-end: 10px !important;}
+  #report-summary {font-size: 15px !important;}
+  .wrapper {display: unset !important;}
+}/*** END: Firefox Tracking Protection Dashboard ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Policies ***/
+@-moz-document url(about:polcies), url-prefix(about:policies) {
+  /* Override font sizes */
+  .header-name {font-size: 18px !important;}
+  #categories {font-size: 14px !important;}
+  table {font-size: 11px !important;}
+  th {font-size: 13px !important;}
+  td {padding: 4px !important;}
+  table {margin-bottom: 28px !important;}
+
+  /* Reduce header padding to match other settigns pages */
+  .main-content {
+    padding-top: 20px !important;
+    padding-left: 16px !important;}
+
+  /* Theme sidebar navigation */
+  #categories {
+    width: 181px !important;
+    margin: 0px 0px 0px -1px !important;
+    background: #CED4DD !important;}
+
+  #category-active.category {margin-top: 79px !important;}
+
+  /* Override color of 'highlight-on-hover' */
+  :root {--in-content-item-hover: #E3E3E3 !important;}
+
+  /* Theme settings sidebar 'tabs' */
+  .category {
+    -moz-appearance: none !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-color: none !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    background-repeat: unset !important;
+    background-position-x: unset !important;
+    background-position-y: unset !important;
+    margin-inline-start: 10px !important;
+    margin-inline-end: 10px !important;
+    margin-top: 10px !important;}
+
+  .category:active {
+    background-image: linear-gradient(#D9D9D9 25%,#D5D5D5 30%,#D4D4D4 36%,#D0D0D0 42%,#CECECE 48%,
+    #CBCBCB 54%,#C4C4C4 74%,#C5C5C5 89%,#C8C8C8 95%,#CBCBCB 100%) !important;}
+
+  .category[selected] {
+    border-top: 1px solid #4C4C4C !important;
+    border-right: 1px solid #5F5F5F !important;
+    border-bottom: 1px solid #7A7A7A !important;
+    border-left: 1px solid #5F5F5F !important;
+    border-radius: 5px !important;
+    background-color: none !important;
+    background-image: linear-gradient(#6D6D6D, #939393) !important;
+    color: white !important;
+    text-shadow: 1px 1px black !important;
+    box-shadow: inset 0 1px 0 1px #5D5D5D !important;}
+
+  /* Fill void of missing icons. Also, this fixes the sidebar misalignment
+     on window width change. */
+  *|*#categories > *|*.category {box-sizing: unset !important;}
+  #categories > .category {
+    min-height: 28px !important;
+    max-height: 28px !important;
+    min-width: 148px !important;
+    max-width: 148px !important;
+    padding-inline-start: 0px !important;}
+  .category-name {
+    display: inline-block !important;
+    margin-top: -1px !important;
+    padding-inline-start: 0px !important;
+    margin-left: 10px !important;}
+}/*** END: Firefox Policies ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Private Browsing ***/
+@-moz-document url(about:privatebrowsing), url-prefix(about:privatebrowsing) {
+  /* Theme lone button */
+  #startPrivateBrowsing.showNormal {
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  #startPrivateBrowsing.showNormal:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  /* Hide in-page logo and search bar on new private browsing window */
+  .logo-and-wordmark, .search-inner-wrapper, #private-browsing-myths {display: none !important;}
+}/*** END: Firefox Private Browsing ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Crash Report Directory ***/
+@-moz-document url(about:crashes), url-prefix(about:crashes) {
+  /* Theme buttons and set consistent width */
+  a.button-as-link {
+    line-height: 22px !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    padding-left: 35px !important;
+    padding-right: 20px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  a.button-as-link:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  /* Hide 'clear all' button */
+  #clearSubmittedReports {display: none !important;}
+}/*** END: Firefox Crash Report Directory ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox URL Classifier ***/
+@-moz-document url(about:url-classifier), url-prefix(about:url-classifier) {
+  input[type="checkbox"] {-moz-appearance: checkbox !important;}
+}/*** END: Firefox URL Classifier ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Mozilla-Provided Bug Workarounds ***/
+@-moz-document url(about:compat), url-prefix(about:compat) {
+  /* Theme buttons */
+  button {
+    line-height: 22px !important;
+    border: 1px solid #989899 !important;
+    border-radius: 5px !important;
+    background-image: linear-gradient(#FFFFFF 0%, #FCFCFC 25%, #FAFAFA 32%, #F8F8F8 38%, #F5F5F5 44%,
+      #F3F3F3 50%, #ECECEC 70%, #EDEDED 90%, #EFEFEF 95%, #F2F2F2 100%) !important;
+    padding-right: 10px !important;
+    padding-left: 10px !important;
+    min-width: 80px !important;
+    max-width: 80px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;}
+
+  button:active {
+    border-top: 1px solid #41415E !important;
+    border-right: 1px solid #3D3C51 !important;
+    border-bottom: 1px solid #383844 !important;
+    border-left: 1px solid #3D3C51 !important;
+    background-image: linear-gradient(#BDC2C9 5%, #9FA6B4 10%, #949BAB 15%, #8E94A5 20%, #8A92A3 25%,
+    #838B9F 30%, #81899E 36%, #7B859A 42%, #778197 48%, #747E95 54%, #64658B 60%, #68738F 65%,
+    #6F7A94 70%, #78849A 75%, #808BA0 80%, #8994A7 85%, #959FAF 90%, #A1ACB8 95%, #B3BCC5 100%)
+    !important;}
+
+  /* Reduce font size */
+  body {font-size: 12px !important;}
+}/*** END: Firefox Mozilla-Provided Bug Workarounds ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Performance Testing ***/
+@-moz-document url(about:profiling), url-prefix(about:profiling) {
+  .perf {margin-top: 25px !important;}
+
+  /* Use native checkboxes */
+  .perf-settings-checkbox {-moz-appearance: checkbox !important;}
+}/*** END: Firefox Performance Testing ***/
+/*–––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––*/
+/*** BEGIN: Firefox Studies and Robots ***/
+@-moz-document url(about:studies), url-prefix(about:studies), url(about:robots),
+url-prefix(about:robots) {
+  /* Hide info box with settings link and useless button */
+  .info-box-content, #errorTryAgain {display: none !important;}
+}/*** END: Firefox Studies and Robots ***/
