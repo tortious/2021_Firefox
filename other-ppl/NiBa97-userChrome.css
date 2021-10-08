@@ -1,0 +1,277 @@
+
+/* Make the font size bigger */
+#PlacesToolbarItems > .bookmark-item{
+    font-size:24px;
+}
+
+/* Change the apparence of the separator */
+#PlacesToolbarItems > toolbarseparator:before {
+   background-color: rgba(255,255,255,0.6);
+   width: 15px !important;
+   margin: 20px 0 !important;
+   border:none!important;
+}
+
+#identity-box { 
+   display: -moz-box!important; 
+}
+#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon{
+   color:lightgreen!important;
+}
+#identity-permission-box{
+   display:none!important;
+}
+toolbarbutton.bookmark-item[type="menu"] > .toolbarbutton-icon {
+       display: none !important;
+}
+/*custom */
+
+#tabbrowser-tabs, #TabsToolbar{
+   display:none!important;
+}
+#titlebar{
+   display:table;
+   min-height:0px!important;
+}
+
+
+:root{ --uc-toolbar-height: 32px; }
+
+:root:not([uidensity="compact"]){--uc-toolbar-height: 38px}
+
+#TabsToolbar{ visibility: collapse !important }
+:root[sizemode="fullscreen"] #TabsToolbar > #window-controls{ visibility: visible !important; z-index: 2 }
+
+:root:not([inFullscreen]) #nav-bar{
+ margin-top: calc(0px - var(--uc-toolbar-height));
+}
+#nav-bar{
+   margin-right:138px!important;
+}
+#toolbar-menubar{
+ min-height:unset !important;
+ height:var(--uc-toolbar-height) !important;
+ position: relative;
+ width:100%
+ background-color: #2b2a33 !important;
+}
+#navigator-toolbox{
+ background-color: #2b2a33 !important;
+ border:none!important;
+}
+#main-menubar{
+ -moz-box-flex: 1;
+ background-color: var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor);
+ background-clip: padding-box;
+ border-right: 30px solid transparent;
+ border-image: linear-gradient(to left, transparent, var(--toolbar-bgcolor,--toolbar-non-lwt-bgcolor) 30px) 20 / 30px
+}
+
+#toolbar-menubar:not([inactive]){ z-index: 2 }
+#toolbar-menubar[inactive] > #menubar-items {
+ opacity: 0;
+ pointer-events: none;
+ margin-left: var(--uc-window-drag-space-width,0px)
+}
+
+
+@media (prefers-color-scheme: dark), (prefers-color-scheme: no-preference) {
+ * {
+   --bg: #000;
+   --menu: #0b0b0b;
+   --hover: #141414;
+   --active: #1a1a1a;
+   --text: #ddd;
+   --text-hover: #fff;
+   --url-color: #8F94D2;
+   --tab-line-color: #ddd;
+   --lwt-toolbarbutton-icon-fill: #aaa !important;
+ }
+ 
+
+}
+
+@media (prefers-color-scheme: light) {
+
+ spacer {filter: invert(100%)}
+}
+
+
+
+* {
+
+}
+
+
+
+
+
+/*   Dynamic sidebar   */
+[titlepreface*="[Sidebery]"] #sidebar-box {
+ max-width: 28px}
+#sidebar-box {
+ overflow: hidden;
+ height: calc(100% - 28px);
+ position: fixed;
+ max-width: 36px;
+ display: block;
+ transition: 150ms;
+ z-index: 3}
+ 
+ #sidebar-box #sidebar-header{
+     display:none!important;
+ }
+ #appcontent{
+   margin-left:36px;
+ }
+[inFullscreen] #sidebar-box {
+ max-width: 1px;
+ height: 100%;
+ top: 1px}
+#sidebar-box:hover {max-width: 100%}
+
+#sidebar {
+ width: calc(28px * 10) !important;
+ max-width: 50vw !important;
+ height: 100%}
+
+[titlepreface*="[Sidebery]"] #appcontent {margin-left: 22px}
+[inFullscreen] #appcontent {margin-left: -5px}
+@media(-moz-windows-default-theme) {
+ [titlepreface*="[Sidebery]"] #appcontent {margin-left: 28px}
+ [inFullscreen] #appcontent {margin-left: 0}
+}
+
+/*   Firefox sidebar   */
+#sidebar-header {width: 100% !important}
+#sidebar-header, #search-box{
+ -moz-appearance: none !important;
+ background-color: var(--bg) !important;
+ color: var(--text) !important}
+treechildren::-moz-tree-separator {border: 0 !important}
+
+
+
+
+.subviewbutton:not(.subviewbutton-iconic, .subviewbutton-back, [checked="true"]) > .toolbarbutton-icon {
+ width: 16px;
+ margin-inline-end: 8px !important;
+}
+.subviewbutton {
+ -moz-context-properties: fill;
+ fill: currentColor;
+}
+#appMenu-zoom-controls2 > .toolbarbutton-text {
+ margin-inline-start: 24px !important;
+}
+#appMenu-new-tab-button2 {
+ list-style-image: url("chrome://browser/skin/new-tab.svg");
+}
+#appMenu-new-window-button2,
+#appMenuRecentlyClosedWindows {
+ list-style-image: url("chrome://browser/skin/window.svg");
+}
+#appMenu-new-private-window-button2 {
+ list-style-image: url("chrome://browser/skin/privateBrowsing.svg");
+}
+#appMenu-bookmarks-button,
+#panelMenuBookmarkThisPage[starred],
+#appMenu-library-bookmarks-button,
+#sidebar-switcher-bookmarks {
+ list-style-image: url("chrome://browser/skin/bookmark.svg");
+}
+#appMenu-history-button,
+#appMenu-library-history-button,
+#sidebar-switcher-history {
+ list-style-image: url("chrome://browser/skin/history.svg");
+}
+#appMenu-downloads-button,
+#appMenu-library-downloads-button {
+ list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
+}
+#appMenu-passwords-button {
+ list-style-image: url("chrome://browser/skin/login.svg");
+}
+#appMenu-extensions-themes-button {
+ list-style-image: url("chrome://mozapps/skin/extensions/extension.svg");
+}
+#appMenu-print-button2 {
+ list-style-image: url("chrome://global/skin/icons/print.svg");
+}
+#appMenu-find-button2,
+#panelMenu_searchBookmarks {
+ list-style-image: url("chrome://global/skin/icons/search-glass.svg");
+}
+#appMenu-settings-button {
+ list-style-image: url("chrome://global/skin/icons/settings.svg");
+}
+#appMenu-help-button2 {
+ list-style-image: url("chrome://global/skin/icons/help.svg");
+}
+#appMenu-quit-button2 {
+ list-style-image: url("chrome://browser/skin/quit.svg");
+}
+#panelMenuBookmarkThisPage {
+ list-style-image: url("chrome://browser/skin/bookmark-hollow.svg");
+}
+#panelMenu_viewBookmarksToolbar {
+ list-style-image: url("chrome://browser/skin/bookmarks-toolbar.svg");
+}
+#appMenuRecentlyClosedTabs,
+#sidebar-switcher-tabs {
+ list-style-image: url("chrome://browser/skin/tab.svg");
+}
+#appMenuRestoreSession {
+ list-style-image: url("chrome://browser/skin/restore-session.svg");
+}
+#appMenuClearRecentHistory {
+ list-style-image: url("chrome://browser/skin/forget.svg");
+}
+#appmenu-moreTools-button,
+#overflowMenu-customize-button {
+ list-style-image: url("chrome://browser/skin/customize.svg");
+}
+[data-l10n-id="sidebar-menu-close"] {
+ list-style-image: url("chrome://global/skin/icons/close.svg");
+}
+:root[fxastatus="signedin"] #fxa-menu-avatar {
+ display: unset;
+ -moz-box-ordinal-group: 2;
+}
+#fxa-manage-account-button vbox {
+ margin-inline-start: 24px;
+}
+.syncNowBtn {
+ visibility: visible !important;
+ margin-inline-end: 8px;
+ -moz-box-ordinal-group: 0 !important;
+}
+#PanelUI-fxa-menu-connect-device-button,
+#PanelUI-fxa-menu-sendtab-button,
+#PanelUI-fxa-menu-account-signout-button,
+[oncommand="switchToTabHavingURI('about:performance', true)"] {
+ background-position: left 8px center;
+ background-repeat: no-repeat;
+ background-size: 16px;
+}
+#PanelUI-fxa-menu-connect-device-button {
+ background-image: url("chrome://browser/skin/fxa/add-device.svg");
+}
+#PanelUI-fxa-menu-sendtab-button {
+ background-image: url("chrome://browser/skin/send-to-device.svg");
+}
+#PanelUI-fxa-menu-account-signout-button {
+ background-image: url("chrome://browser/skin/sign-out.svg");
+}
+[oncommand="switchToTabHavingURI('about:performance', true)"] {
+ background-image: url("chrome://global/skin/icons/performance.svg");
+}
+#appMenu-fxa-label2::before {
+ content: "";
+ display: block;
+ width: 16px;
+ height: 16px;
+ margin-inline-end: 8px;
+ border-radius: 50%;
+ background: var(--avatar-image-url) no-repeat center/16px;
+}
