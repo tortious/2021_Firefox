@@ -1,0 +1,17 @@
+
+/*Tabs*/
+
+  /** Selected Tab - Color like toolbar ***************************************/
+  #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected="true"]:-moz-lwtheme, #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected="true"]:-moz-lwtheme {
+    /* Original: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none)
+ */
+    background-image: linear-gradient(var(--toolbar-bgcolor, transparent), var(--toolbar-bgcolor, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), var(--lwt-header-image, none) !important;
+  }
+
+  .tab-background[selected="true"] {
+    border-top: 2px solid !important;
+    border-left: 2px solid !important;
+    border-right: 2px solid !important;
+    box-shadow: none !important;
+    border-color: var(--tab-line-color) !important;
+  }
