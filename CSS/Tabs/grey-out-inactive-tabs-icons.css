@@ -1,0 +1,5 @@
+/* favicon gray on inactive Tab */
+
+.tab-icon:not([selected="true"]), .tab-icon-image:not([selected="true"]) {
+  filter: grayscale(1) brightness(0.5) contrast(1) invert(1) blur(0.2px) opacity(0.5);
+}
