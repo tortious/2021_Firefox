@@ -1,0 +1,54 @@
+
+/* ---- hide context menu items ---------------------------------------------------- */
+/* general */
+#context-navigation,
+#context-sep-navigation,
+#context-selectall,
+#context-inspect-a11y,
+#screenshots_mozilla_org-menuitem-_create-screenshot
+{display: none}
+
+/* page */
+#context-savepage,
+#context-pocket,
+#context-sep-sendpagetodevice,
+#context-viewsource
+{display: none}
+
+/* highlight text */
+#context-print-selection,
+#context-viewpartialsource-selection
+{display: none !important}
+
+/* link */
+#context-openlinkintab,
+#context-openlinkinusercontext-menu,
+#context-bookmarklink,
+#context-savelink,
+#context-savelinktopocket 
+{display: none}
+
+/* images */
+#context-sendimage,
+#context-sep-setbackground,
+#context-setDesktopBackground 
+{display: none}
+
+/* text entry */
+#context-cut,
+#context-delete,
+#spell-separator,
+#spell-check-enabled
+{display: none}
+
+/* tab */
+#context_reloadTab,
+#context_reloadSelectedTabs,
+#context_pinTab,
+#context_pinSelectedTabs,
+#context_bookmarkTab,
+#context_bookmarkSelectedTabs,
+#context_reopenInContainer,
+#context_undoCloseTab
+{display: none}
+
