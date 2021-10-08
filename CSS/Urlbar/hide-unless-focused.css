@@ -1,0 +1,18 @@
+
+/* hide address bar icons unless focus */
+
+@-moz-document url(chrome://browser/content/browser.xhtml) {
+  .urlbar-icon, #userContext-indicator, #userContext-label {
+    fill: transparent !important;
+    background-color: transparent !important;
+    color: transparent !important;
+    transition: var(--animation-speed) !important;
+  }
+  #urlbar:hover .urlbar-icon, #urlbar:active .urlbar-icon, #urlbar[focused] .urlbar-icon {
+    fill: var(--toolbar-color) !important;
+  }
+  #urlbar:hover #userContext-indicator, #urlbar:active #userContext-indicator, #urlbar[focused] #userContext-indicator, #urlbar:hover #userContext-label, #urlbar:active #userContext-label, #urlbar[focused] #userContext-label {
+    color: var(--identity-tab-color) !important;
+    fill: var(--identity-tab-color) !important;
+  }
+}
