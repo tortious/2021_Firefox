@@ -1,0 +1,26 @@
+main menu fix */
+#appmenu-moreTools{ max-height: unset !important; }
+/* main menu */
+#appMenu-new-tab-button2,#appMenu-new-window-button2,#appMenu-print-button2,#appMenu-find-button2,#appMenu-save-file-button2,#appMenu-bookmarks-button,#appMenu-history-button,#appMenu-downloads-button,#appMenu-passwords-button,#appMenu-zoom-controls2,#appMenu-zoom-controls2~toolbarseparator,#appMenu-help-button2,#appMenu-help-button2~toolbarseparator,#appMenu-quit-button2,
+/* page context menu */
+#context-navigation,#context-sep-navigation,
+#context-openlinkintab,#context-openlink,#context-openlinkprivate,
+#context-savepage,
+#context-selectall,#context-print-selection,#context-sep-selectall,
+#context-searchselect,
+#frame-sep,
+/* "add a keyword..." */
+#context-keywordfield,
+/* address bar */
+.context-menu-add-engine,
+/* media */
+#context-copyimage-contents,#context-sendimage,#context-setDesktopBackground,#context-sep-setbackground,
+#context-media-play,#context-media-mute,#context-media-playbackrate,#context-media-loop,#context-video-fullscreen,#context-sendvideo,
+/* tabs */
+#context_openANewTab,#tabContextMenu>menuseparator,#context_reloadTab,#context_bookmarkTab,#context_moveTabOptions,#context_shareTabURL,#context_selectAllTabs,#context_closeTab,#context_closeTabsToTheStart,#context_undoCloseTab,.share-tab-url-item,
+/* added by extensions */
+menu[label="Undo Close Tab Button"],
+/* textboxes */
+.textbox-contextmenu menuseparator,menuitem[label="Undo"],menuitem[label="Redo"],#context-sep-redo,menuitem[label="Delete"],menuitem[label="Select All"]{
+	display:none !important;
+}
