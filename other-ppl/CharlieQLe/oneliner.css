@@ -1,0 +1,23 @@
+@import "../settings.css";
+
+:root:not([inFullscreen]) #nav-bar {
+    margin-top: calc(0px - var(--toolbar-height));
+}
+
+/* Add a margin to the nav-bar to make space for window controls */
+toolbar#nav-bar {
+    margin-right: var(--window-controls-width) !important;
+    background-image: none !important;
+    background-color: var(--toolbar-color-inactive) !important;
+}
+
+toolbar#nav-bar:not(:-moz-window-inactive) {
+    background-color: var(--toolbar-color-active) !important;
+}
+
+/* Show the menubar */
+#toolbar-menubar {
+    min-height: unset !important;
+    height: var(--toolbar-height) !important;
+    position: relative;
+}
