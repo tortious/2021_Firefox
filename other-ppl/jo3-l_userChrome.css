@@ -1,0 +1,196 @@
+:root {
+  /* change active tab background */
+  --lwt-selected-tab-background-color: #131313 !important;
+  /* to change tab and nav bar background color */
+  --toolbar-bgcolor: black !important;
+}
+
+/* Add some padding to the tab bar to compensate for removing the bottom */
+.browser-toolbar {
+  padding-bottom: 2px;
+}
+
+/* Change the status bar when hovering over URL color to black */
+#statuspanel-label,
+statuspanel[type="overLink"] #statuspanel-label,
+statuspanel[type="status"] #statuspanel-label[value^="Looking"],
+statuspanel[type="status"] #statuspanel-label[value^="Connect"],
+statuspanel[type="status"] #statuspanel-label[value^="Waiting"],
+statuspanel[type="status"] #statuspanel-label[value^="Transfer"] {
+  background-color: rgb(27, 27, 27) !important;
+  color: rgb(199, 195, 195) !important;
+  border: none !important;
+}
+
+/* New tab flash color => black */
+.browserContainer {
+  background-color: black !important;
+}
+
+/* Tab changes start */
+
+/* Remove gap to left when window is halved */
+#TabsToolbar .titlebar-spacer[type="pre-tabs"] {
+  display: none !important;
+}
+
+/* Change tabs toolbar bg to black */
+#TabsToolbar {
+  background-color: black;
+}
+
+/* Remove tab icon */
+.tabbrowser-tab .tab-icon-image {
+  display: none;
+}
+
+.tab-throbber[busy] {
+  animation: unset !important;
+  background-image: url("chrome://global/skin/icons/loading.png") !important;
+}
+
+/* in active window */
+.tabbrowser-tab {
+  --tab-line-color: #131313;
+}
+
+/* Show tab close only on hover */
+.tabbrowser-tab .tab-close-button {
+  display: none !important;
+}
+
+.tabbrowser-tab:hover .tab-close-button {
+  display: -moz-box !important;
+}
+
+/* Hide white borders between tabs */
+.tabbrowser-tab::after,
+.tabbrowser-tab::before {
+  border: none !important;
+}
+
+/* Tab changes end */
+
+/* URL bar changes start */
+
+/* Disable megabar expansion. Source: https://github.com/WesleyBranton/Remove-Firefox-Megabar/blob/master/remove_megabar.css */
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+  /* DISABLE EXPANDING START */
+  #urlbar[breakout][breakout-extend] {
+    top: calc(
+      (var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2
+    ) !important;
+    left: 0 !important;
+    width: 100% !important;
+  }
+
+  #urlbar[breakout][breakout-extend] > #urlbar-input-container {
+    height: var(--urlbar-height) !important;
+    padding-block: 0 !important;
+    padding-inline: 0 !important;
+  }
+
+  #urlbar[breakout][breakout-extend] > #urlbar-background {
+    animation-name: none !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05) !important;
+  }
+}
+
+/* To hide underline on dropdown */
+.urlbarView-body-inner {
+  border-top: 1px solid transparent !important;
+}
+
+/* Change background for first search suggestion from black to blue */
+.urlbarView-row-inner {
+  background-color: black !important;
+}
+
+/* Dim search suggestion icons */
+.urlbarView-favicon,
+.urlbarView-type-icon {
+  filter: opacity(80%);
+}
+
+/* Change URL box text selection color */
+#urlbar ::-moz-selection,
+.searchbar-textbox ::-moz-selection {
+  background-color: #003d00;
+  color: #c6c6c6;
+}
+
+/* Change some some font sizes */
+.urlbarView-row[selected] .urlbarView-title,
+.urlbarView-row[selected] .urlbarView-secondary,
+.urlbarView-row[selected] .urlbarView-title-separator,
+.urlbarView-row .urlbarView-title,
+.urlbarView-row .urlbarView-secondary,
+.urlbarView-row .urlbarView-title-separator {
+  font-size: 15px !important;
+}
+
+/* Borderless address bar */
+#urlbar,
+.searchbar-textbox {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+#urlbar-background {
+  background-color: black !important;
+  border: none !important;
+}
+
+#urlbar {
+  font-size: 17px !important;
+  /* To fix megabar */
+  --urlbar-toolbar-height: 32px !important;
+}
+
+/* Remove some icons */
+#fxa-toolbar-menu-button,
+#pocket-button-box {
+  display: none;
+}
+
+/* URL bar changes end */
+
+/* Hide nav bar, source: https://github.com/Timvde/UserChrome-Tweaks/blob/master/toolbars/auto-hide.css */
+#nav-bar:not([customizing="true"]):not([inFullscreen]) {
+  min-height: 1px !important;
+  max-height: 0px !important;
+  margin-top: 1px !important;
+  margin-bottom: -1px !important;
+  transition: all 50ms linear 0s !important;
+  z-index: -5 !important;
+}
+
+#navigator-toolbox:hover:not([inFullscreen]) :-moz-any(#nav-bar),
+#navigator-toolbox:focus-within :-moz-any(#nav-bar) {
+  min-height: 32px !important;
+  max-height: 32px !important;
+  margin-top: 1px !important;
+  margin-bottom: -32px !important;
+  transition: all 50ms linear 0s !important;
+  z-index: 5 !important;
+}
+
+/* to change min/max/close icon color in tab/title bar */
+#titlebar {
+  color: darkgray;
+  background-color: black;
+}
+
+:root:-moz-window-inactive #titlebar {
+  color: #757575;
+}
+
+:root {
+  --toolbar-bgcolor: black !important;
+}
+
+#navigator-toolbox {
+  --tabs-border-color: #4d4dfe00 !important;
+}
