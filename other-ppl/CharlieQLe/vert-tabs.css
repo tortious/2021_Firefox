@@ -1,0 +1,42 @@
+@import "../settings.css";
+
+/* Hide horizontal tabs */
+#TabsToolbar {
+    visibility: collapse !important;
+}
+
+/* Hide the header for Tree Style Tabs */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
+    display: none !important;
+}
+
+/* Hide splitter, when using Tree Style Tab. */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
+    display: none !important;
+}
+
+/* Collapse sidebar */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
+    z-index: 1000 !important;
+    position: relative !important;
+    min-width: var(--sidebar-collapsed-width) !important;
+    max-width: var(--sidebar-collapsed-width) !important;
+    border-right: 1px solid var(--sidebar-border-color) !important;
+}
+
+/* Expand sidebar on hover */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
+    position: absolute !important;
+    min-width: var(--sidebar-expanded-width) !important;
+    max-width: var(--sidebar-expanded-width) !important;
+    width: var(--sidebar-expanded-width) !important;
+    transform: translateX(calc(var(--sidebar-collapsed-width) - var(--sidebar-expanded-width)));
+    transition: all var(--sidebar-hover-time) cubic-bezier(0.22, 1, 0.36, 1);
+    border-right: 1px solid var(--sidebar-border-color) !important;
+}
+
+/* Set the border on hover  */
+#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar:hover {
+    transform: translateX(0) !important;
+    border-right: 1px solid var(--sidebar-border-color) !important;
+}
