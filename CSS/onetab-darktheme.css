@@ -1,0 +1,47 @@
+/*------ ONETAB ADDON ------*/
+@-moz-document url-prefix(moz-extension://TYPE-UUID-OF-ONETAB-ADDON-HERE/),
+url-prefix(https://www.one-tab.com/page/) {
+html, body {background: #303030 !important}
+
+#settingsDiv {background: #444 !important; border: 1px solid #666 !important}
+
+#contentAreaDiv .clickable div[style^="box-shadow"] {
+  box-shadow: none !important;
+  background-color: #444 !important;
+  border: 1px solid #666 !important}
+
+div {color: #ccc !important}
+
+#contentAreaDiv > div {border-color: #666 !important}
+
+a:link, a, a:visited, .clickable {color: #09f !important}
+a:hover, .clickable:hover {color: #0ff !important}
+a:active, .clickable:active {color: #0050aa !important}
+
+img[src="images/cross.png"] {filter: brightness(200%)}
+
+textarea {
+	-moz-appearance: none !important; 
+	background-color: #222 !important; 
+	color: #aaa !important;
+	border: 1px solid #555 !important}
+
+label::before {filter: invert(81%) hue-rotate(170deg)}
+
+/* Checkbox coloring */
+input[type="checkbox"] {
+  -moz-appearance: none !important;
+  border: 1px solid #666 !important;
+  background-color: #444 !important;
+  transition: color 0.3s;
+  min-width: 16px;
+  min-height: 16px;
+  margin-bottom: 0 !important}
+
+input[type="checkbox"]:not([disabled]):hover {
+  box-shadow: 0 0 4px #0084ff !important;
+  border-color: #0084ff !important}
+
+input[type="checkbox"]:checked {
+  background: #444 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="15px" height="15px" viewBox="0 0 16 16" ><path fill="rgb(200,200,200)" d="M 13.09,2.87 C 13.09,2.87 6.00,11.00 6.00,11.00 6.00,11.00 2.00,9.00 2.00,9.00 4.25,12.81 7.00,14.00 7.00,14.00 9.24,10.42 12.04,7.39 13.09,2.87 Z" /></svg>') no-repeat center center !important}
+}
