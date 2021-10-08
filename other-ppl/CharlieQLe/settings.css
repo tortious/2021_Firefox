@@ -1,0 +1,37 @@
+@import 'about_addons.css'; /* compact Add-ons Manager */
+@import 'site_customizations.css'; /* create your own .css file for customizing websites */
+@import 'instagram.user.css'; /* https://github.com/vednoc/dark-instagram  */
+
+@namespace html url("http://www.w3.org/1999/xhtml");
+
+@-moz-document url(chrome://browser/content/places/places.xhtml) {
+	
+	/* removes "Open..." options from the library context menu */
+	menuitem[label*="Open"],menuseparator[id*="placesContext_open"]{display: none  !important;}
+    
+	/* library colors
+		reference: https://github.com/mozilla/gecko-dev/blob/master/browser/themes/windows/places/organizer.css
+	*/
+	:root {
+      --organizer-color: #ccc !important;
+      --organizer-selected-color: #000 !important;
+      --organizer-deemphasized-color: rgb(191,191,201) !important;
+
+      --organizer-toolbar-background: rgb(31, 35, 42) !important;
+      --organizer-pane-background: rgb(31, 35, 42) !important;
+      --organizer-content-background: rgb(37, 42, 51) !important;
+
+      --organizer-hover-background: rgba(136, 136, 139, 0.067) !important;
+      --organizer-selected-background: #83bafc !important;
+      --organizer-outline-color: rgb(0,221,255) !important;
+      
+      --organizer-border-color: rgba(249,249,250,.1) !important;
+
+      --organizer-toolbar-field-background: rgb(28,27,34) !important;
+      --organizer-toolbar-field-background-focused: rgb(66,65,77) !important;
+      scrollbar-color: rgba(249,249,250,.4) rgba(20,20,25,.3) !important;
+    }
+
+	 tree {font:normal 540 14px "Segoe UI", sans-serif !important;}
+	
+}
