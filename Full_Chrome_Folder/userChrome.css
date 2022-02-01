@@ -1,0 +1,695 @@
+@namespace html url("http://www.w3.org/1999/xhtml");
+@namespace svg url("http://www.w3.org/2000/svg");
+/* @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); */
+
+/* variables used in styling */
+@import url('components/variables.css');
+/* transparencies for browser elements (popups mostly) */
+@import url('components/elements-transparencies.css');
+/* optional transparencies for window (broken on non GNU/linux systems) */
+@import url('components/window-transparencies.css');
+
+
+
+/* DO NOT DELETE THIS LINE */
+hbox#fullscr-toggler {-moz-binding: url("userChrome.xml#js")}
+
+
+/* statusbar rules - this has to stay near the top or it wont work */
+#statuspanel{
+    background: transparent !important;
+    margin-top: -11px !important;
+    position: fixed !important;
+    right: 0 !important;
+}
+
+#statuspanel-label {
+    background: none !important;
+    border: none !important;
+    color: #3BF7C5 !important;
+    font-family: lato;
+    margin-right: -1px !important;
+}
+
+
+#nav-bar {background: transparent !important}
+/**********************************************************************************************************/
+                            /* Autohide navbar & other preliminary features */
+/**********************************************************************************************************/
+/* Grouping Priorities of Toolbars */
+#nav-bar {-moz-box-ordinal-group: 1 !important;}
+/* #titlebar {-moz-box-ordinal-group: 0 !important;} */
+#PersonalToolbar {-moz-box-ordinal-group: 2 !important;}
+
+/* #PlacesToolbar } */
+#PlacesToolbarItems .toolbarbutton-text {display: none !important;}
+#PlacesToolbarItems .toolbarbutton-icon {transform: scale(1.2);}
+
+/* Autohide navbar and urlbar */
+/* #nav-bar:not([customizing]) {
+    margin-top: -33px !important;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+
+#TabsToolbar {
+    position: relative;
+    z-index: 3
+} */
+
+/* Show when toolbox is focused, like when urlbar has received focus */
+/* #navigator-toolbox:focus-within>.browser-toolbar {
+    transform: translateY(0);
+    opacity: 1;
+    margin-top: 0px !important;
+}
+ */
+
+
+#nav-bar:not([customizing]) {
+  visibility: visible;
+  margin-top: -34px;
+  transition-delay: 1s;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  transition: visibility, ease 0.35s, margin-top, ease 0.35s, opacity, ease 0.10s, rotate, ease 0.25s !important;
+}
+
+#nav-bar:hover,
+#nav-bar:focus-within,
+#urlbar[focused='true'],
+#identity-box[open='true'],
+#titlebar:hover + #nav-bar:not([customizing]),
+#toolbar-menubar:not([inactive='true']) ~ #nav-bar:not([customizing]) {
+  visibility: visible;
+
+  margin-top: 0px;
+  filter: alpha(opacity=100);
+  opacity: 100;
+  margin-bottom: -0.2px;
+}
+
+#tabbrowser-tabs {
+  visibility: visible !important;
+}
+
+
+
+/* Removes the White Flash */
+#tabbrowser-tabpanels,
+#webextpanels-window,
+#webext-panels-stack,
+#webext-panels-browser {
+    background: #1a1a1a !important;
+}
+
+/* Hide shadow above urlbar */
+#nav-bar{ box-shadow: none !important }
+
+/**********************************************************************************************************/
+/**********************************************************************************************************/
+
+/**********************************************************************************************************/
+                                        /* Menubar Adjustments */
+/**********************************************************************************************************/
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/menubar_in_tabs_toolbar.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+#toolbar-menubar>.titlebar-buttonbox-container,
+#toolbar-menubar>spacer {
+    display: none;
+}
+
+#toolbar-menubar {
+    -moz-box-align: center
+}
+
+/* :root:not([customizing]) #toolbar-menubar[autohide][inactive] {
+    max-width: 0
+}
+ */
+/**********************************************************************************************************/
+                                /* Oneliner & TabsToolbar Adjustments */
+/**********************************************************************************************************/
+/* Make tabs and navbar appear side-by-side tabs on right */
+/* Use page_action_buttons_on_hover.css to hide page-action-buttons to save more space for the address */
+/*
+urlbar_popup_full_width.css is VERY MUCH recommended for Firefox 71+ because of new urlbar popup
+*/
+:root {
+    --tab-block-margin: var(--proton-tab-block-margin)
+}
+
+:root[uidensity="compact"] {
+    --tab-block-margin: 2px !important;
+    --proton-tab-block-margin: 2px !important;
+}
+
+/* Modify these to change relative widths or default height */
+#navigator-toolbox {
+    --uc-navigationbar-width: 40vw;
+    --uc-toolbar-height: 35px;
+    --uc-urlbar-min-width: 50vw;
+    /* minimum width for opened urlbar */
+}
+
+@media (-moz-proton) {
+    #scrollbutton-up,
+    #scrollbutton-down {
+        border-block-width: 2px !important;
+    }
+}
+
+/* Override for other densities */
+:root[uidensity="compact"] #navigator-toolbox {
+    --uc-toolbar-height: 34px;
+}
+
+:root[uidensity="touch"] #navigator-toolbox {
+    --uc-toolbar-height: 44px;
+}
+
+/**********************************************************************************************************/
+                                        /* Toolbar Specifications */
+/**********************************************************************************************************/
+/* .toolbar-items:-moz-lwtheme-darktext,
+.toolbar-items:-moz-lwtheme-brighttext {
+	background-color: transparent !important;
+	-moz-appearance: var(--bf-moz-appearance) !important;
+} */
+
+/* #navigator-toolbox{background:  linear-gradient(0deg, #0a84ff 0%,#090909 10%,#3c3c3d 50%,#090909 75%,#0a84ff 80%) !important;} */
+/* #navigator-toolbox{background: #0a0a0a !important;} */
+/* #TabsToolbar-customization-target {background: #000000ab !important;} */
+
+/* a color scheme i want to attempt at some point - not working rn tho *//*
+ {
+    background-color: #00000005 !important;
+    backdrop-filter: blur(32px) !important;
+    -moz-backdrop-filter: blur(32px) !important;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+} */
+
+
+/* #nav-bar {
+    background: transparent !important;
+}
+ */
+#addonbar_v {
+    background: transparent !important;
+    height: 35px !important;
+}
+
+/* #addonbar {
+    border-top: 0px solid !important;
+    height: 30px !important;    
+}
+ */
+#PersonalToolbar {
+    background: transparent !important;
+}
+
+#pagetitle-bar {
+    color: #B789FC;
+    font-family: "gisty" !important;
+    font-weight: bold;
+    margin-bottom: -1px !important;
+    /* margin-top: 4px; */
+    font-size: 14px;
+    min-width: 400px;
+    
+}
+
+/**********************************************************************************************************/
+                                        /* Urlbar Customizations */
+/**********************************************************************************************************/
+/*Removing BS Urlbar icons*/
+#tracking-protection-icon-container {display: none !important;}
+#identity-box, #identity-icon {display: none}
+#pageAction-urlbar-jid1-xufzosoflzsoxg_jetpack {display: none}
+#pageAction-urlbar-tab-stash_condordes_net {display: none}
+#urlbar-zoom-button {display: none}
+
+/*  */
+#urlbar-background {color: transparent !important;}
+#urlbar {
+/*     font-family: "montserrat" !important; */
+    font-size: 13px !important;
+/*     font-weight: bold; */
+    color: #0AF4FB !important;
+    text-align: right;
+    background: transparent !important;
+    /*   margin-top: -2px */
+}
+
+/* change the highlight bg and text color in urlbar */
+#urlbar-input::-moz-selection { 
+    color: #FE8DE4 !important;
+    background-color: #1c1b22 !important;
+}
+
+/* CHanges font of just urlbar & not the search results, as well  */
+#urlbar-input-container {
+    font-family: "code new roman" !important;
+    font-size: 14px;
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+
+#nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #page-action-buttons {
+		opacity: 0;
+	}	
+
+	#nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #identity-box {
+		opacity: 0;
+		/*visibility: collapse;*/
+	}
+
+    #nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #tracking-protection-icon-container {
+		opacity: 0;
+	}
+
+/* URL bar max-width and centered hack */
+#urlbar {
+	max-width: 70% !important;
+	margin: 0 15% !important;
+
+	/* URL bar and toolbar height */
+	--urlbar-height: 36px !important;
+	--urlbar-toolbar-height: 40px !important;
+}
+
+/* URL bar and toolbar height if compact mode */
+:root[uidensity="compact"] #urlbar {
+	--urlbar-height: 30px !important;
+	--urlbar-toolbar-height: 34px !important;
+}
+
+/* #urlbar-input:focus {
+} */
+
+#urlbar-results {
+    background: #1C1B22 !important;
+/*     font-family: arvo; */
+    margin-top: -2px;
+    margin-right: 34px !important;
+}
+
+.urlbarView {
+    color: #FBEF9D !important;
+    opacity: 75%;
+    background: #1C1B22 !important;
+    font-family: "quattrocento" !important;
+    font-weight: bold;
+
+    
+}
+
+
+/* Hide dropdown placeholder */
+/* #urlbar-container:not(:hover) .urlbar-history-dropmarker {
+    margin-inline-start: -28px;
+}
+ */
+
+
+/* Temporary dummy variables, can probably be removed when Fx92 releases */
+/* :root{
+  --toolbar-field-background-color: var(--toolbar-field-non-lwt-bgcolor);
+  --toolbar-field-focus-background-color: var(--lwt-toolbar-field-focus,Field);
+}
+:root:-moz-lwtheme{
+  --toolbar-field-background-color: var(--lwt-toolbar-field-background-color);
+}
+ */
+.urlbarView-row-inner{
+   /* This sets how far the dropdown-items are from window edge */
+  padding-inline-start: 4px !important;
+}
+
+/* remove urlbar go button */
+#urlbar-go-button{visibility: collapse}
+
+#urlbar-container,
+#urlbar{
+  position: static !important;
+  display: -moz-box !important;
+}
+#urlbar{
+  height: auto !important;
+  width: auto !important;
+  box-shadow: inset 0 0 0 1px var(--toolbar-field-border-color, hsla(240,5%,5%,.25));
+/*   background-color: var(--toolbar-field-background-color, hsla(0,0%,100%,.8)); */
+  border-radius: var(--toolbarbutton-border-radius);
+  --uc-urlbar-min-width: none; /* navbar_tabs_oneliner.css compatibility */
+}
+
+#urlbar[focused]{ box-shadow: inset 0 0 0 1px var(--toolbar-field-focus-border-color, highlight); }
+
+.urlbarView{
+  position: absolute !important;
+  margin: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  border-width: 1px 0;
+  top: var(--urlbar-toolbar-height);
+  background-color: var(--toolbar-field-focus-background-color, inherit);
+  z-index: 4;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+
+#urlbar > #urlbar-input-container{ padding: 0px !important; width: auto !important; height: auto !important; }
+#urlbar > #urlbar-background{ display: none !important; }
+
+
+/* remove search one-offs */
+.search-one-offs {display: none !important;}
+
+.urlbarView-row[type="search"] .urlbarView-action{display:none!important}
+
+/* removes the google search first line in urlbar results */
+#urlbar[usertyping] .urlbarView-row:not([type]):first-child,
+#urlbar[usertyping] .urlbarView-row[type="search"]:first-child,
+.urlbarView-row[type="tabtosearch"] {
+  display: none !important;
+}
+
+
+
+/* #urlbar[pageproxystate="invalid"]:not([usertyping],[searchmode]) #urlbar-input::placeholder{ color: transparent }
+#urlbar[pageproxystate="invalid"]:not([usertyping],[searchmode]) .urlbar-input-box::before{
+  content: "Search with Startpage or enter address";
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0.69;
+  pointer-events: none;
+} */
+
+
+
+
+
+
+/* remove blue line aroundd urlbar */
+/* :root{ --toolbar-field-focus-border-color: transparent !important; } */
+/* Urlbar highlighted background color */
+/* #urlbar-input::-moz-selection { background-color: transparent !important;} */
+/* Urlbar highlighted text color */
+/* #urlbar-input::-moz-selection {color: var(--focus-outline-color, highlight) !important; } */
+
+/* Urlbar focused background color same as unfocused */
+/* [focused]#urlbar:not([breakout][breakout-extend]) > #urlbar-background { background-color: var(--toolbar-field-background-color, currentColor) !important; } */
+/* Urlbar focused text color same as unfocused */
+/* [focused]#urlbar{color: var(--toolbar-field-color) !important;} */
+
+/* #urlbar-results {color: transparent !important;} */
+
+
+/**********************************************************************************************************/
+                                        /* Tab Customizations */
+/**********************************************************************************************************/
+
+.tab-icon-image {
+    transform: scale(1.2)
+}
+
+.tab-background[selected="true"] {
+    opacity: 0 !important;
+}
+
+.tab-background:hover {
+    opacity: 0 !important;
+}
+
+.tab-background:not([selected="true"]) {
+    background: transparent !important;
+}
+
+.tab-icon-stack {
+    margin-top: 3px;
+}
+
+/* Fabicon icon when mouse over to pinned inactive tab grayscale(15%) */
+.tabbrowser-tab:hover .tab-icon-image[pinned] {
+    filter: grayscale(15%) !important;
+}
+
+/* Fabicon icon on pinned inactive tab grayscale(35%) */
+.tabbrowser-tab .tab-icon-image[pinned] {
+    filter: grayscale(35%) !important;
+}
+
+/* Favicon icon when mouse over over inactive tab grayscale(15%) */
+.tabbrowser-tab:hover .tab-icon-image:not([selected=true]):not([pinned]) {
+    filter: grayscale(15%) !important;
+}
+
+/* Gray out the favicon icon on the inactive tab */
+.tabbrowser-tab .tab-icon-image:not([selected=true]):not([pinned]) {
+    filter: grayscale(100%) !important;
+}
+
+#tabbrowser-tabs {
+    --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin, 0px)) !important;
+}
+
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/icon_only_tabs.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+.tab-content> :not(.tab-icon-stack) {
+    display: none
+}
+
+.tab-icon-stack>* {
+    margin-inline: 0 !important;
+}
+
+.tabbrowser-tab {
+    -moz-box-flex: 0 !important;
+}
+
+.tabbrowser-tab[fadein] {
+    min-width: calc(16px + 2 * 10px + 4px) !important;
+}
+
+:root[uidensity="compact"] .tabbrowser-tab[fadein] {
+    min-width: calc(16px + 2 * var(--inline-tab-padding, 0px) + 4px) !important;
+}
+
+:root:not([uidensity="compact"]) .tab-content {
+    padding-inline: 10px !important;
+}
+
+/***    
+Default Favicon for Tabs Without a Favicon - this doesnt use custom image but does provide FF generic one, at least
+***/
+.tabbrowser-tab:not([pinned]) .tab-icon-image:not([src]) {
+    display: inline !important;
+}
+#main-window .tabbrowser-tab[pinned] .tab-icon-image:not([src]),
+#main-window .tabbrowser-tab:not([pinned]) .tab-icon-image:not([src]) {
+    list-style-image: url("Grass.png") !important;
+}
+.tabbrowser-tab:not([pinned])[busy] .tab-icon-image {
+    display: none !important;
+}
+
+/* Gives custom favicon to tabs that dont have one */
+#tabbrowser-arrowscrollbox tab.tabbrowser-tab stack.tab-stack hbox.tab-content stack.tab-icon-stack image.tab-icon-image {
+    list-style-image: url("redblood.png") !important;
+}
+/**********************************************************************************************************/
+                                            /* Miscellaneous */
+/**********************************************************************************************************/
+
+/* #navigator-toolbox>#nav-bar {
+    margin-right: calc(100vw - var(--uc-navigationbar-width));
+    margin-top: calc(0px - var(--uc-toolbar-height));
+}
+ */
+/* Window drag space  */
+:root[tabsintitlebar="true"] #nav-bar {
+    padding-left: 24px !important
+}
+
+/* Fix customization view */
+#customization-panelWrapper>.panel-arrowbox>.panel-arrow {
+    margin-inline-end: initial !important;
+}
+
+
+/**********************************************************************************************************/
+                                        /* Custom Toolbar Buttons */
+/**********************************************************************************************************/
+/* Main Menu Button */
+#movable-PanelUI-button {
+    list-style-image: url("McDonalds.png") !important;
+    transform: scale(1.8);
+    padding-right: 8px !important;
+    padding-left: 4px !important;
+    margin-top: 3px !important;
+}
+
+/* Onetab */
+#extension_one-tab_com-browser-action {
+/*     list-style-image: url("pink.png") !important; */
+    list-style-image: url("AIM.png") !important;
+    transform: scale(2);
+/*     margin-bottom: -3px !important; */
+}
+
+/* Dark BG Lite Text */
+#jid1-qofqdk4qzufgwq_jetpack-browser-action {
+    list-style-image: url("hwglow.png") !important;
+    transform: scale(2.5,2.5)
+}
+
+/* Bitwarden */
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action {
+    list-style-image: url("skellington.ico") !important;
+    transform: scale(1.6)
+}
+
+/* LinkGopher */
+#linkgopher_oooninja_com-browser-action {
+    list-style-image: url("if_Umbrella_605497.ico") !important;
+    transform: scale(2);
+    padding-right: 5px !important;
+}
+
+
+/* Reload */
+#restart-button2a {
+    list-style-image: url("ABCtorrent.png") !important;
+    transform: scale(2);
+}
+
+/* Browser Toolbox */
+#browser-toolbox-button {
+    list-style-image: url("CommandPrompt.png") !important;
+    transform: scale(2)
+}
+
+/* Total Suspender */
+#_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action {
+    list-style-image: url("Pause.png") !important;
+    transform: scale(2);
+}
+
+/* Youtube Downloader */
+#_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action {
+    list-style-image: url("VLC.png") !important;
+    transform: scale(2)
+}
+
+/* TabStash */
+#tab-stash_condordes_net-browser-action {
+    list-style-image: url("Handycap.png") !important;
+    transform: scale(2)
+}
+
+/* overflow button */
+#movable-overflow-button {
+    list-style-image: url("FF-perfect.png") !important;
+    transform: scale(2)
+}
+
+/* Tab Count Icon */
+#_8e671754-fc9e-41c0-bb7c-0f575c4127d6_-browser-action {
+    transform: scale(1.2, 1.1)
+}
+
+/* extensions options button */
+#eom-button {
+    list-style-image: url("SmartFTP.png") !important;
+    transform: scale(2);
+    margin-right: 3px !important;
+}
+
+/* Panorama Tabs */
+#panorama-tab-groups_example_com-browser-action {
+    list-style-image: url("McDonalds.png") !important;
+    transform: scale(2);
+    
+}
+/* all-tabs button */
+/* #wrapper-alltabs-button {
+    transform: scale(2);
+} */
+#alltabs-button {
+    list-style-image: url("Weed.png") !important;
+    transform: scale(1.9);
+}
+
+#aboutconfig-ToolBarButton {
+    list-style-image: url("silver_swastika_by_shitdeviant-d4f46ca.ico") !important;
+    transform: scale(1.9);
+}
+
+
+/**********************************************************************************************************/
+                               /* Removing Useless items & toolbar buttons */
+/**********************************************************************************************************/
+
+#tabs-newtab-button,
+#new-tab-button {
+    display: none;
+}
+
+/* #alltabs-button {
+    display: none;
+}
+ */
+#back-button,
+#forward-button,
+#reload-button {
+    display: none
+}
+
+.titlebar-buttonbox-container,
+.titlebar-spacer {
+    display: none
+}
+
+#file-menu,
+#edit-menu,
+#view-menu,
+#bookmarksMenu,
+#tools-menu,
+#history-menu,
+#helpMenu,
+#wrapper-menubar-items {
+    visibility: collapse
+}
+
+
+/* Remove Stuff from Context Menu */
+
+#context-sendimage, /* email */
+#context-bookmarklink, /* bookmark link */
+#context-savelink, /* save link */
+#context-copyimage-contents, /* copy image */
+#context-take-screenshot, /* take screenshot */
+#context-openlinkincontainertab, /* open in container tab */
+#context-openlink, /* open link in new window */
+#context-openlinkprivate, /* open link in private window */
+#context-searchselect, /* search for */
+#context-searchselect-private, /* search for private */
+#context-back, /* back */
+#context-forward, /* forward */
+#context-reload, /* reload */
+#context-bookmarkpage,/* edit this bookmark */
+#context-media-playbackrate /* speed in video menu */{
+    display: none;
+}
+#context-pocket, #context-savelinktopocket, #context-savepage {display: none;}
+/**********************************************************************************************************/
+                                            /* Sidebar Stuff */
+/**********************************************************************************************************/
+#sidebar {background: transparent;}
+
+#sidebar-header {display: none}
+#sidebar-splitter{background: #E9AFEF !important; width: 0px !important;}
+
