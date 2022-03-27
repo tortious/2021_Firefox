@@ -1,0 +1,69 @@
+#tabs-newtab-button,
+#new-tab-button {
+    display: none;
+}
+
+/* #alltabs-button {
+    display: none;
+}
+ */
+#back-button,
+#forward-button,
+#reload-button {
+    display: none
+}
+
+.titlebar-buttonbox-container,
+.titlebar-spacer {
+    display: none
+}
+
+#file-menu,
+#edit-menu,
+#view-menu,
+#bookmarksMenu,
+#tools-menu,
+#history-menu,
+#helpMenu,
+#wrapper-menubar-items {
+    visibility: collapse
+}
+
+
+/* Remove Stuff from Context Menu */
+
+#context-sendimage, /* email */
+
+#context-savelink, /* save link */
+#context-copyimage-contents, /* copy image */
+#context-take-screenshot, /* take screenshot */
+#context-openlinkincontainertab, /* open in container tab */
+#context-openlink, /* open link in new window */
+#context-openlinkprivate, /* open link in private window */
+#context-searchselect, /* search for */
+#context-searchselect-private, /* search for private */
+#context-back, /* back */
+#context-forward, /* forward */
+#context-reload, /* reload */
+#context-bookmarkpage,/* edit this bookmark */
+#context-media-playbackrate /* speed in video menu */{
+    display: none;
+}
+#context-pocket, #context-savelinktopocket, #context-savepage {display: none;}
+
+
+
+/* Remove Stuff from the Library/Main Menu  */
+/* #appMenu-new-tab-button2, */
+/* #appMenu-new-window-button2, */
+/* #appMenu-new-private-window-button2, */
+/* #appMenu-bookmarks-button, */
+/* #appMenu-history-button, */
+/* #appMenu-print-button2, */
+/* #appMenu-save-file-button2, */
+/* #appMenu-find-button2, */
+/* #appMenu-zoom-controls2, */
+/* #appMenu-more-button2, */
+/* #appMenu-help-button2 { */
+    /* display: none !important; */
+/* } */
