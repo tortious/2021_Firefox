@@ -1,0 +1,9 @@
+
+
+/* Removes the White Flash */
+#tabbrowser-tabpanels,
+#webextpanels-window,
+#webext-panels-stack,
+#webext-panels-browser {
+    background: #1a1a1a !important;
+}
