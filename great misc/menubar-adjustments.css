@@ -1,0 +1,11 @@
+
+/* menubar adjustments */
+#toolbar-menubar>.titlebar-buttonbox-container,
+#toolbar-menubar>spacer {
+    display: none;
+}
+#toolbar-menubar {
+    -moz-box-align: center
+}
+
+
