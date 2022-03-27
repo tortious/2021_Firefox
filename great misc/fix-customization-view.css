@@ -1,0 +1,5 @@
+
+/* Fix customization view */
+#customization-panelWrapper>.panel-arrowbox>.panel-arrow {
+    margin-inline-end: initial !important;
+}
