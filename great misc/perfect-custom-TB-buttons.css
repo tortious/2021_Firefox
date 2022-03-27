@@ -1,0 +1,22 @@
+/******************************************************
+IMPORTANT UPDATE
+******************************************************/
+/* use the following code if you want to increase the size of the toolbar button only.
+this way the display of customized toolbar buttons doesnt look all fucked up if you place them in 
+the overflow menu or something. It doesnt scale up and fuck up the labels and stuff like the "transform" rule does 
+
+#[toolbar-button-in-question] { --toolbarbutton-inner-padding: 0px }
+#[toolbar-button-in-question] .toolbarbutton-icon{ width: 28px !important; height: 28px !important; }
+
+*/
+
+/* Onetab */
+#extension_one-tab_com-browser-action {
+    list-style-image: url("winetricks.png") !important;
+}
+#extension_one-tab_com-browser-action {
+  --toolbarbutton-inner-padding: 0px 
+}
+#extension_one-tab_com-browser-action .toolbarbutton-icon{
+  width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/
+} 
