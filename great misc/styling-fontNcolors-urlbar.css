@@ -1,0 +1,44 @@
+
+/****************************************************************/
+/* urlbar */
+/****************************************************************/
+#urlbar-background {color: transparent !important;}
+
+#urlbar {
+    /*     font-family: "montserrat" !important; */
+        font-size: 13px !important;
+    /*     font-weight: bold; */
+        color: #0AF4FB !important;
+        text-align: right;
+        background: transparent !important;
+        /*   margin-top: -2px */
+    }
+
+/* change the highlight bg and text color in urlbar */
+#urlbar-input::-moz-selection { 
+    color: #FE8DE4 !important;
+    background-color: #1c1b22 !important;
+}
+
+/* CHanges font of just urlbar & not the search results, as well  */
+#urlbar-input-container {
+    font-family: "code new roman" !important;
+    font-size: 14px;
+    font-weight: bold !important;
+    text-align: center !important;
+}
+
+/* urlbar results */
+#urlbar-results {
+    background: #1C1B22 !important;
+/*     font-family: arvo; */
+    margin-top: -2px;
+    margin-right: 34px !important;
+}
+.urlbarView {
+    color: #FBEF9D !important;
+    opacity: 75%;
+    background: #1C1B22 !important;
+    font-family: "quattrocento" !important;
+    font-weight: bold;    
+}
