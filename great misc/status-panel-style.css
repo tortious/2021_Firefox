@@ -1,0 +1,16 @@
+
+/* statusbar rules - this has to stay near the top or it wont work */
+#statuspanel{
+    background: transparent !important;
+    margin-top: -11px !important;
+    position: fixed !important;
+    right: 0 !important;
+}
+#statuspanel-label {
+    background: none !important;
+    border: none !important;
+    color: #3BF7C5 !important;
+    font-family: lato;
+    margin-right: -1px !important;
+}
+/* end statuspanel rules needed near top */
