@@ -1,0 +1,6 @@
+
+findbar:not(:focus-within) {
+opacity: 0 !important;
+width: 0px!important;
+margin-top: -40px;
+}
