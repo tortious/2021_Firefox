@@ -1,0 +1,15 @@
+/* Places the bookmarks toolbar on bottom */
+
+  :root:not([inFullscreen]){ --uc-bottom-toolbar-height: calc(20px + 2 * var(--bookmark-block-padding) ) }
+
+  #browser,
+  #customization-container{ margin-bottom: var(--uc-bottom-toolbar-height,0px) }
+
+  #PersonalToolbar{
+    position: fixed !important;
+    bottom: 0px;
+    display: flex;
+    width: 100%;
+    z-index: 1;
+  }
+  #personal-bookmarks{ flex-grow: 1; }
