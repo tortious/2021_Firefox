@@ -1,9 +1,34 @@
 // ==UserScript==
 // @name           Vertical Tabs Pane
-// @version        1.4.9
+// @version        1.5.6
 // @author         aminomancer
 // @homepage       https://github.com/aminomancer/uc.css.js
-// @description    Create a vertical pane across from the sidebar that functions like the vertical tab pane in Microsoft Edge. It doesn't hide the tab bar since people have different preferences on how to do that, but it sets an attribute on the root element that you can use to hide the regular tab bar while the vertical pane is open, for example :root[vertical-tabs] #TabsToolbar... By default, the pane is resizable just like the sidebar is. And like the pane in Edge, you can press a button to collapse it, and it will hide the tab labels and become a thin strip that just shows the tabs' favicons. Hovering the collapsed pane will expand it without moving the browser content. As with the [vertical-tabs] attribute, this "unpinned" state is reflected on the root element, so you can select it like :root[vertical-tabs-unpinned]... Like the sidebar, the state of the pane is stored between windows and recorded in preferences. There's no need to edit these preferences directly. There are a few other preferences that can be edited in about:config, but they can all be changed on the fly by opening the context menu within the pane. The new tab button and the individual tabs all have their own context menus, but right-clicking anything else will open the pane's context menu, which has options for changing these preferences. "Move Pane to Right/Left" will change which side the pane (and by extension, the sidebar) is displayed on, relative to the browser content. Since the pane always mirrors the position of the sidebar, moving the pane to the right will move the sidebar to the left, and vice versa. "Reverse Tab Order" changes the direction of the pane so that newer tabs are displayed on top rather than on bottom. "Expand Pane on Hover/Focus" causes the pane to expand on hover when it's collapsed. When you collapse the pane with the unpin button, it collapses to a small width and then temporarily expands if you hover it, after a delay of 100ms. Then when your mouse leaves the pane, it collapses again, after a delay of 100ms. Both of these delays can be changed with the "Configure Hover Delay" and "Configure Hover Out Delay" options in the context menu, or in about:config. For languages other than English, the labels and tooltips can be modified directly in the l10n object below.
+// @description    Create a vertical pane across from the sidebar that functions like the vertical
+// tab pane in Microsoft Edge. It doesn't hide the tab bar since people have different preferences
+// on how to do that, but it sets an attribute on the root element that you can use to hide the
+// regular tab bar while the vertical pane is open, for example :root[vertical-tabs] #TabsToolbar...
+// By default, the pane is resizable just like the sidebar is. And like the pane in Edge, you can
+// press a button to collapse it, and it will hide the tab labels and become a thin strip that just
+// shows the tabs' favicons. Hovering the collapsed pane will expand it without moving the browser
+// content. As with the [vertical-tabs] attribute, this "unpinned" state is reflected on the root
+// element, so you can select it like :root[vertical-tabs-unpinned]... Like the sidebar, the state
+// of the pane is stored between windows and recorded in preferences. There's no need to edit these
+// preferences directly. There are a few other preferences that can be edited in about:config, but
+// they can all be changed on the fly by opening the context menu within the pane. The new tab
+// button and the individual tabs all have their own context menus, but right-clicking anything else
+// will open the pane's context menu, which has options for changing these preferences. "Move Pane
+// to Right/Left" will change which side the pane (and by extension, the sidebar) is displayed on,
+// relative to the browser content. Since the pane always mirrors the position of the sidebar,
+// moving the pane to the right will move the sidebar to the left, and vice versa. "Reverse Tab
+// Order" changes the direction of the pane so that newer tabs are displayed on top rather than on
+// bottom. "Expand Pane on Hover/Focus" causes the pane to expand on hover when it's collapsed. When
+// you collapse the pane with the unpin button, it collapses to a small width and then temporarily
+// expands if you hover it, after a delay of 100ms. Then when your mouse leaves the pane, it
+// collapses again, after a delay of 100ms. Both of these delays can be changed with the "Configure
+// Hover Delay" and "Configure Hover Out Delay" options in the context menu, or in about:config. For
+// languages other than English, the labels and tooltips can be modified directly in the l10n object
+// below.
+// @license        This Source Code Form is subject to the terms of the Creative Commons Attribution-NonCommercial-ShareAlike International License, v. 4.0. If a copy of the CC BY-NC-SA 4.0 was not distributed with this file, You can obtain one at http://creativecommons.org/licenses/by-nc-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 // ==/UserScript==
 
 (function () {
@@ -94,11 +119,9 @@
             this.registerSheet();
             // ensure E10SUtils are available. required for showing tab's process ID in its tooltip, if the pref for that is enabled.
             if (!window.E10SUtils)
-                XPCOMUtils.defineLazyModuleGetters(
-                    this,
-                    "E10SUtils",
-                    `resource://gre/modules/E10SUtils.jsm`
-                );
+                XPCOMUtils.defineLazyModuleGetters(this, {
+                    E10SUtils: "resource://gre/modules/E10SUtils.jsm",
+                });
             else this.E10SUtils = window.E10SUtils;
             // get some localized strings for the tooltip
             XPCOMUtils.defineLazyGetter(this, "l10n", function () {
@@ -308,6 +331,8 @@
                     "TabAttrModified",
                     "TabClose",
                     "TabMove",
+                    "TabHide",
+                    "TabShow",
                     "TabPinned",
                     "TabUnpinned",
                     "TabSelect",
@@ -367,7 +392,7 @@
         // make an array containing all the context menus that can be opened by right-clicking something inside the pane.
         get contextMenus() {
             let menus = [];
-            let contextDefs = Array.from(this.pane.querySelectorAll("[context]"));
+            let contextDefs = [...this.pane.querySelectorAll("[context]")];
             contextDefs.push(this.pane);
             contextDefs.forEach((node) => {
                 let menu = document.getElementById(node.getAttribute("context"));
@@ -499,7 +524,7 @@
          * @param {object} e (an event object)
          */
         handleEvent(e) {
-            let tab = e.target.tab;
+            let { tab } = e.target;
             switch (e.type) {
                 case "mousedown":
                     this._onMouseDown(e, tab);
@@ -525,9 +550,11 @@
                 case "deactivate":
                     this._onDeactivate(e);
                     break;
-                case "TabAttrModified":
+                case "TabHide":
+                case "TabShow":
                 case "TabPinned":
                 case "TabUnpinned":
+                case "TabAttrModified":
                 case "TabBrowserDiscarded":
                     this._tabAttrModified(e.target);
                     break;
@@ -1048,7 +1075,7 @@
                     !gNavToolbox.contains(oldFocus) &&
                     !this.pane.contains(oldFocus)
                 ) {
-                    let allStops = Array.from(document.querySelectorAll("toolbartabstop"));
+                    let allStops = [...document.querySelectorAll("toolbartabstop")];
                     let earlierVisibleStopIndex = allStops.indexOf(e.target) - 1;
                     while (earlierVisibleStopIndex >= 0) {
                         let stop = allStops[earlierVisibleStopIndex];
@@ -1441,6 +1468,7 @@
             };
             let label;
             let align = true; // should we align to the tab or to the mouse? depends on which element was hovered.
+            let { linkedBrowser } = tab;
             const selectedTabs = gBrowser.selectedTabs;
             const contextTabInSelection = selectedTabs.includes(tab);
             const affectedTabsLength = contextTabInSelection ? selectedTabs.length : 1;
@@ -1459,7 +1487,7 @@
             } else if (row.audioButton.matches(":hover")) {
                 let stringID;
                 if (contextTabInSelection) {
-                    stringID = tab.linkedBrowser.audioMuted
+                    stringID = linkedBrowser.audioMuted
                         ? "tabs.unmuteAudio2.tooltip"
                         : "tabs.muteAudio2.tooltip";
                     label = stringWithShortcut(stringID, "key_toggleMute", affectedTabsLength);
@@ -1467,7 +1495,7 @@
                     if (tab.hasAttribute("activemedia-blocked"))
                         stringID = "tabs.unblockAudio2.tooltip";
                     else
-                        stringID = tab.linkedBrowser.audioMuted
+                        stringID = linkedBrowser.audioMuted
                             ? "tabs.unmuteAudio2.background.tooltip"
                             : "tabs.muteAudio2.background.tooltip";
                     label = PluralForm.get(
@@ -1480,9 +1508,9 @@
                 label = tab._fullLabel || tab.getAttribute("label");
                 // show the tab's process ID in the tooltip?
                 if (prefSvc.getBoolPref("browser.tabs.tooltipsShowPidAndActiveness", false))
-                    if (tab.linkedBrowser) {
+                    if (linkedBrowser) {
                         let [contentPid, ...framePids] = this.E10SUtils.getBrowserPids(
-                            tab.linkedBrowser,
+                            linkedBrowser,
                             gFissionBrowser
                         );
                         if (contentPid) {
@@ -1493,7 +1521,7 @@
                                 label += "]";
                             }
                         }
-                        if (tab.linkedBrowser.docShellIsActive) label += " [A]";
+                        if (linkedBrowser.docShellIsActive) label += " [A]";
                     }
                 // add the container name to the tooltip?
                 if (tab.userContextId)
@@ -1507,7 +1535,7 @@
                     label += ` (${this.fluentStrings[
                         tab.hasAttribute("activemedia-blocked")
                             ? "blockedString"
-                            : tab.linkedBrowser.audioMuted
+                            : linkedBrowser.audioMuted
                             ? "mutedString"
                             : "playingString"
                     ].toLowerCase()})`;
@@ -1524,15 +1552,12 @@
             let url = e.target.querySelector(".places-tooltip-uri");
             let icon = e.target.querySelector("#places-tooltip-insecure-icon");
             title.textContent = label;
-            url.value = tab.linkedBrowser?.currentURI?.spec.replace(/^https:\/\//, "");
+            url.value = linkedBrowser?.currentURI?.spec.replace(/^https:\/\//, "");
             // show a lock icon to show tab security/encryption
-            if (tab.getAttribute("pending")) {
-                icon.hidden = true;
-                icon.removeAttribute("type");
-                icon.setAttribute("pending", true);
-                return;
-            } else icon.removeAttribute("pending");
-            let docURI = tab.linkedBrowser?.documentURI;
+            let pending = tab.hasAttribute("pending") || !linkedBrowser.browsingContext;
+            let docURI = pending
+                ? linkedBrowser?.currentURI
+                : linkedBrowser?.documentURI || linkedBrowser?.currentURI;
             if (docURI) {
                 let homePage = new RegExp(
                     `(${BROWSER_NEW_TAB_URL}|${HomePage.get(window)})`,
@@ -1560,6 +1585,11 @@
                             icon.hidden = false;
                             return;
                         }
+                        if (docURI.filePath == "blocked") {
+                            icon.setAttribute("type", "blocked-page");
+                            icon.hidden = false;
+                            return;
+                        }
                         icon.setAttribute("type", "about-page");
                         icon.hidden = false;
                         return;
@@ -1569,30 +1599,32 @@
                         return;
                 }
             }
-            let prog = Ci.nsIWebProgressListener;
-            let state = tab.linkedBrowser?.securityUI?.state;
-            if (typeof state != "number" || state & prog.STATE_IS_SECURE) {
-                icon.hidden = true;
-                icon.setAttribute("type", "secure");
-                return;
-            }
-            if (state & prog.STATE_IS_INSECURE) {
-                icon.setAttribute("type", "insecure");
-                icon.hidden = false;
-                return;
-            }
-            if (state & prog.STATE_IS_BROKEN) {
-                if (state & prog.STATE_LOADED_MIXED_ACTIVE_CONTENT) {
-                    icon.hidden = false;
-                    icon.setAttribute("type", "insecure");
-                } else {
-                    icon.setAttribute("type", "mixed-passive");
-                    icon.hidden = false;
+            if (linkedBrowser.browsingContext) {
+                let prog = Ci.nsIWebProgressListener;
+                let state = linkedBrowser?.securityUI?.state;
+                if (typeof state != "number" || state & prog.STATE_IS_SECURE) {
+                    icon.hidden = true;
+                    icon.setAttribute("type", "secure");
+                    return;
                 }
-                return;
+                if (state & prog.STATE_IS_INSECURE) {
+                    icon.setAttribute("type", "insecure");
+                    icon.hidden = false;
+                    return;
+                }
+                if (state & prog.STATE_IS_BROKEN) {
+                    if (state & prog.STATE_LOADED_MIXED_ACTIVE_CONTENT) {
+                        icon.hidden = false;
+                        icon.setAttribute("type", "insecure");
+                    } else {
+                        icon.setAttribute("type", "mixed-passive");
+                        icon.hidden = false;
+                    }
+                    return;
+                }
             }
             icon.hidden = true;
-            icon.setAttribute("type", "secure");
+            icon.setAttribute("type", pending ? "pending" : "secure");
         }
         // container tab settings affect what we need to show in the "New Tab" button's tooltip and context menu.
         // so we need to observe this preference and respond accordingly.
@@ -1628,11 +1660,11 @@
         }
         // load our stylesheet as an author sheet. override it with userChrome.css and !important rules.
         registerSheet() {
-            let css = `
+            let css = /* css */ `
 #vertical-tabs-pane {
     --vertical-tabs-padding: 4px;
     --collapsed-pane-width: calc(
-        16px + var(--vertical-tabs-padding) * 2 + var(--arrowpanel-menuitem-padding) * 2
+        16px + var(--vertical-tabs-padding) * 2 + var(--arrowpanel-menuitem-padding-inline) * 2
     );
     background-color: var(--vertical-tabs-pane-background, var(--lwt-accent-color));
     padding: var(--vertical-tabs-padding);
@@ -1691,7 +1723,7 @@
 #vertical-tabs-inner-box {
     overflow: hidden;
     width: -moz-available;
-    min-width: calc(16px + var(--arrowpanel-menuitem-padding) * 2);
+    min-width: calc(16px + var(--arrowpanel-menuitem-padding-inline) * 2);
     height: min-content;
     max-height: 100%;
 }
@@ -1705,7 +1737,7 @@
     margin: 0 !important;
 }
 #vertical-tabs-pane[unpinned]:not([expanded]) #vertical-tabs-buttons-row > toolbarbutton {
-    min-width: calc(16px + var(--arrowpanel-menuitem-padding) * 2) !important;
+    min-width: calc(16px + var(--arrowpanel-menuitem-padding-inline) * 2) !important;
 }
 /* tabs */
 #vertical-tabs-list .all-tabs-item {
@@ -1761,6 +1793,9 @@
         color-mix(in srgb, var(--arrowpanel-dimmed) 60%, transparent)
     ) !important;
 }
+#vertical-tabs-list .all-tabs-item[pending][multiselected]:not([selected]):is(:hover, [_moz-menuactive]) {
+    background-color: var(--arrowpanel-dimmed) !important;
+}
 #vertical-tabs-list .all-tabs-item[pending] > .all-tabs-button {
     opacity: 0.6;
 }
@@ -1770,14 +1805,14 @@
 }
 /* secondary buttons inside a tab row */
 #vertical-tabs-list .all-tabs-item .all-tabs-secondary-button {
-    max-width: 18px;
-    max-height: 18px;
+    width: 18px;
+    height: 18px;
     border-radius: var(--tab-button-border-radius, 2px);
     color: inherit;
     background-color: transparent !important;
     opacity: 0.7;
-    min-height: 0;
-    min-width: 0;
+    min-height: revert;
+    min-width: revert;
     padding: 0;
 }
 #vertical-tabs-list .all-tabs-item .all-tabs-secondary-button > .toolbarbutton-icon {
@@ -1869,8 +1904,8 @@
     .sound-overlay {
     display: block;
     position: absolute;
-    left: calc(var(--arrowpanel-menuitem-padding) + 8px);
-    top: calc(var(--arrowpanel-menuitem-padding) + 8px);
+    left: calc(var(--arrowpanel-menuitem-padding-inline) + 8px);
+    top: calc(var(--arrowpanel-menuitem-padding-block) + 8px);
     width: 14px;
     height: 14px;
     -moz-context-properties: fill, fill-opacity;
@@ -1904,7 +1939,7 @@
         3px 3px/9px no-repeat;
 }
 /* take a chunk out of the favicon so the overlay is more visible */
-#vertical-tabs-pane[unpinned]
+#vertical-tabs-pane
     .all-tabs-item:is([muted], [soundplaying], [activemedia-blocked])
     .all-tabs-button
     .toolbarbutton-icon {
@@ -2061,6 +2096,48 @@
 }
 #vertical-tabs-pane[unpinned] #vertical-tabs-pin-button {
     list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="context-fill" fill-opacity="context-fill-opacity" d="M14.707 13.293L11.414 10l2.293-2.293a1 1 0 0 0 0-1.414A4.384 4.384 0 0 0 10.586 5h-.172A2.415 2.415 0 0 1 8 2.586V2a1 1 0 0 0-1.707-.707l-5 5A1 1 0 0 0 2 8h.586A2.415 2.415 0 0 1 5 10.414v.169a4.036 4.036 0 0 0 1.337 3.166 1 1 0 0 0 1.37-.042L10 11.414l3.293 3.293a1 1 0 0 0 1.414-1.414zm-7.578-1.837A2.684 2.684 0 0 1 7 10.583v-.169a4.386 4.386 0 0 0-1.292-3.121 4.414 4.414 0 0 0-1.572-1.015l2.143-2.142a4.4 4.4 0 0 0 1.013 1.571A4.384 4.384 0 0 0 10.414 7h.172a2.4 2.4 0 0 1 .848.152z"/></svg>');
+}
+#vertical-tabs-tooltip > .places-tooltip-box > hbox {
+    -moz-box-align: center;
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon {
+    min-width: 1em;
+    min-height: 1em;
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[hidden] {
+    display: none;
+}
+@supports -moz-bool-pref("userChrome.tabs.tooltip.always-show-lock-icon") {
+    #vertical-tabs-tooltip #places-tooltip-insecure-icon {
+        display: -moz-inline-box !important;
+    }
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[pending] {
+    display: none !important;
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="secure"] {
+    list-style-image: url("chrome://global/skin/icons/security.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="insecure"] {
+    list-style-image: url("chrome://global/skin/icons/security-broken.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="mixed-passive"] {
+    list-style-image: url("chrome://global/skin/icons/security-warning.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="about-page"] {
+    list-style-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path fill="context-fill" fill-opacity="context-fill-opacity" d="M15.424 5.366A4.384 4.384 0 0 0 13.817 3.4a7.893 7.893 0 0 1 .811 2.353v.017c-.9-2.185-2.441-3.066-3.7-4.984l-.189-.3c-.035-.059-.063-.112-.088-.161a1.341 1.341 0 0 1-.119-.306.022.022 0 0 0-.013-.019.026.026 0 0 0-.019 0h-.006a5.629 5.629 0 0 0-2.755 4.308c.094-.006.187-.014.282-.014a4.069 4.069 0 0 1 3.51 1.983A2.838 2.838 0 0 0 9.6 5.824a3.2 3.2 0 0 1-1.885 6.013 3.651 3.651 0 0 1-1.042-.2c-.078-.028-.157-.059-.235-.093-.046-.02-.091-.04-.135-.062A3.282 3.282 0 0 1 4.415 8.95s.369-1.334 2.647-1.334a1.91 1.91 0 0 0 .964-.857 12.756 12.756 0 0 1-1.941-1.118c-.29-.277-.428-.411-.551-.511-.066-.054-.128-.1-.207-.152a3.481 3.481 0 0 1-.022-1.894 5.915 5.915 0 0 0-1.929 1.442A4.108 4.108 0 0 1 3.1 2.584a1.561 1.561 0 0 0-.267.138 5.767 5.767 0 0 0-.783.649 6.9 6.9 0 0 0-.748.868 6.446 6.446 0 0 0-1.08 2.348c0 .009-.076.325-.131.715l-.025.182c-.019.117-.033.245-.048.444v.023c-.005.076-.011.16-.016.258v.04A7.884 7.884 0 0 0 8.011 16a7.941 7.941 0 0 0 7.9-6.44l.036-.3a7.724 7.724 0 0 0-.523-3.894z" /></svg>');
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="local-page"] {
+    list-style-image: url("chrome://browser/skin/notification-icons/persistent-storage.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="extension-page"] {
+    list-style-image: url("chrome://browser/content/extension.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="home-page"] {
+    list-style-image: url("chrome://browser/skin/tab.svg");
+}
+#vertical-tabs-tooltip #places-tooltip-insecure-icon[type="error-page"] {
+    list-style-image: url("chrome://global/skin/icons/warning.svg");
 }
             `;
             let sss = Cc["@mozilla.org/content/style-sheet-service;1"].getService(
@@ -2249,4 +2326,3 @@
         Services.obs.addObserver(delayedListener, "browser-delayed-startup-finished");
     }
 })();
-
