@@ -1,0 +1,17 @@
+/*
+░▀█▀░█▀▄░█▀█░█▀█░█▀▀░█▀█░█▀█░█▀▄░█▀▀░█▀█░█▀▀░█░█
+░░█░░█▀▄░█▀█░█░█░▀▀█░█▀▀░█▀█░█▀▄░█▀▀░█░█░█░░░░█░
+░░▀░░▀░▀░▀░▀░▀░▀░▀▀▀░▀░░░▀░▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░▀░
+Main window
+*/
+#main-window {
+	font-kerning: normal;
+	border: none !important;
+}
+
+/* Add transparency to light and dark color schemes */
+#main-window:-moz-lwtheme-brighttext,
+#main-window:-moz-lwtheme-darktext {
+	background: var(--bf-main-window) !important;
+	-moz-appearance: var(--bf-moz-appearance) !important;
+}

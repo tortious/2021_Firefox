@@ -1,0 +1,25 @@
+/* Customize rows and columns for number and size of rows/cols you want */
+#widget-overflow-fixed-list {
+    display: grid;
+    grid-template-rows: 35px 40px; /* two rows, the second one taller */
+    grid-template-columns: 30px 30px 30px 30px 30px 30px 30px [col-end]; /* seven columns, with an anchorpoint at the end */
+}
+/* Hides labels */
+#widget-overflow-fixed-list .toolbarbutton-1 > .toolbarbutton-text {
+    display: none !important;
+}
+/* Constrains width */
+/* #widget-overflow-mainView {
+    max-width: 425px !important;
+    min-width: 375px !important;
+} */
+/* Hides "Customize Toolbar..." button */
+#overflowMenu-customize-button {display: none !important;}
+/* increase size of favicons in overflow menu */
+/* #widget-overflow-fixed-list {} */
+#widget-overflow-fixed-list toolbarbutton .toolbarbutton-badge-stack,
+#widget-overflow-fixed-list .toolbarbutton-icon {
+    width: 25px !important;
+    height: 25px !important;
+    padding: 1px !important;
+}

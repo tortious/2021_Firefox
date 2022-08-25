@@ -1,0 +1,198 @@
+/**********************************************************************************************************/
+                                        /* Custom Toolbar Buttons */
+/**********************************************************************************************************/
+
+/******************************************************
+IMPORTANT UPDATE
+******************************************************/
+/* use the following code if you want to increase the size of the toolbar button only.
+this way the display of customized toolbar buttons doesnt look all fucked up if you place them in 
+the overflow menu or something. It doesnt scale up and fuck up the labels and stuff like the "transform" rule does 
+
+#[toolbar-button-in-question] { --toolbarbutton-inner-padding: 0px }
+#[toolbar-button-in-question] .toolbarbutton-icon{ width: 28px !important; height: 28px !important; }
+
+*/
+
+/* Sticky Notes */
+#_40c4eaf4-a369-475d-9b7f-f4c41f07e0f2_-browser-action {list-style-image: url("Documents.ico") !important}
+#_40c4eaf4-a369-475d-9b7f-f4c41f07e0f2_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_40c4eaf4-a369-475d-9b7f-f4c41f07e0f2_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important;}
+
+/* Export Tab Urls */
+#_a596357b-5d1f-4e04-ba81-4013c6d7d34e_-browser-action {list-style-image: url("IconWorkshop.png") !important}
+#_a596357b-5d1f-4e04-ba81-4013c6d7d34e_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_a596357b-5d1f-4e04-ba81-4013c6d7d34e_-browser-action .toolbarbutton-icon{width: 27px !important; height: 27px !important;}
+
+
+/* New Browsertoolbox Multi-purpose Button */
+#toolbox-button {list-style-image: url("CommandPrompt.png") !important}
+#toolbox-button {--toolbarbutton-inner-padding: 0px }
+#toolbox-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+
+/* Tab List Extension */
+#tablistbuttonenhanced_doub-browser-action {list-style-image: url("notes.png") !important}
+#tablistbuttonenhanced_doub-browser-action {--toolbarbutton-inner-padding: 0px }
+#tablistbuttonenhanced_doub-browser-action .toolbarbutton-icon{width: 24px !important; height: 24px !important; /*adjust sizes as per your personal preference*/}
+
+/* Kill Process aka memory saver button */
+#memoryMinimizationButton {list-style-image: url("cal128.png") !important}
+#memoryMinimizationButton {--toolbarbutton-inner-padding: 0px }
+#memoryMinimizationButton .toolbarbutton-icon{width: 30px !important; height: 30px !important; /*adjust sizes as per your personal preference*/}
+
+/* Favicon Switcher */
+#_1220100b-db8f-419f-9cd4-ed7a51cee7f3_-browser-action {list-style-image: url("Grass.png") !important}
+#_1220100b-db8f-419f-9cd4-ed7a51cee7f3_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_1220100b-db8f-419f-9cd4-ed7a51cee7f3_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Save page ad pdf */
+#save-as-pdf-ff_pdfcrowd_com-browser-action {list-style-image: url("Pdf S.png") !important}
+#save-as-pdf-ff_pdfcrowd_com-browser-action {--toolbarbutton-inner-padding: 0px }
+#save-as-pdf-ff_pdfcrowd_com-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* youtube preferences addon */
+#_3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf_-browser-action {list-style-image: url("YouTube.png") !important}
+#_3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_3c6bf0cc-3ae2-42fb-9993-0d33104fdcaf_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+
+/* Happy Right-Click Addon */
+#pageAction-urlbar-_dd10d63e-3096-4492-ab0e-5edcf4baf988_ {list-style-image: url("AOL.png") !important}
+#pageAction-urlbar-_dd10d63e-3096-4492-ab0e-5edcf4baf988_ {--toolbarbutton-inner-padding: 0px }
+#pageAction-urlbar-_dd10d63e-3096-4492-ab0e-5edcf4baf988_ .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+
+/* About button */
+#about-button {list-style-image: url("arcolinux-hello.png") !important;}
+#about-button {--toolbarbutton-inner-padding: 0px }
+#about-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Onetab */
+#extension_one-tab_com-browser-action {list-style-image: url("ironcross_1.ico") !important;}
+#extension_one-tab_com-browser-action {--toolbarbutton-inner-padding: 0px }
+#extension_one-tab_com-browser-action .toolbarbutton-icon{width: 23px !important; height: 23px !important; /*adjust sizes as per your personal preference*/} 
+
+
+/* Main Menu Button */
+#movable-PanelUI-button {
+    /* list-style-image: url("firefox-developer.png") !important; */
+    list-style-image: url("firefox (2).png") !important;
+    transform: scale(1.4);
+    padding-right: 8px !important;
+    padding-left: 4px !important;
+    /* margin-top: 3px !important; */
+}
+
+/* Custom AllTabs Button */
+/* Movable Alltabs Button */
+#alltabs-toolbar-button {list-style-image: url("AIM.png") !important;}
+#alltabs-toolbar-button {--toolbarbutton-inner-padding: 0px }
+#alltabs-toolbar-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* overflow button */
+#movable-overflow-button {
+    list-style-image: url("FF-perfect.png") !important;
+    transform: scale(1.9);
+    /* margin-top: -4px !important; */
+}
+
+/* alltabs Button */
+#alltabs-button {list-style-image: url("charles-proxy.png") !important;}
+#alltabs-button {--toolbarbutton-inner-padding: 0px }
+#alltabs-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* extensions options button */
+#eom-button {list-style-image: url("org.gnome.Extensions.png") !important;}
+#eom-button {--toolbarbutton-inner-padding: 0px }
+#eom-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Dark BG Lite Text */
+#jid1-qofqdk4qzufgwq_jetpack-browser-action {list-style-image: url("com.giuspen.cherrytree.png") !important;}
+#jid1-qofqdk4qzufgwq_jetpack-browser-action {--toolbarbutton-inner-padding: 0px }
+#jid1-qofqdk4qzufgwq_jetpack-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Bitwarden */
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action {list-style-image: url("firewall-config.png") !important;}
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action .toolbarbutton-icon{width: 22px !important; height: 22px !important; /*adjust sizes as per your personal preference*/}
+
+/* LinkGopher */
+#linkgopher_oooninja_com-browser-action {list-style-image: url("if_Umbrella_605497.ico") !important;}
+#linkgopher_oooninja_com-browser-action {--toolbarbutton-inner-padding: 0px }
+#linkgopher_oooninja_com-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Reload */
+#restart-button2a {list-style-image: url("ABCtorrent.png") !important;}
+#restart-button2a {--toolbarbutton-inner-padding: 0px }
+#restart-button2a .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Browser Toolbox */
+#browser-toolbox-button {list-style-image: url("CommandPrompt.png") !important;}
+#browser-toolbox-button {--toolbarbutton-inner-padding: 0px }
+#browser-toolbox-button .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Total Suspender */
+#_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action {list-style-image: url("Pause.png") !important;}
+#_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* Youtube Downloader */
+#_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action {list-style-image: url("VLC.png") !important;}
+#_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+/* TabStash */
+#tab-stash_condordes_net-browser-action {list-style-image: url("jdownloader (2).png") !important;}
+#tab-stash_condordes_net-browser-action {--toolbarbutton-inner-padding: 0px }
+#tab-stash_condordes_net-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+
+
+/* about:config button */
+#aboutconfig-ToolBarButton {list-style-image: url("silver_swastika_by_shitdeviant-d4f46ca.ico") !important;}
+#aboutconfig-ToolBarButton {--toolbarbutton-inner-padding: 0px }
+#aboutconfig-ToolBarButton .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* about support button */
+#about-support {list-style-image: url("sublime.png") !important;}
+#about-support {--toolbarbutton-inner-padding: 0px}
+#about-support .toolbarbutton-icon {width: 28px !important; height: 28px !important;}
+
+/* Copy Tab URLs */
+#_70f84a3b-6308-43c7-8373-25873cdab5cc_-browser-action {
+    list-style-image: url("disk.png") !important;
+    transform: scale(1.9);
+}
+
+/* Tab Manager v2 (this is an alternative to Alltabs Button) */
+#_dd627932-80c4-43bf-8432-db8f47e918ae_-browser-action {list-style-image: url("charles-proxy.png") !important;}
+#_dd627932-80c4-43bf-8432-db8f47e918ae_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_dd627932-80c4-43bf-8432-db8f47e918ae_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* JDownloader2 */
+#_03e07985-30b0-4ae0-8b3e-0c7519b9bdf6_-browser-action {list-style-image: url("jdownloader.png") !important;}
+#_03e07985-30b0-4ae0-8b3e-0c7519b9bdf6_-browser-action {--toolbarbutton-inner-padding: 0px }
+#_03e07985-30b0-4ae0-8b3e-0c7519b9bdf6_-browser-action .toolbarbutton-icon{width: 28px !important; height: 28px !important; /*adjust sizes as per your personal preference*/}
+
+/* ViolentMonkey */
+/* #_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action {
+    list-style-image: url("silver_swastika_by_shitdeviant-d4f46ca.ico") !important;
+    transform: scale(1.9);
+} */
+
+/* #QuickFoxNotes-toolbar-button {
+    list-style-image: url("terraria.png") !important;
+    transform: scale(1.9);
+} */
+
+
+/* Tab Count Icon */
+#_8e671754-fc9e-41c0-bb7c-0f575c4127d6_-browser-action {
+    margin-bottom: 5px !important;
+}
+
+/* color picker */
+#_6ac85730-7d0f-4de0-b3fa-21142dd85326_-browser-action {
+    list-style-image: url("color-picker.png") !important;
+    transform: scale(1.9); 
+}

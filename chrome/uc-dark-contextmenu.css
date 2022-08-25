@@ -1,0 +1,92 @@
+/* ----- DARK RIGHT-CLICK MENU (Code from "WhoNeedsChemistry") ----- */ 
+menuitem:hover, menu:hover {
+    background-color: #282828 !important;
+    color: #fff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50), 0 0 0 1px #4040405c inset !important;
+    border-radius: 0px !important;
+}
+menuitem[_moz-menuactive="true"], menu[_moz-menuactive="true"] {
+    background-color: #282828 !important;
+    color: #fff !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50), 0 0 0 1px #4040405c inset !important;
+    border-radius: 1px !important;
+}
+menupopup {
+    -moz-appearance: none !important;
+    background-color: #222 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50), 0 0 0 1px #4040405c inset !important;
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    border: 0px solid #282828 !important;
+}
+menuseparator {
+    -moz-appearance: none !important;
+    max-height: 1px !important;
+    border: none !important;
+    padding: 0.5px 0 !important;
+    margin: 0 5px !important;
+    background-color: #262626 !important;
+}
+menuitem, menu {
+    color: white !important;
+    -moz-appearance: none !important;
+    margin-top: 2px !important;
+    margin-right: 4px !important;
+    margin-bottom: 2px !important;
+    margin-left: 2px !important;
+    padding-top: 5px !important;
+    padding-right: 10px !important;
+    padding-bottom: 5px !important;
+    padding-left: 1px !important;
+}
+
+html#main-window body popupset#mainPopupSet menulist#ContentSelectDropdown menupopup.in-menulist menuitem {
+    color: white !important;
+    -moz-appearance: none !important;
+    margin-top: 2px !important;
+    margin-right: 4px !important;
+    margin-bottom: 2px !important;
+    margin-left: 4px !important;
+    padding-top: 2px !important;
+    padding-right: 10px !important;
+    padding-bottom: 2px !important;
+    padding-left: 10px !important;
+}
+
+menuitem {
+border-radius: 0px !important;
+}
+
+#context-navigation > .menuitem-iconic {
+    border-radius: 0px !important;
+    margin: 5px !important;
+    padding: 0px !important;
+}
+
+menugroup {
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+.menu-right {
+    -moz-appearance: none !important;
+    padding: 7px !important;
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    color: white !important;
+
+}
+
+#bookmarkpropertiesdialog .expander-up, #bookmarkpropertiesdialog .expander-down {
+    border-radius: 3px !important;
+    margin-top: 8px !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.50), 0 0 0 1px #4040405c inset !important;
+    margin-left: 8px !important;
+    padding-right: 18px !important;
+    padding-left: 18px !important;
+    min-height: 24px;
+    height: 10px !important;
+}
+
+hbox.dialog-button-box spacer.button-spacer {
+    box-shadow: none !important;
+}

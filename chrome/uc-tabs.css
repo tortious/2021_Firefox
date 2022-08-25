@@ -1,0 +1,127 @@
+/**********************************************************************************************************/
+                                        /* Tab Customizations */
+/**********************************************************************************************************/
+
+#tabbrowser-tabs {
+    visibility: visible !important;
+    height: 34px !important;
+  }
+
+  /* .tabbrowser-tab {
+      padding-left: 5px !important;
+      padding-right:5px !important;
+  } */
+
+
+.tab-icon-image {
+    transform: scale(1.4);
+    margin-top: -3px !important;
+}
+
+.tab-background[selected="true"] {
+    opacity: 0 !important;
+}
+
+.tab-background:hover {
+    opacity: 0 !important;
+}
+
+.tab-background:not([selected="true"]) {
+    background: transparent !important;
+}
+
+.tab-icon-stack {
+    margin-top: 0px;
+}
+
+/* Fabicon icon when mouse over to pinned inactive tab grayscale(15%) */
+.tabbrowser-tab:hover .tab-icon-image[pinned] {
+    filter: grayscale(15%) !important;
+}
+
+/* Fabicon icon on pinned inactive tab grayscale(35%) */
+.tabbrowser-tab .tab-icon-image[pinned] {
+    filter: grayscale(35%) !important;
+}
+
+/* Favicon icon when mouse over over inactive tab grayscale(15%) */
+.tabbrowser-tab:hover .tab-icon-image:not([selected=true]):not([pinned]) {
+    filter: grayscale(15%) !important;
+}
+
+/* Gray out the favicon icon on the inactive tab */
+.tabbrowser-tab .tab-icon-image:not([selected=true]):not([pinned]) {
+    filter: grayscale(100%) !important;
+    opacity: .6;
+}
+
+#tabbrowser-tabs {
+    --tab-min-height: calc(var(--uc-toolbar-height) - 2 * var(--tab-block-margin, 0px)) !important;
+}
+
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/icon_only_tabs.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Show tab close button when cursor is over the tab icon */
+/* inline_tab_audio_icons.css is recommended because otherwise you cannot mute the tab using the mute button */
+/* .tab-content{
+    pointer-events: none}
+  .tab-icon-image:not([busy]){ display: block !important; }
+  :where(.tab-content:hover) .tab-icon-image,
+  :where(.tab-content:hover) > .tab-icon-stack{
+    visibility: hidden;}
+  .tab-close-button{
+    -moz-box-ordinal-group: 0;
+    display: -moz-box !important;
+    position: relative;
+    margin-inline: -4px -20px !important;
+    padding-inline-start: 7px !important;
+    opacity: 0;
+    width: unset !important;
+    pointer-events: auto;}
+  .tab-close-button:hover{ opacity: 1 }
+  .tabbrowser-tab[pinned] .tab-close-button{ display: none !important; } */
+
+  
+.tab-content> :not(.tab-icon-stack) {
+    display: none
+}
+
+.tab-icon-stack>* {
+    margin-inline: 0 !important;
+}
+
+.tabbrowser-tab {
+    -moz-box-flex: 0 !important;
+}
+
+.tabbrowser-tab[fadein] {
+    min-width: calc(16px + 2 * 10px + 4px) !important;
+}
+
+:root[uidensity="compact"] .tabbrowser-tab[fadein] {
+    min-width: calc(16px + 2 * var(--inline-tab-padding, 0px) + 4px) !important;
+}
+
+:root:not([uidensity="compact"]) .tab-content {
+    padding-inline: 10px !important;
+}
+
+/***    
+Default Favicon for Tabs Without a Favicon - this doesnt use custom image but does provide FF generic one, at least
+***/
+.tabbrowser-tab:not([pinned]) .tab-icon-image:not([src]) {
+    display: inline !important;
+}
+#main-window .tabbrowser-tab[pinned] .tab-icon-image:not([src]),
+#main-window .tabbrowser-tab:not([pinned]) .tab-icon-image:not([src]) {
+    list-style-image: url("redblood.png") !important;
+}
+.tabbrowser-tab:not([pinned])[busy] .tab-icon-image {
+    display: none !important;
+}
+
+/* Gives custom favicon to tabs that dont have one */
+/* #tabbrowser-arrowscrollbox tab.tabbrowser-tab stack.tab-stack hbox.tab-content stack.tab-icon-stack image.tab-icon-image {
+    list-style-image: url("redblood.png") !important;
+} */

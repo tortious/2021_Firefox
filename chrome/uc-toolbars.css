@@ -1,0 +1,57 @@
+/**********************************************************************************************************/
+                                        /* Toolbar Adjustments */
+/**********************************************************************************************************/
+
+/* #toolbar-menubar {
+    background: linear-gradient(to right, #000000 0%,#1b1b1b 31%,#0060df 46%,#0060df 50%,#0060df 53%,#1b1b1b 66%,#000000 100%) !important;
+} */
+
+#TabsToolbar, #toolbar-menubar {
+    background: linear-gradient(0deg, #0a84ff 0%,#090909 15%,#2c2c2d 45%,#090909 85%,#0a84ff 100%) !important;
+}
+
+#PersonalToolbar {
+    background: radial-gradient(circle, #000000 20%,#0060df 80%,#000000 100%) !important;
+}
+
+#urlbar-container, #nav-bar {
+    background: linear-gradient(0deg, #0a84ff 0%,#090909 20%,#2c2c2d 50%,#090909 90%,#0a84ff 100%) !important;
+}
+
+#addonbar  {
+    background: linear-gradient(0deg, #0a84ff 0%,#090909 15%,#2c2c2d 45%,#090909 85%,#0a84ff 100%) !important;
+}
+
+#addonbar_v {
+    background: linear-gradient(90deg, #0a84ff 0%,#090909 10%,#2c2c2d 45%,#090909 90%,#0a84ff 100%) !important;
+    height: 32px !important;
+}
+
+
+
+
+
+#navigator-toolbox { 
+    --toolbar-bgcolor: transparent; 
+}
+
+
+/* Bookmark toolbar items */
+#PlacesToolbarItems .toolbarbutton-text {display: none !important;}
+#PlacesToolbarItems .toolbarbutton-icon {transform: scale(1.1);}
+
+
+
+/* menubar adjustments */
+#toolbar-menubar>.titlebar-buttonbox-container,
+#toolbar-menubar>spacer {
+    display: none;
+}
+#toolbar-menubar {
+    -moz-box-align: center
+}
+
+
+/* Oneliner fix for colors */
+/* #nav-bar { background: transparent !important; } */
+/*#PersonalToolbar { background: none !important; }*/ /*only enable if you dont use autohiding */

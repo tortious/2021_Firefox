@@ -1,0 +1,294 @@
+/* CONTEXT MENUS */
+
+/* Shortcut comments on main menu text color */
+.subviewbutton[shortcut]::after, .subviewbutton[shortcut]::after, 
+.PanelUI-subView .subviewbutton-nav::after, 
+#appMenu-tp-category {color: var(--panel-disabled-color) !important}
+
+/* Zoom reset button on the main menu */
+#appMenu-zoomReset-button {background-color: var(--arrowpanel-dimmed) !important}
+#appMenu-zoomReset-button:hover {background-color: rgba(0,0,0,0.1) !important}
+#appMenu-zoomReset-button:active {background-color: rgba(0,0,0,0.3) !important}
+
+/* This one changes the letters color of all context menus */
+menu, menuitem, window menuitem {
+  color: var(--Context-menu-text-color) !important}
+
+/* This changes the color on hover of the context-menu items */
+menubar > menu[_moz-menuactive="true"],
+menupopup > menu[_moz-menuactive="true"],
+popup > menu[_moz-menuactive="true"],
+menuitem[_moz-menuactive="true"] {
+  background-color: var(--Context-menu-highlight) !important;
+  --menuitem-hover-background-color: var(--Context-menu-highlight) !important}
+
+/* This does the same but for disabled ones */
+menubar > menu[_moz-menuactive="true"][disabled="true"],
+menupopup > menu[_moz-menuactive="true"][disabled="true"],
+popup > menu[_moz-menuactive="true"][disabled="true"],
+menuitem[_moz-menuactive="true"][disabled="true"] 
+{background-color: rgba(0,0,0,0.3) !important} 
+
+/* These are required for custom OS themes */
+menupopup:not([placespopup="true"]) > menuitem,
+#main-menubar menuitem,
+menubar > menu, popup > menu,
+menupopup > menu,
+.openintabs-menuitem {
+  -moz-appearance: none !important;
+  padding-top: 3px;
+  padding-bottom: 3px}
+
+.bookmark-item menupopup[emptyplacesresult="true"] menuitem {
+  min-height: 25px !important;
+}
+
+menuitem {
+  -moz-appearance: none !important}
+
+menupopup {
+  overflow: clip;
+  border-radius: 8px !important}
+
+/* Fixes extra padding on FF92+ */
+#PlacesToolbar menupopup {
+  padding-top: 0 !important;
+  padding-inline-start: 0 !important;
+}
+
+menu.bookmark-item, menuitem.bookmark-item, .openintabs-menuitem, .menupopup-arrowscrollbox {
+  padding-top: 3px !important;
+  padding-bottom: 3px !important;
+  margin: 0 !important;
+}
+
+bookmark-item.bookmark-item menupopup {
+  margin: 0 !important
+}
+
+/* This changes the text color of the greyed out actions on the context menus */
+menuitem[disabled="true"], menu[disabled="true"], 
+menuitem[disabled="true"] label, menu[disabled="true"] label {
+  color: #666 !important;
+}
+
+/* These apply to all context menus (If you want to theme the browser this one is better instead 
+of going one by one) */
+menupopup:not(.PanelUI-subView):not([id^="BMB_"]), .menupopup-arrowscrollbox,
+.panel-viewcontainer, #allTabsMenu-allTabsView {
+  background-color: var(--Context-menu-background) !important;
+  border-color: #555 !important}
+
+#PlacesToolbarItems menupopup, #main-menubar menupopup {
+  -moz-appearance: none !important;
+  background-color: var(--Context-menu-background) !important;
+  border: 1px solid #555 !important}
+
+#BMB_bookmarksPopup menupopup {
+  background-color: transparent !important}
+
+/* The following code changes the borders of all the context menus (except the ones above mentioned),
+as well as ignoring the bookmark menu context menu */
+menupopup:not(.PanelUI-subView):not([id^="BMB_"]) {
+  -moz-appearance: none !important;
+  border: 1px solid #555 !important}
+
+/* Context menu separator color override */
+menuseparator {
+  -moz-appearance: none !important;
+  margin: 1px 0 1px 2.3em !important;
+  height: 1px !important;
+  border: none !important;
+  background: #555 !important;
+  padding: 0 !important}
+
+/* Context menu navigation tools (back, forward, reload) background color */
+#context-navigation {
+  background-color: var(--Context-menu-background) !important;
+  padding-bottom: 0px !important}
+
+/* This removes the borders for the bookmark menu button next to the url bar */
+#BMB_bookmarksPopup, #BMB_bookmarksPopup menupopup {border: none !important}
+
+/* This changes the text color of the hint text on the bookmarks popup menu */
+.menu-accel-container .menu-iconic-accel {color: #808080 !important}
+.menu-accel-container .menu-accel {color: #909090 !important}
+
+/* Bookmark context menu > icon color and popup allow > icon color */
+.bookmark-item .menu-right, menu .menu-right, 
+#identity-popup-popup-menulist .menulist-dropmarker {filter: brightness(300%) !important}
+
+/* Drop indicator that appears when moving a bookmark in a bookmark folder color */
+menupopup::part(drop-indicator) {background-color: #5af !important}
+
+/* Color of default icons on bookmark bar and bookmark popup (folder icons mainly) */
+.bookmark-item > .toolbarbutton-icon[type="menu"], 
+.bookmark-item[container="true"] .menu-iconic-icon {fill: var(--Bookmark-folder-icon) !important}
+
+/* Color of default icons on bookmark bar and bookmark popup (world icon, aka not-favicon-found icon) */
+.bookmark-item[scheme="http"], .bookmark-item[scheme="http"] .menu-iconic-icon {fill: var(--Bookmark-favicon-icon) !important}
+
+/* Other colors of the bookmark popup */
+.panel-header, 
+#identity-popup-mainView-panel-header {background-color: rgba(0,0,0,0.2) !important}
+
+/* Remove cookies headers on url bar popup */
+.identity-popup-cookiesView-list-header {color: #ddd !important}
+#identity-popup-content-blocking-detected, .identity-popup-content-blocking-empty-label,
+#identity-popup-permission-empty-hint {color: #aaa !important}
+
+/* Fix for the space above the "save as" option after the navigation buttons have been eliminated. Change 
+if necessary depending on if you are using a custom OS theme (which may mess up the padding of the separators) */
+#context-savepage {padding-top: 3px !important}
+
+/* Protections popup text */
+#protections-popup-category-list description[role="heading"] {
+  color: var(--arrowpanel-color) !important}
+
+.text-link, .protections-popup-category, 
+#protections-popup-trackers-blocked-counter-description {
+  color: var(--panel-disabled-color) !important}
+
+/* LIBRARY MENU */
+
+/* These change top bar background color */
+#placesToolbar {background-color: #333 !important}
+
+#placesToolbar #organizeButton image, #placesToolbar #viewMenu image,
+#placesToolbar #maintenanceButton image {filter: invert(70%) !important}
+
+/* These change the lists background color */
+#placesView, #placesView .scrollbox-innerbox,
+#infoPane, #placesList, #placeContent, 
+/* This one changes the urlbar star bookmarking folder tree backgrund color */
+#editBMPanel_folderTree {
+  -moz-appearance: none !important; 
+  background: #555 !important; 
+  color: #ddd !important}
+
+/* These change the list header background and text colors */
+#placeContent treecol {
+  -moz-appearance: none !important; 
+  background: #444 !important;
+  padding: 3px !important;
+  color: #ddd !important;
+  border-left: 1px solid #333 !important;
+  border-bottom: 1px solid #333 !important}
+
+#placeContent treecol:hover {
+  -moz-appearance: none !important; 
+  background: rgba(255,255,255, 0.15) !important;
+  color: #fff !important}
+
+/* This changes the right border on the left list panel */
+#placesView > splitter {border-inline-end: 1px solid #333 !important}
+
+/* These change the even rows of the lists */
+#placeContent tree {background-color: var(--in-content-box-background) !important}
+
+#placeContent treechildren::-moz-tree-row(even) {
+  background-image: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)) !important}
+
+#placeContent treechildren::-moz-tree-cell {border-right: 1px dotted rgba(0,0,0,0.4) !important}
+
+#placeContent > splitter {border: 1px solid red !important}
+
+/* This changes the forward and back buttons opacity when disabled */
+#placesToolbar > toolbarbutton[disabled] > .toolbarbutton-icon {
+  opacity: .25 !important}
+
+/* This changes the forward and back buttons color */
+#back-button > .toolbarbutton-icon,
+#forward-button > .toolbarbutton-icon {fill: #aaa !important; opacity: 1 !important}
+
+/* This deletes the leftover border when clicking one of the top buttons */
+#placesMenu > menu {border: none !important}
+
+/* This changes the text color of the "clear downloads" button */
+#clearDownloadsButton {color: #aaa !important}
+#clearDownloadsButton[disabled] {color: #555 !important}
+
+/* This themes the information box on the lower part of the library menu */
+#detailsPane {
+  background-color: var(--Window-bg) !important; 
+  color: #aaa !important;
+  border-top: 1px solid #222 !important}
+
+/* This changes the text boxes inside the library bottom information box */
+#infoBox textbox, #infoBox listbox, 
+/* This changes the text boxes on the popup when bookmarking a page from the url box */
+#editBMPanel_namePicker, #editBMPanel_tagsField,
+#editBMPanel_tagsSelector, #editBMPanel_locationField, 
+#editBMPanel_keywordField, #searchFilter {
+  -moz-appearance: none !important; 
+  border: 1px solid #555 !important;
+  background-color: #404040 !important;
+  color: #ddd !important}
+
+#editBMPanel_tagsSelector richlistitem[selected="true"] {
+  background-color: var(--Lists-treechildren-selected-bg) !important;
+  color: var(--Lists-treechildren-selected-txt) !important}
+
+#editBMPanel_tagsSelector richlistitem[checked="true"] image {
+  -moz-appearance: none !important;
+  background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="13px" height="13px" viewBox="0 0 14 14" ><path fill="rgb(200,200,200)" d="M 13.09,2.87 C 13.09,2.87 6.00,11.00 6.00,11.00 6.00,11.00 2.00,9.00 2.00,9.00 4.25,12.81 7.00,14.00 7.00,14.00 9.24,10.42 12.04,7.39 13.09,2.87 Z" /></svg>') no-repeat center center !important;
+  border: none !important}
+
+/* This changes the input boxes of bookmark/library on focus */
+#editBMPanel_namePicker:not([readonly]):focus,
+#editBMPanel_tagsField:focus,
+#editBMPanel_keywordField:focus,
+#editBMPanel_locationField:not([readonly]):focus,
+#searchFilter[focused="true"] {
+  box-shadow: var(--Input-field-focus-shadow) !important;
+  background-color: #555 !important;
+  color: #fff !important} 
+
+/* This changes the buttons inside the bookmarking popup at the url star */
+#editBMPanel_newFolderButton, #editBookmarkPanelDoneButton, 
+#editBookmarkPanelRemoveButton, #tracking-action-unblock-private, 
+#identity-popup-popup-menulist, #tracking-action-block, #tracking-action-unblock {
+  -moz-appearance: none !important;
+  border-radius: 3px !important;
+  background: #666 !important;
+  color: #ddd !important;
+  padding: 0.3em !important;
+  margin-top: 0.5em !important;
+  margin-bottom: 0.5em !important}
+
+#editBMPanel_newFolderButton:hover,#editBookmarkPanelDoneButton:hover, 
+#editBookmarkPanelRemoveButton:hover, #tracking-action-unblock-private:hover, 
+#identity-popup-popup-menulist:hover, #tracking-action-block:hover, 
+#tracking-action-unblock:hover { 
+  background: #333 !important;
+  color: #fff !important}
+
+/* These change the expander buttons on the library and bookmarking popup */
+#editBMPanel_tagsSelectorExpander,
+#editBMPanel_foldersExpander, #detailsDeck button {
+  -moz-appearance: none !important;
+  background: #444 !important;
+  color: #ddd !important}
+
+#editBMPanel_tagsSelectorExpander:hover, 
+#editBMPanel_foldersExpander:hover, #detailsDeck button:hover {
+  background: #555 !important;
+  color: #fff !important}
+
+#editBMPanel_folderMenuList {
+  -moz-appearance: none !important;
+  border: none !important;
+  background: #484848 !important;
+  color: #ddd !important;
+  padding: 3px;}
+
+#editBMPanel_folderMenuList:hover, #editBMPanel_folderMenuList:focus {
+  background: #555 !important;
+  color: #fff !important}
+
+dropmarker {
+  background-color: transparent !important;
+}
+
+/* These change the downloads history list background */
+#downloadsRichListBox {background: #444 !important; color: #ccc !important}

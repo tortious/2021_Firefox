@@ -1,0 +1,23 @@
+/* THIS PART WORKS FINE */
+menu, 
+menuitem, 
+menucaption {
+    color: var(--arrowpanel-color) !important;
+}
+.menupopup-arrowscrollbox {
+    background: var(--arrowpanel-background) !important;
+    border: 0px !important;
+}
+
+/* THE PROBLEM STARTS HERE */
+menu[_moz-menuactive="true"]:not([disabled="true"]),
+menuitem[_moz-menuactive="true"]:not([disabled="true"]),
+menucaption:hover:not([disabled="true"]) {
+    background-color: var(--panel-item-hover-bgcolor) !important;
+}
+
+menu:active[_moz-menuactive="true"]:not([disabled="true"]),
+menuitem:active[_moz-menuactive="true"]:not([disabled="true"]),
+menucaption:active:not([disabled="true"]) {
+    background-color: var(--panel-item-active-bgcolor) !important;
+}

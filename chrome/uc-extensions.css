@@ -1,0 +1,87 @@
+/* overflow button */
+
+#movable-overflow-button {
+    list-style-image: url("Symbol (8).png") !important;
+    transform: scale(2)
+}
+
+
+/* Main Menu Button */
+
+#movable-PanelUI-button {
+    list-style-image: url("iron_cross_vector_by_arminius1871_dbb2oq4-fullview.png") !important;
+    transform: scale(1.8);
+    padding-right: 8px !important;
+    padding-left: 4px !important;
+    margin-top: 3px !important;
+}
+
+
+/* Onetab */
+
+#extension_one-tab_com-browser-action {
+    list-style-image: url("pink.png") !important;
+    transform: scale(2);
+    margin-bottom: -3px !important;
+}
+
+
+/* Dark BG Lite Text */
+
+#jid1-qofqdk4qzufgwq_jetpack-browser-action {
+    list-style-image: url("Grass.png") !important;
+    transform: scale(2)
+}
+
+
+/* Bitwarden */
+
+#_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action {
+    list-style-image: url("sex-offender.png") !important;
+    transform: scale(2)
+}
+
+
+/* Reload */
+
+#restart-button2a {
+    list-style-image: url("Go.png") !important;
+    transform: scale(2);
+}
+
+
+/* Browser Toolbox */
+
+#browser-toolbox-button {
+    list-style-image: url("Monopoly1.png") !important;
+    transform: scale(2)
+}
+
+
+/* Total Suspender */
+
+#_77497113-dd7f-4e91-b31f-9c1625e884c7_-browser-action {
+    list-style-image: url("cal128.png") !important;
+    transform: scale(1.5)
+}
+
+
+/* Youtube Downloader */
+
+#_f73df109-8fb4-453e-8373-f59e61ca4da3_-browser-action {
+    list-style-image: url("IE.png") !important;
+    transform: scale(1.5)
+}
+
+
+/* TabStash */
+
+#tab-stash_condordes_net-browser-action {
+    list-style-image: url("no-smoking.png") !important;
+    transform: scale(2)
+}
+
+#about-button-gen {
+    list-style-image: url("LabPotionicon.png") !important;
+    transform: scale(2)
+}

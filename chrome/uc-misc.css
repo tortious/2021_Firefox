@@ -1,0 +1,75 @@
+/**********************************************************************************************************/
+                        /* Menubar & Misc Adjustments */
+/**********************************************************************************************************/
+/* :root:not([customizing]) #toolbar-menubar[autohide][inactive] {
+    max-width: 0
+}
+ */
+
+
+/* #navigator-toolbox>#nav-bar {
+    margin-right: calc(100vw - var(--uc-navigationbar-width));
+    margin-top: calc(0px - var(--uc-toolbar-height));
+}
+ */
+/* Window drag space  */
+:root[tabsintitlebar="true"] #nav-bar {
+    padding-left: 24px !important
+}
+
+/* Fix customization view */
+#customization-panelWrapper>.panel-arrowbox>.panel-arrow {
+    margin-inline-end: initial !important;
+}
+
+
+/* Makes the contents of the overflow menu appear in a three column grid */
+/* Hides button labels */
+#widget-overflow-mainView{ min-width: 80px !important; }
+.widget-overflow-list:not([customizing]){
+  display: grid;
+  grid-template-areas: "s s s" "a a a";
+  grid-auto-columns: auto;
+}
+#widget-overflow-mainView[visible] .widget-overflow-list:not([customizing]) { max-width: 110px }
+#widget-overflow-mainView ~ panelview[visible]{ max-width: unset !important; } 
+.widget-overflow-list:not([customizing]) > *{ padding-block: 8px !important; }
+.widget-overflow-list > #search-container{ grid-area: s }
+.widget-overflow-list:not([customizing]) .subviewbutton-nav::after,
+.widget-overflow-list:not([customizing]) .toolbarbutton-text{ display: none }
+
+
+
+
+
+
+/* Color fix on customize view and blank pages, helps with the infamous white/black flash */
+/* :root #tabbrowser-tabpanels, #customization-container{ background-color: var(--tabpanel-background-color, gray) !important;} */
+
+
+/* Hide shadow above urlbar */
+#nav-bar{ box-shadow: none !important }
+
+
+
+
+
+
+/* Removes the White Flash */
+#tabbrowser-tabpanels,
+#webextpanels-window,
+#webext-panels-stack,
+#webext-panels-browser {
+    background: #1a1a1a !important;
+}
+
+
+
+/* Hides findbar when losing focus - an awesome rule that saves me countless headaches  */
+findbar:not(:focus-within) {
+    opacity: 0 !important;
+    width: 0px!important;
+    margin-top: -40px;
+    }
+    
+    

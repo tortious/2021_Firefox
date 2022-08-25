@@ -1,0 +1,144 @@
+/**********************************************************************************************************/
+                                        /* Urlbar Customizations */
+/**********************************************************************************************************/
+/*Removing BS Urlbar icons*/
+#tracking-protection-icon-container {display: none !important;}
+#identity-box, #identity-icon {display: none}
+#pageAction-urlbar-jid1-xufzosoflzsoxg_jetpack {display: none}
+#pageAction-urlbar-tab-stash_condordes_net {display: none}
+#urlbar-zoom-button {display: none}
+
+
+#nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #page-action-buttons {
+		opacity: 0;
+	}	
+
+	#nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #identity-box {
+		opacity: 0;
+		/*visibility: collapse;*/
+	}
+
+    #nav-bar:not([customizing="true"]) > #nav-bar-customization-target > #urlbar-container:not(:hover) > #urlbar:not([focused]) > #urlbar-input-container > #tracking-protection-icon-container {
+		opacity: 0;
+	}
+
+/* URL bar max-width and centered hack */
+#urlbar {
+	max-width: 70% !important;
+	margin: 0 15% !important;
+
+	/* URL bar and toolbar height */
+	--urlbar-height: 34px !important;
+	--urlbar-toolbar-height: 38px !important;
+}
+
+/* URL bar and toolbar height if compact mode */
+:root[uidensity="compact"] #urlbar {
+	--urlbar-height: 28px !important;
+	--urlbar-toolbar-height: 32px !important;
+}
+
+/* #urlbar-input:focus {
+} */
+
+
+
+/* Hide dropdown placeholder */
+/* #urlbar-container:not(:hover) .urlbar-history-dropmarker {
+    margin-inline-start: -28px;
+}
+ */
+
+
+/* Temporary dummy variables, can probably be removed when Fx92 releases */
+/* :root{
+  --toolbar-field-background-color: var(--toolbar-field-non-lwt-bgcolor);
+  --toolbar-field-focus-background-color: var(--lwt-toolbar-field-focus,Field);
+}
+:root:-moz-lwtheme{
+  --toolbar-field-background-color: var(--lwt-toolbar-field-background-color);
+}
+ */
+.urlbarView-row-inner{
+   /* This sets how far the dropdown-items are from window edge */
+  padding-inline-start: 4px !important;
+}
+
+/* remove urlbar go button */
+#urlbar-go-button{visibility: collapse}
+
+#urlbar-container,
+#urlbar{
+  position: static !important;
+  display: -moz-box !important;
+}
+#urlbar{
+  height: auto !important;
+  width: auto !important;
+  box-shadow: inset 0 0 0 1px var(--toolbar-field-border-color, hsla(240,5%,5%,.25));
+/*   background-color: var(--toolbar-field-background-color, hsla(0,0%,100%,.8)); */
+  border-radius: var(--toolbarbutton-border-radius);
+  --uc-urlbar-min-width: none; /* navbar_tabs_oneliner.css compatibility */
+}
+
+#urlbar[focused]{ box-shadow: inset 0 0 0 1px var(--toolbar-field-focus-border-color, highlight); }
+
+.urlbarView{
+  position: absolute !important;
+  margin: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  border-width: 1px 0;
+  top: var(--urlbar-toolbar-height);
+  background-color: var(--toolbar-field-focus-background-color, inherit);
+  z-index: 4;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+}
+
+#urlbar > #urlbar-input-container{ padding: 0px !important; width: auto !important; height: auto !important; }
+#urlbar > #urlbar-background{ display: none !important; }
+
+
+/* remove search one-offs */
+.search-one-offs {display: none !important;}
+
+.urlbarView-row[type="search"] .urlbarView-action{display:none!important}
+
+/* removes the google search first line in urlbar results */
+#urlbar[usertyping] .urlbarView-row:not([type]):first-child,
+#urlbar[usertyping] .urlbarView-row[type="search"]:first-child,
+.urlbarView-row[type="tabtosearch"] {
+  display: none !important;
+}
+
+
+
+/* #urlbar[pageproxystate="invalid"]:not([usertyping],[searchmode]) #urlbar-input::placeholder{ color: transparent }
+#urlbar[pageproxystate="invalid"]:not([usertyping],[searchmode]) .urlbar-input-box::before{
+  content: "Search with Startpage or enter address";
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0.69;
+  pointer-events: none;
+} */
+
+
+
+
+
+
+/* remove blue line aroundd urlbar */
+:root{ --toolbar-field-focus-border-color: transparent !important; }
+/* Urlbar highlighted background color */
+#urlbar-input::-moz-selection { background-color: transparent !important;}
+/* Urlbar highlighted text color */
+#urlbar-input::-moz-selection {color: var(--focus-outline-color, highlight) !important; }
+
+/* Urlbar focused background color same as unfocused */
+/* [focused]#urlbar:not([breakout][breakout-extend]) > #urlbar-background { background-color: var(--toolbar-field-background-color, currentColor) !important; } */
+/* Urlbar focused text color same as unfocused */
+/* [focused]#urlbar{color: var(--toolbar-field-color) !important;} */
+
+#urlbar-results {color: transparent !important;}
