@@ -1,0 +1,15 @@
+/* https COLORing trickin https thingy urlbar*/
+#identity-box.verifiedDomain[pageproxystate="valid"]~.urlbar-input-box::before {
+	content: "https://";
+	position: absolute !important;
+	display: block !important;
+	line-height: var(--urlbar-height) !important;
+	z-index: 2 !important;
+	height: 100% !important;
+	color: #1e90ff !important;
+	text-shadow: 0 0 3px #000000 !important;
+	margin-top: -1px !important;
+	pointer-events: none !important;
+	font-family: Fira Sans !important;
+	font-weight: bold !important;
+}
