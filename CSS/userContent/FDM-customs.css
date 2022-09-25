@@ -1,0 +1,35 @@
+
+/* free download manager */
+@-moz-document url-prefix("moz-extension://e82498ba-03f1-4c10-be0c-9441111ccc84/") {
+
+	html,
+	head,
+	body {
+		background-color: #1e1d2d !important;
+		background: #1e1d2d !important;
+		color: #ffffff !important;
+	}
+
+	panel-arrowcontainer {
+		background-color: yellow !important;
+		background: red !important;
+	}
+
+	body {
+		width: 335px !important;
+		background-color: #1e1d2d !important;
+		margin: 0 !important;
+		margin-top: 10px !important;
+		font-size: 12px !important;
+		color: #ffffff !important;
+		background-size: cover !important;
+	}
+
+	#pauseCatchingForAllSites:hover,
+	#activeTabInSkipList:hover,
+	#optionsLink:hover,
+	#feedbackLink:hover {
+		background: #1e90ff !important;
+		color: #ffffff !important;
+	}
+}
