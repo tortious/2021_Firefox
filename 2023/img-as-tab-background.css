@@ -1,3 +1,5 @@
+/* Originally got it from here https://old.reddit.com/r/FirefoxCSS/comments/15tdlsv/how_to_get_custom_background_to_cover_tab_bar/  */
+
 :root {
 --toolbar-bgcolor: transparent !important;
 }
