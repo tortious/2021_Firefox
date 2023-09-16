@@ -1,0 +1,20 @@
+:root {
+--toolbar-bgcolor: transparent !important;
+}
+
+#navigator-toolbox {
+background-image: linear-gradient(rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30)), url("EK4wToZ8aQACgVwSizPT6qCj.png") !important;
+background-repeat: no-repeat !important;
+background-size: contain !important;
+background-attachment: fixed !important;
+background-position: top 0px center  !important;
+border-bottom: none !important;
+}
+
+#PersonalToolbar, #nav-bar, #urlbar-background, .tab-background {
+background-color: transparent !important;
+}
+
+.tabbrowser-tab[selected] .tab-background {
+background-image: none !important;
+}
