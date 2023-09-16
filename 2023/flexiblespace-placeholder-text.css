@@ -1,0 +1,12 @@
+#nav-bar::before {
+content: "YourProfile";
+display: flex;
+align-items: center;
+padding-inline: 6px;
+margin-inline-start: var(--toolbar-start-end-padding) !important;
+align-self: center;
+height: calc(2 * var(--toolbarbutton-inner-padding) + 16px);
+border: 1px solid var(--toolbar-field-border-color);
+border-radius: var(--toolbarbutton-border-radius);
+background-color: lightblue !important;
+}
