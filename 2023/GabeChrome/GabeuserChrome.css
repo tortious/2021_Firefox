@@ -1,0 +1,433 @@
+/*@import "gabeChrome-extras.css";*/
+@import "gabeChrome-icons.css";
+
+@namespace xul "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul";
+@namespace html "http://www.w3.org/1999/xhtml";
+
+/* CUSTOMS BY GABE */
+
+/* GPL-3.9 Copyright (C) 2007 Timvde/UserChrome-Tweaks; Code pulled from https://github.com/Timvde/UserChrome-Tweaks */
+/*
+* Only show close buttons on background tabs when hovering with the mouse
+*
+* Contributor(s): Timvde
+*/
+
+.tabbrowser-tab:not([selected]):not([pinned]) .tab-close-button {
+  display: none !important;
+}
+
+.tabbrowser-tab:not([selected]):not([pinned]):hover .tab-close-button {
+  display: -moz-box !important;
+}
+
+.tab-close-button {
+  transition: fill-opacity var(--animation-speed) !important;
+  /*fill: #ff3131 !important;*/
+}
+
+/* urlbar-go-button */
+#urlbar:active #urlbar-go-button,
+#urlbar:hover #urlbar-go-button,
+#urlbar:not(.hidden-focus)[focused="true"] #urlbar-go-button {
+  display: inherit !important;
+}
+
+#urlbar-go-button,
+#urlbar-input-container:hover #urlbar-go-button {
+  fill: #30e60b !important;
+}
+
+/* Hide border bottom of toolbox */
+#navigator-toolbox {
+  border-bottom: 0 !important;
+}
+
+#nav-bar {
+  box-shadow: none !important;
+}
+
+/* show tab manager button even when tabs aren't overflowing -
+ can instead use browser.tabs.tabmanager.enabled;true as well
+ or skip this part if you want to retain the default behaviour */
+#alltabs-button {
+  display: -moz-box !important;
+}
+
+/* tab counter */
+#TabsToolbar-customization-target {
+  counter-reset: tabCount;
+}
+
+.tabbrowser-tab {
+  counter-increment: tabCount;
+}
+
+#alltabs-button > .toolbarbutton-badge-stack > .toolbarbutton-icon {
+  visibility: collapse !important;
+}
+
+#alltabs-button > .toolbarbutton-badge-stack {
+  position: relative !important;
+}
+
+#alltabs-button > .toolbarbutton-badge-stack::before {
+  content: counter(tabCount);
+  color: var(--toolbar-bgcolor, inherit);
+  background-color: var(--toolbar-color, inherit);
+  border-right: 2px solid var(--toolbar-bgcolor);
+  border-bottom: 2px solid var(--toolbar-bgcolor);
+  box-shadow: var(--toolbar-color, inherit) 2px 2px 0px;
+  opacity: var(--toolbarbutton-icon-fill-opacity);
+  position: absolute;
+  bottom: var(--toolbarbutton-inner-padding);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0 6px;
+  font-weight: bold !important;
+}
+
+/* VERIFY ICON GRAY TO GREEN */
+
+#identity-box[pageproxystate="valid"].verifiedDomain #identity-icon,
+#identity-box[pageproxystate="valid"].mixedActiveBlocked #identity-icon {
+  -moz-context-properties: fill;
+  fill: #30e60b !important;
+}
+
+/* Tab label container color */
+
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+  color: var(--identity-tab-color) !important;
+}
+
+/* Move container line to bottom */
+
+.tab-context-line {
+  -moz-box-ordinal-group: 2 !important;
+}
+
+/* Selected Tab */
+
+.tab-content {
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;
+  margin-bottom: 3px;
+  transition-property: border-top-color;
+  transition-duration: 0.3s;
+}
+
+.tab-content[selected="true"],
+.tab-content[multiselected="true"] {
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;
+  border-top-color: var(--toolbarbutton-icon-fill);
+}
+
+.tab-content:hover {
+  border-style: solid;
+  border-width: 3px;
+  border-color: transparent;
+  border-top-color: var(--toolbarbutton-icon-fill);
+}
+
+.tab-background {
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* [Optional] Animation when hovering non-active/non-selected tabs */
+
+.tabbrowser-tab:not([selected], [multiselected]) .tab-background::before {
+  transform: scaleX(0.8);
+  transition: transform 100ms linear;
+}
+
+/* Underlines and dims unloaded tabs */
+/* Contributor(s): josemam */
+
+.tabbrowser-tab[pending] {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/*** Audio Playing / Mute Button side-by-side when sound is playing ***/
+
+#TabsToolbar {
+  --user-mute-button-height: 20px;
+  /* default size is 12px, site icon is 16px */
+}
+
+/* Move the mute/unmute button to the right and enlarge it */
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is(
+    [soundplaying],
+    [muted]
+  ) {
+  width: var(--user-mute-button-height) !important;
+  height: var(--user-mute-button-height) !important;
+  margin-left: 8px !important;
+  /* pushes icon to the right */
+  margin-right: 2px !important;
+  /* closes up some space before the text */
+  padding: 0 !important;
+  /* allows icon to expand to full size */
+}
+
+/* Move the site icon to the left a bit and adjust position */
+.tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted])
+  > :not(.tab-icon-overlay) {
+  margin-left: -4px !important;
+  /* pushes icon to the left */
+  margin-top: calc((var(--user-mute-button-height) - 16px) / 2) !important;
+  /* keep site icon reasonably positioned */
+}
+
+/* Override the rules for hover/not hover visibility */
+/* for mute button */
+.tabbrowser-tab:not(:hover) .tab-icon-overlay:not([pinned], [sharing], [crashed]):is([soundplaying], [muted]),
+/* for site icon */
+.tabbrowser-tab:hover .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted])> :not(.tab-icon-overlay),
+/* for site icon with Compact density */
+:root[uidensity="compact"] .tab-icon-stack:not([pinned], [sharing], [crashed]):is([soundplaying], [muted])> :not(.tab-icon-overlay) {
+  opacity: 1 !important;
+  /* overrides full transparency with full opacity */
+}
+
+/* Color the icon on hover for confirmation or avoidance */
+.tab-icon-overlay:not([pinned], [sharing], [crashed]):is(
+    [soundplaying],
+    [muted]
+  ):hover {
+  fill: green !important;
+}
+
+[lwthemetextcolor="bright"]
+  .tab-icon-overlay:not([pinned], [sharing], [crashed]):is(
+    [soundplaying],
+    [muted]
+  ):hover {
+  fill: lightgreen !important;
+  /* for dark themes */
+}
+
+/* Tweaked Audio playing/Mute button rules for pinned tabs */
+.tab-icon-overlay:not([crashed]):is([pinned], [sharing]):is(
+    [soundplaying],
+    [muted]
+  ) {
+  width: var(--user-mute-button-height) !important;
+  height: var(--user-mute-button-height) !important;
+  margin-left: 2px !important;
+  /* allow some overlap to reduce expanded width */
+  margin-right: -2px !important;
+  /* reduce empty space on the right */
+  padding: 0 !important;
+  /* allows icon to expand to full size */
+  top: 0 !important;
+  /* align button with site icon */
+}
+
+.tab-icon-stack:not([crashed]):is([pinned], [sharing]):is(
+    [soundplaying],
+    [muted]
+  )
+  > :not(.tab-icon-overlay) {
+  margin-left: 16px !important;
+  /* reduce empty space on the left */
+  margin-top: calc((var(--user-mute-button-height) - 16px) / 2) !important;
+  /* keep site icon reasonably positioned */
+}
+
+.tabbrowser-tab:not(:hover) .tab-icon-overlay:not([crashed]):is([pinned], [sharing]):is([soundplaying], [muted]),
+/* for site icon */
+.tabbrowser-tab:hover .tab-icon-stack:not([crashed]):is([pinned], [sharing]):is([soundplaying], [muted])> :not(.tab-icon-overlay),
+/* for site icon with Compact density */
+:root[uidensity="compact"] .tab-icon-stack:not([crashed]):is([pinned], [sharing]):is([soundplaying], [muted])> :not(.tab-icon-overlay) {
+  opacity: 1 !important;
+  /* overrides full transparency with full opacity */
+}
+
+.tab-icon-overlay:not([crashed]):is([pinned], [sharing]):is(
+    [soundplaying],
+    [muted]
+  ):hover {
+  fill: green !important;
+}
+
+[lwthemetextcolor="bright"]
+  .tab-icon-overlay:not([crashed]):is([pinned], [sharing]):is(
+    [soundplaying],
+    [muted]
+  ):hover {
+  fill: lightgreen !important;
+  /* for dark themes */
+}
+
+/* Move Find Bar above the page*/
+.browserContainer > findbar {
+  -moz-box-ordinal-group: 0;
+}
+
+/* Centered Bookmarks Bar */
+
+#PlacesToolbarItems {
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Status Panel */
+
+/*#statuspanel-label {
+  color: #ffffff !important;
+  background-color: #0078d7 !important;
+  border-color: 1px solid rgba(0, 118, 214, 0.8) !important;
+}*/
+
+/***************************************************/
+
+/* restore status panel in Firefox 106 and above*/
+
+.browserContainer,
+#main-window {
+  border-bottom: 20px solid var(--lwt-accent-color) !important;
+}
+
+html[inFullscreen="true"] .browserContainer,
+#main-window {
+  border-bottom: inherit !important;
+}
+
+#statuspanel {
+  height: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  left: 0px !important;
+  bottom: -20px !important;
+  padding: 0px !important;
+  transition-duration: 150ms !important;
+  transition-delay: 50ms !important;
+  /*border-top: 1px solid;*/
+  border-image: linear-gradient(90deg, #6200a4 0%, #ff0039 50%, #ff9400 100%) 1
+    stretch;
+  background-color: var(--lwt-accent-color) !important;
+}
+
+#statuspanel[hidden="true"] {
+  position: absolute !important;
+  display: block !important;
+}
+
+#statuspanel[inactive] {
+  visibility: visible !important;
+  opacity: 100 !important;
+}
+
+html[inFullscreen="true"] #statuspanel {
+  bottom: 0px !important;
+  width: calc(100vw - 16px) !important;
+}
+
+html[inFullscreen="true"] #statuspanel[type="defaultStatus"] {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+#statuspanel-label {
+  top: 0px !important;
+  margin-left: 0px !important;
+  margin-top: 0px !important;
+  border: none !important;
+  padding-left: 5px !important;
+  padding-top: 0px !important;
+  background: transparent !important;
+  transition-duration: 150ms !important;
+  transition-delay: 50ms !important;
+  color: var(--toolbar-color) !important;
+  font-family: Cascadia Mono, Consolas, SF Mono, monospace;
+}
+
+#statuspanel[type="defaultStatus"] #statuspanel-label {
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+/* PANEL SEPARATOR GRADIENT WITH FIREFOX DEVELOPER COLORS */
+
+:root {
+  --panel-separator-zap-gradient-developer: linear-gradient(
+    90deg,
+    #712290 0%,
+    #0290ee 52.08%,
+    #0060e0 100%
+  );
+}
+
+.PanelUI-subView toolbarseparator.proton-zap {
+  border-image: var(--panel-separator-zap-gradient-developer, none) 1 !important;
+}
+
+/*  Clean and tight extensions menu */
+#unified-extensions-view .panel-header,
+#unified-extensions-view .panel-header + toolbarseparator,
+#unified-extensions-view .panel-subview-body + toolbarseparator,
+#unified-extensions-view #unified-extensions-manage-extensions {
+  /*display:none !important;*/
+}
+
+#unified-extensions-view .unified-extensions-item-menu-button.subviewbutton {
+  display: none !important;
+}
+
+#unified-extensions-view .panel-subview-body {
+  padding-top: 8px !important;
+  padding-bottom: 6px !important;
+}
+
+#unified-extensions-view .unified-extensions-item-icon,
+#unified-extensions-view
+  .unified-extensions-item[unified-extensions="true"]
+  .webextension-browser-action
+  > .toolbarbutton-badge-stack
+  > .toolbarbutton-icon {
+  height: 24px !important;
+  width: 24px !important;
+}
+
+#unified-extensions-view
+  .unified-extensions-item-action-button
+  .unified-extensions-item-contents {
+  display: none !important;
+}
+
+#unified-extensions-view .unified-extensions-item-icon,
+#unified-extensions-view
+  .unified-extensions-item[unified-extensions="true"]
+  .webextension-browser-action
+  > .toolbarbutton-badge-stack {
+  margin-inline-end: 0px !important;
+}
+
+#unified-extensions-view .panel-subview-body {
+  max-width: 286px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+#unified-extensions-view #overflowed-extensions-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+#unified-extensions-view #unified-extensions-area {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  border-bottom: 1px solid #aeaeae33 !important;
+}
+
+#unified-extensions-view .unified-extensions-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
