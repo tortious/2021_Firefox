@@ -1,0 +1,109 @@
+/* Hide tabbar */
+
+#TabsToolbar {
+  visibility: collapse !important;
+}
+
+/* Debloat toolbar */
+
+#back-button {
+  display: none;
+}
+#forward-button {
+  display: none;
+}
+#reload-button {
+  display: none;
+}
+#nav-bar-overflow-button {
+  display: none !important;
+}
+#PanelUI-button {
+  display: none;
+}
+#nav-bar,
+#navigator-toolbox {
+  border-width: 0 !important;
+  --toolbar-field-focus-border-color: #42414d;
+}
+
+/* Debloat URL-bar */
+
+#pageActionButton {
+  display: none;
+}
+#pocket-button {
+  display: none;
+}
+#urlbar-zoom-button {
+  display: none;
+}
+#tracking-protection-icon-container {
+  display: none !important;
+}
+#reader-mode-button {
+  display: none !important;
+}
+#star-button {
+  display: none;
+}
+#urlbar-go-button {
+  display: none;
+}
+
+/* this will remove the invisible box at the end of urlbar but also will
+ * disable the Ctrl+D shortcut */
+#star-button-box {
+  display: none;
+}
+
+/* Container indication */
+#userContext-label,
+#userContext-indicator {
+  display: none !important;
+}
+
+/* Add padding back */
+.urlbar-input-box {
+  padding-inline-start: 5px;
+}
+
+/* Hide window controls */
+.titlebar-buttonbox-container {
+  display: none;
+}
+
+.titlebar-spacer {
+  display: none !important;
+}
+
+/* Hide "Firefox Suggest", "Google Suggestions" and other labels */
+.urlbarView-row[label]::before {
+  display: none !important;
+}
+.urlbarView-row[label] {
+  margin-block-start: 0 !important;
+}
+
+/* Autohide URL bar */
+/*
+:root {
+  --address-bar-height: 40px;
+  --browser-offset: calc(-1 * (var(--address-bar-height) + 1px));
+}
+#navigator-toolbox-background {
+  position: absolute !important;
+  z-index: 0 !important;
+}
+#navigator-toolbox-background ~ #browser {
+  margin-top: var(--browser-offset) !important;
+}
+
+.devtools-toolbox-side-iframe {
+  margin-top: var(--address-bar-height) !important;
+}
+
+/* #navigator-toolbox-background:hover, 
+#navigator-toolbox-background:focus-within {
+  z-index: 9001 !important;
+}
