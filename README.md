@@ -6,6 +6,8 @@ Updated config settings &amp; possibilities for Firefox. This includes all file 
 
 [Profile Folder]
 
+```plaintext
+[Profile Folder]
 └── chrome
     ├── chrome
     ├── src
@@ -17,7 +19,7 @@ Updated config settings &amp; possibilities for Firefox. This includes all file 
     ├── package.json
     ├── userChrome.css
     └── userContent.css
-
+```
 #### Available preferences
 
 <table>
