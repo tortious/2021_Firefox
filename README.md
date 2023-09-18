@@ -5,6 +5,7 @@ Updated config settings &amp; possibilities for Firefox. This includes all file 
 [Link](https://github.com/tortious/2019Firefox) to previous repo.
 
 [Profile Folder]
+
 └── chrome
     ├── chrome
     ├── src
