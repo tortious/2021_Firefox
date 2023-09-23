@@ -1,0 +1,193 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/*
+	========================
+	Pretty Tabs by Lummox JR
+	========================
+
+	Replaces Firefox's ugly boxy tabs with nicely S-curved tabs of the sort
+	seen in much older Firefox versions.
+
+	Each tab is given a clip-path that approximates a nice S curve like the
+	old SVG files Firefox used to use. (This uses a polygon instead of an SVG
+	path because the polygon can use calc() and percent units.) The tabs are
+	then pushed closer together so they overlap.
+
+	Because tabs can have translucent backgrounds to show the lightweight
+	theme graphics/color behind them, tabs' clip paths have to cut out any
+	neighboring tabs to hide the overlap.
+
+	The border is drawn by another clip-path around an ::after object on the
+	tab stack.
+
+
+	This file is released into the public domain.
+ */
+
+*|*:root {
+	--tab-curve: 10px;			/* Default that will get overwritten */
+	--tab-curve-pct: 0.5;		/* User-defined "slope" to each tab curve; higher values give a shallower tab slope */
+	--tab-border-inset: -1px;	/* Rounding errors actually make this a nice border that looks how you would expect 1px to look */
+}
+
+.tabbrowser-tab {
+	--tab-curve: calc(var(--tab-min-height) * var(--tab-curve-pct));
+}
+
+/*
+	Tabs are pushed together by curve * 2.5 instead of curve * 2 to pull them
+	a little bit closer. For this reason, the crossover point in the curve is
+	at y=30% instead of y=50%.
+
+	This is why tabs whose clip-paths cut out their	neighboring tabs use the
+	30%. This inset is also reflected in the X values of the cutout.
+ */
+.tabbrowser-tab + .tabbrowser-tab {margin-left: calc(var(--tab-curve) * -2.5) !important;}
+.tabbrowser-tab:first-of-type {margin-left: calc(var(--tab-curve) * -0.25) !important;}
+.tabbrowser-tab:last-of-type {margin-right: calc(var(--tab-curve) * -0.5) !important;}
+
+/*
+	Tab orientation scenarios:
+
+	T = ordinary non-focused tab
+	F = focused tab
+	X = tab this style applies to (if not F)
+	! = Beginning or end
+
+	!XT, !XF, TXT, TXF:
+		X's left edge is normal
+		X's right edge tucks under so F can overlap
+	FXT:
+		X's left edge and right edge tuck over so F and T both overlap
+	FX!
+		X's left edge tucks under so F can overlap
+		X's right edge is normal
+	!X!, TX!, F
+		X's left and right edges are normal
+ */
+
+.tabbrowser-tab[visuallyselected],
+.tabbrowser-tab:first-of-type:last-of-type,
+.tabbrowser-tab:not([visuallyselected]) + .tabbrowser-tab:last-of-type {
+	/* Show normal left and right edges */
+	clip-path: polygon(
+		0 100%,
+		calc(var(--tab-curve) * 0.25) 98%,
+		calc(var(--tab-curve) * 0.5) 90%,
+		calc(var(--tab-curve) * 1.5) 10%,
+		calc(var(--tab-curve) * 1.75) 2%,
+		calc(var(--tab-curve) * 2) 0,
+		calc(100% - (var(--tab-curve) * 2)) 0,
+		calc(100% - (var(--tab-curve) * 1.75)) 2%,
+		calc(100% - (var(--tab-curve) * 1.5)) 10%,
+		calc(100% - (var(--tab-curve) * 0.5)) 90%,
+		calc(100% - (var(--tab-curve) * 0.25)) 98%,
+		100% 100%
+	);
+}
+
+.tabbrowser-tab:first-of-type:not([visuallyselected]):not(:last-of-type),
+.tabbrowser-tab:not([visuallyselected]) + .tabbrowser-tab:not([visuallyselected]):not(:last-of-type) {
+	/* Tab to the right overlaps this one */
+	clip-path: polygon(
+		0 100%,
+		calc(var(--tab-curve) * 0.25) 98%,
+		calc(var(--tab-curve) * 0.5) 90%,
+		calc(var(--tab-curve) * 1.5) 10%,
+		calc(var(--tab-curve) * 1.75) 2%,
+		calc(var(--tab-curve) * 2) 0,
+		calc(100% - (var(--tab-curve) * 2)) 0,
+		calc(100% - (var(--tab-curve) * 1.75)) 2%,
+		calc(100% - (var(--tab-curve) * 1.5)) 10%,
+		calc(100% - (var(--tab-curve) * 1.25)) 30%,
+		calc(100% - (var(--tab-curve) * 2)) 90%,
+		calc(100% - (var(--tab-curve) * 2.25)) 98%,
+		calc(100% - (var(--tab-curve) * 2.5)) 100%
+	);
+}
+
+.tabbrowser-tab[visuallyselected] + .tabbrowser-tab:last-of-type {
+	/* Tab to the left overlaps this one */
+	clip-path: polygon(
+		calc(var(--tab-curve) * 2.5) 100%,
+		calc(var(--tab-curve) * 2.25) 98%,
+		calc(var(--tab-curve) * 2) 90%,
+		calc(var(--tab-curve) * 1.25) 30%,
+		calc(var(--tab-curve) * 1.5) 10%,
+		calc(var(--tab-curve) * 1.75) 2%,
+		calc(var(--tab-curve) * 2) 0,
+		calc(100% - (var(--tab-curve) * 2)) 0,
+		calc(100% - (var(--tab-curve) * 1.75)) 2%,
+		calc(100% - (var(--tab-curve) * 1.5)) 10%,
+		calc(100% - (var(--tab-curve) * 0.5)) 90%,
+		calc(100% - (var(--tab-curve) * 0.25)) 98%,
+		100% 100%
+	);
+}
+
+.tabbrowser-tab[visuallyselected] + .tabbrowser-tab:not(:last-of-type) {
+	/* Tabs to the left and right both overlap this one */
+	clip-path: polygon(
+		calc(var(--tab-curve) * 2.5) 100%,
+		calc(var(--tab-curve) * 2.25) 98%,
+		calc(var(--tab-curve) * 2) 90%,
+		calc(var(--tab-curve) * 1.25) 30%,
+		calc(var(--tab-curve) * 1.5) 10%,
+		calc(var(--tab-curve) * 1.75) 2%,
+		calc(var(--tab-curve) * 2) 0,
+		calc(100% - (var(--tab-curve) * 2)) 0,
+		calc(100% - (var(--tab-curve) * 1.75)) 2%,
+		calc(100% - (var(--tab-curve) * 1.5)) 10%,
+		calc(100% - (var(--tab-curve) * 1.25)) 30%,
+		calc(100% - (var(--tab-curve) * 2)) 90%,
+		calc(100% - (var(--tab-curve) * 2.25)) 98%,
+		calc(100% - (var(--tab-curve) * 2.5)) 100%
+	);
+}
+
+.tabbrowser-tab[visuallyselected] {
+	--tab-border-inset: 1px;
+}
+
+.tab-stack::after {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: var(--lwt-tab-text, var(--toolbar-color));
+	content: ' ';
+	clip-path: polygon(
+		/* outer curve (we don't need a whole curve) */
+		-1px 100%,
+		-1px 0,
+		calc(100% + 1px) 0,
+		calc(100% + 1px) 100%,
+		/* inner curve */
+		calc(100% - var(--tab-border-inset)) 100%,
+		calc(100% - (var(--tab-curve) * 0.25) - var(--tab-border-inset)) calc(98% + 0.02px),
+		calc(100% - (var(--tab-curve) * 0.5) - var(--tab-border-inset)) calc(90% + 0.1px),
+		calc(100% - (var(--tab-curve) * 1.5) - var(--tab-border-inset)) calc(10% + 0.9px),
+		calc(100% - (var(--tab-curve) * 1.75) - var(--tab-border-inset)) calc(2% + 0.98px),
+		calc(100% - (var(--tab-curve) * 2) - var(--tab-border-inset)) 1px,
+		calc(var(--tab-curve) * 2 + var(--tab-border-inset)) 1px,
+		calc(var(--tab-curve) * 1.75 + var(--tab-border-inset)) calc(2% + 0.98px),
+		calc(var(--tab-curve) * 1.5 + var(--tab-border-inset)) calc(10% + 0.9px),
+		calc(var(--tab-curve) * 0.5 + var(--tab-border-inset)) calc(90% + 0.1px),
+		calc(var(--tab-curve) * 0.25 + var(--tab-border-inset)) calc(98% + 0.02px),
+		var(--tab-border-inset) 100%
+	);
+}
+
+.tab-background {
+	margin-block: 0 !important;
+	padding: 0 calc((var(--tab-curve) * 1) + var(--inline-tab-padding)) 0 calc((var(--tab-curve) * 1.2) + var(--inline-tab-padding)) !important;
+	overflow: hidden;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.tab-content {
+	padding: 0 calc((var(--tab-curve) * 1) + var(--inline-tab-padding)) 0 calc((var(--tab-curve) * 1.2) + var(--inline-tab-padding)) !important;
+}
