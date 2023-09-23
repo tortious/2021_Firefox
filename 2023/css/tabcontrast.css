@@ -1,0 +1,21 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/*
+	Make tabs easier to see against theme backgrounds
+
+	This file is released into the public domain.
+ */
+
+:root[lwtheme-image][lwtheme-brighttext] .tabbrowser-tab {--tab-contrast-bgcolor: rgba(0,0,0,0.25); background-color: rgba(0,0,0,0.5) !important;}
+:root[lwtheme-image][lwtheme-darktext] .tabbrowser-tab {--tab-contrast-bgcolor: rgba(255,255,255,0.25); background-color: rgba(255,255,255,0.5) !important;}
+
+#TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon:-moz-lwtheme,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected=true]:-moz-lwtheme,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected=true]:-moz-lwtheme {
+  background-attachment: scroll, scroll, scroll, fixed !important;
+  background-color: transparent !important;
+  background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)), linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor)), linear-gradient(var(--tab-contrast-bgcolor), var(--tab-contrast-bgcolor)), var(--lwt-header-image, none) !important;
+  background-position: 0 0, 0 0, 0 0, right top !important;
+  background-repeat: repeat-x, repeat-x, repeat, no-repeat !important;
+  background-size: auto 100%, auto 100%, auto auto, auto auto !important;
+}
