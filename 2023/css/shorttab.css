@@ -1,0 +1,9 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+/*
+	Make tabs less ridiculously tall
+
+	This file is released into the public domain.
+ */
+
+*|*:root {--tab-min-height: 24px !important;}
