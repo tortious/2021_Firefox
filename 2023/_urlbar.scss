@@ -1,0 +1,115 @@
+// URL Bar Size
+#urlbar {
+  --urlbar-height: 28px !important;
+  --urlbar-toolbar-height: 36px !important;
+}
+
+#urlbar-container {
+  --urlbar-container-height: 36px !important;
+}
+
+html,
+body {
+  --urlbar-min-height: 28px !important; // Minimum Height
+  --toolbarbutton-height: 28px !important; // Button Height
+  --toolbarbutton-inner-padding: 6px !important; // Button Inner Padding
+  --urlbar-icon-border-radius: 100px !important; // Icon Border Radius
+  --toolbarbutton-border-radius: 100px !important; // Button Border Radius
+  --urlbar-container-padding: 2px !important; // Container Padding
+}
+
+// Fix Icons sizes after URL Bar Size Change
+.identity-box-button,
+#notification-popup-box,
+#tracking-protection-icon-container,
+.urlbar-page-action,
+#urlbar-go-button,
+.search-go-button {
+  width: auto !important;
+  height: calc(
+    var(--urlbar-height) - var(--urlbar-container-padding) * 2
+  ) !important;
+  border-radius: var(--urlbar-icon-border-radius) !important;
+  padding: 0 8px !important;
+  -moz-box-pack: center !important;
+  align-items: center !important;
+}
+
+#notification-popup-box {
+  padding: 0 !important;
+}
+
+.notification-anchor-icon {
+  padding: 0 8px !important;
+}
+
+#urlbar {
+  &[open] {
+    #urlbar-background,
+    #searchbar {
+      border-radius: 6px !important;
+      border: none !important;
+    }
+  }
+  &:not([open])[focused] {
+    #urlbar-background,
+    #searchbar {
+      box-shadow: none !important;
+    }
+  }
+}
+
+// Fix URL Input Font Size
+#urlbar-input,
+#urlbar,
+#searchbar {
+  font: unset !important;
+  font-size: 14px !important;
+}
+
+@media (prefers-color-scheme: light) {
+  #urlbar-background,
+  #searchbar {
+    background-color: get-var("background-color-50") !important;
+  }
+
+  #urlbar:is([open], [focused]) {
+    #urlbar-background,
+    #searchbar {
+      background-color: get-var("background-color-100") !important;
+    }
+  }
+}
+
+// hide url bar search input placeholder if focused
+#urlbar:is([open], [focused]) {
+  #urlbar-input::placeholder {
+    color: transparent !important;
+  }
+}
+.searchbar-textbox:focus::placeholder {
+  color: transparent !important;
+}
+
+// remove theme navbar top border
+#nav-bar {
+  box-shadow: none !important;
+}
+
+// nav bar bottom content separator border
+#navigator-toolbox {
+  // border-bottom: 1px solid var(--chrome-content-separator-color);
+  border-bottom: 1px solid get-var("content-separator-color") !important;
+}
+
+// fixes for macOS
+@media (-moz-platform: macos) {
+  #urlbar {
+    --urlbar-height: 34px !important;
+    --urlbar-toolbar-height: 42px !important;
+  }
+
+  #urlbar-container {
+    --urlbar-container-height: 42px !important;
+  }
+}
