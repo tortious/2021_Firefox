@@ -1,0 +1,106 @@
+// buttons at center
+#tabbrowser-arrowscrollbox-periphery {
+  display: flex !important;
+  align-items: center !important;
+}
+
+// new tab button & all tabs button
+#tabs-newtab-button,
+#new-tab-button,
+#alltabs-button {
+  min-width: 40px !important;
+  min-height: var(--tab-min-height) !important;
+  max-width: 40px !important;
+  max-height: var(--tab-min-height) !important;
+  margin: 0 !important;
+
+  & > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack) {
+    padding: 6px !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    border-radius: 4px !important;
+  }
+}
+
+// tab close
+.tab-close-button,
+.messageCloseButton > .toolbarbutton-icon {
+  width: auto !important;
+  height: 16px !important;
+  padding: 2px !important;
+
+  transition: background-color 83ms linear !important;
+
+  &:hover {
+    background: get-var("control-background-color") !important;
+    outline: 1px solid transparent !important;
+    outline-color: get-var("control-border-color") !important;
+  }
+}
+
+// all tabs button
+@media (-moz-platform: windows) {
+  // hide spacer between tabs & window nav
+  .titlebar-spacer[type="post-tabs"] {
+    display: none !important;
+  }
+
+  #alltabs-button {
+    max-height: 100% !important;
+    min-height: 100% !important;
+    padding: 0 !important;
+
+    --margin-left: 48px;
+    margin: 0 0 0 var(--margin-left) !important;
+
+    & > stack {
+      padding: 0 !important;
+      margin: 0 !important;
+      border-radius: 0 !important;
+      max-height: 100% !important;
+      min-height: 100% !important;
+    }
+  }
+
+  // @media (max-width: 700px) {
+  //   #alltabs-button {
+  //     --margin-left: 8px !important;
+  //   }
+  // }
+
+  // @media (max-width: 500px) {
+  //   #alltabs-button {
+  //     --margin-left: 0px !important;
+  //   }
+  // }
+}
+
+// #scrollbutton-down,
+// #scrollbutton-up {
+//   --scrollbutton-size: 34px;
+//   max-width: var(--scrollbutton-size) !important;
+//   min-width: var(--scrollbutton-size) !important;
+//   min-height: var(--scrollbutton-size) !important;
+//   min-height: var(--scrollbutton-size) !important;
+// }
+
+// fixes for macOS
+@media (-moz-platform: macos) {
+  // macOS fix for new tab button & all tabs button
+  #tabs-newtab-button,
+  #new-tab-button,
+  #alltabs-button {
+    margin-top: auto !important;
+  }
+
+  #new-tab-button {
+    margin-inline-start: 2px !important;
+  }
+
+  // macos drag area fix
+  #tabs-newtab-button,
+  #new-tab-button {
+    margin-inline-end: 40px !important;
+  }
+}
